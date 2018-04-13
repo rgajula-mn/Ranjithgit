@@ -1,0 +1,34 @@
+---
+
+
+
+- name: taking all zip files from the required locations
+  hosts: Appservers
+  become_user: genadmin
+  tasks:
+    - name: taking the zip files and unzip in required location based on the variables file
+      unarchive:
+        src: "{{ item.package_name }}"
+        dest: "{{ item.install_dir }}"
+        remote_src: yes
+      with_items:
+        - {package_name: "{{ RC_LOCATION }}ECA-9.0.9jJ12c.64.WebLogic_autoinstaller.zip", install_dir: "{{ INSTALL_DIR }}"}
+        - {package_name: "{{ RC_LOCATION }}ECA-9.0.9jJ12c.64.JBoss_autoinstaller.zip", install_dir: "{{ INSTALL_DIR }}"}
+        - {package_name: "{{ RC_LOCATION }}RB-9.0.9lX12c_autoinstaller.zip",  install_dir: "{{ INSTALL_DIR }}"}
+        - {package_name: "{{ UTILITIES_LOCATION }}", install_dir: "{{ INSTALL_DIR }}"}
+        - {package_name: "{{ PF_LOCATION }}", install_dir: "{{ INSTALL_DIR }}"}
+        - {package_name: "{{ PF_LOCATION }}", install_dir: "{{ INSTALL_DIR }}"}
+        - {package_name: "{{ AI_LOCATION }}", install_dir: "{{ INSTALL_DIR }}"}
+    - name: updating and copying all required properties files from current location to installation location based on the variable file
+      template:
+        src: "{{ item }}"
+        dest: "{{ INSTALL_DIR }}AutoInstaller"
+      with_items: ["config_RBM.properties","config_RB.properties","config_PF.properties","config_ECA.properties","config.properties"]
+    - template:
+        src: install.xml
+        dest: "{{ INSTALL_DIR }}"
+    - file: dest="{{ INSTALL_DIR }}install.sh" mode=755
+    - command: "{{ INSTALL_DIR }}install.sh"
+      args:
+        chdir: "{{ INSTALL_DIR }}"
+

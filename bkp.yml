@@ -1,0 +1,7 @@
+ file:
+        src: "{{ RC_LOCATION }}{{ item }}"
+        dest: "/u02/netcracker/rbm/genadmin/ansible_aiinstaller/{{ item }}"
+        force: true
+        state: link
+      with_items: ["ECA-9.0.9jJ12c.64.WebLogic_autoinstaller.zip","ECA-9.0.9jJ12c.64.JBoss_autoinstaller.zip","rbtest-9.0.9.zip","RB-9.0.9lX12c_autoinstaller.zip"]
+

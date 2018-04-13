@@ -1,0 +1,17 @@
+---
+# handlers file for rbminstaller
+
+- name: copying to install location
+  unarchive:
+    src: "{{ item.package_name }}"
+    dest: "{{ item.install_dir }}"
+    remote_src: yes
+  with_items:
+    - {package_name: "{{ RC_LOCATION }}ECA-9.0.9jJ12c.64.WebLogic_autoinstaller.zip", install_dir: "{{ INSTALL_DIR }}"}
+    - {package_name: "{{ RC_LOCATION }}ECA-9.0.9jJ12c.64.JBoss_autoinstaller.zip", install_dir: "{{ INSTALL_DIR }}"}
+    - {package_name: "{{ RC_LOCATION }}RB-9.0.9lX12c_autoinstaller.zip",  install_dir: "{{ INSTALL_DIR }}"}
+    - {package_name: "{{ UTILITIES_LOCATION }}", install_dir: "{{ INSTALL_DIR }}"}
+    - {package_name: "{{ PF_LOCATION }}", install_dir: "{{ INSTALL_DIR }}"}
+    - {package_name: "{{ PF_LOCATION }}", install_dir: "{{ INSTALL_DIR }}"}
+    - {package_name: "{{ AI_LOCATION }}", install_dir: "{{ INSTALL_DIR }}"}
+

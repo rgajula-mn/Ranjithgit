@@ -1,0 +1,27 @@
+---
+
+
+
+- name: upgrading the environment
+  hosts: Appservers
+  tasks:
+  vars:
+    InternalUpgrade: yes
+    SchemaTopUpFile: "{{ rbtestzip }}"
+    SchemaTopUpDir: "{{ INSTALL_DIR }}"
+    rbtestziplocation: "{{ RC_LOCATION }}{{ rbtestzip }}"
+  become_user: genadmin
+  tasks:
+  
+    - copy:
+        src: "{{ rbtestziplocation }}"
+        dest: "{{ INSTALL_DIR }}"
+
+    - template:
+        src: config_RB.properties
+        dest: "{{ INSTALL_DIR }}AutoInstaller"
+    
+    - command: "{{ INSTALL_DIR }}install.sh"
+      args:
+        chdir: "{{ INSTALL_DIR }}"
+

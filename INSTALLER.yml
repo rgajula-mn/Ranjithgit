@@ -1,0 +1,10 @@
+---
+
+- include: drop_create_db.yml
+  when: INSTALLATION_MODE == "FRESH"
+
+- include: RBM_installer.yml
+  when: INSTALLATION_MODE == "FRESH"
+
+- include: RBM_upgrede.yml
+  when: INSTALLATION_MODE == "UPGRADE"

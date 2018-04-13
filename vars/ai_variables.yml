@@ -1,0 +1,60 @@
+#RC details, from where we should pick the packages
+RC_LOCATION: /irb/candidate/rc/rb/9.0/RB_9.0.9.RC1/full/
+UTILITIES_LOCATION: /irb/candidate/patch/utilities/6.0/UTILITIES_6.0.4.1.RC1/UTILITIES_6.0.4.1_autoinstaller.zip
+PF_LOCATION: /irb/candidate/rc/pf/6.0/PF_6.0.8.RC1/PF-6.0.8jJ.64.GenericJ2EE_autoinstaller.zip
+AI_LOCATION: /irb/archive/autoinstaller/4.29-FULL/AutoInstaller_4.29.10.0_01.zip
+INSTALL_DIR: /rtests/genadmin/netcracker/rbm/ansible_installer/
+
+
+#Below are the folders names for AI installaer to update the install.xml file
+UTILITIES: UTILITIES_6.0.4.1
+PF: PF-6.0.8jJ.64.GenericJ2EE
+RB: RB-9.0.9lX12c
+ECA: ECA-9.0.9jJ12c.64.WebLogic
+
+
+
+#Below all variables needs to be updated for AI property configuration files
+platform_type:  rbm
+database_host: db685cn
+globalName: USDAS16.world 
+database_sid: USDAS16
+twoTask: USDAS16
+listenerPort: 1521
+sys_password: sys
+inf_password: inf_admin
+unif_password: unif_admin
+rb_ora_logon_password: geneva_admin
+oracle_home: /opt/oracle/12.1.0.2.SE
+java_home: /tools/java/java1.8
+CVG_INFINYS_PF: /irb/bce/misc/external_db_dirs/db685cn.netcracker.com/USDAS16/
+oracleUnixUser: oracle12
+webServer: wls
+webServer_host: devapp697cn.netcracker.com
+webServer_port: 11000
+webServer_domainName: infinys
+webServer_home: /u01/app/weblogic/mw1221/wlserver/
+cvg_license_dir: /opt/RB/license/RB_9.0
+cvg_license_file: license.xml
+cvg_license_cert: license.crt
+SkipY9SchemaReport: no
+apr_home: 
+rb_security_password: geneva_security
+systemMonitorPort: 8082
+childProcessPort: 8083
+taskMaster_hostName: devapp697cn
+DConfigAgentPort: 8085	
+backend_dconfig_port: 8086
+backend_testRateDaemon_port: 8087
+schemaUpgrade_InternalUpgrade: no
+pf_schema_password: ipf_admin
+pf_sec_schema_password: ipf_sec_admin
+pf_audit_password: ipf_audit_admin
+pf_app_user_password: ipf_app_user
+pf_container_user_password: wlsadmin123
+pf_initial_user_password: caafadmin
+ecaUser: ECAUSER
+ecaPassword: ecaeca@1
+
+
+

@@ -1,0 +1,6 @@
+[Dbserver]
+db685cn ansible_user=oracle11
+
+
+[Appservers]
+localhost

@@ -1,0 +1,23 @@
+<project name="installer" default="StartInstall">
+    <property name="NETCRACKER_HOME" location="./"/>
+    <property name="INSTALLER_HOME" location="${NETCRACKER_HOME}/AutoInstaller"/>
+    
+    <import file="${INSTALLER_HOME}/build.xml"/>
+    <property name="package_name" value="RBM_autoinstaller"/>
+     <property name="skip_sqltest" value="true" />
+    <target name="process">
+        <!-- Install patches -->
+        <antcall target="install.zip">
+            <param name="zip_name" value="{{ UTILITIES }}"/>
+        </antcall>
+        <antcall target="install.zip">
+            <param name="zip_name" value="{{ PF }}"/>
+        </antcall>
+        <antcall target="install.zip">
+            <param name="zip_name" value="{{ RB }}"/>
+        </antcall>
+        <antcall target="install.zip">
+            <param name="zip_name" value="{{ ECA }}"/>
+        </antcall>
+    </target>
+</project>

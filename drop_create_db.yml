@@ -1,0 +1,10 @@
+---
+
+
+- name: taking all zip files from the required locations
+  hosts: Dbserver
+  become_user: oracle11
+  tasks:
+    - name: droping and recreate the DB by using shell script
+      shell: . ~/.bce.ini;/irb/bce/admin/ccm_wa/PRD-bce/PRD/build_scripts/build_drop_and_create_db_inst.sh "{{ database_sid }}" /irb/bce/admin/oracle_build_dbs/RHEL7-EM64T_64_jvm_12102_SE_WE8ISO8859P15.tar.Z 12c /u02/oracle/oradata/{{ database_sid }} WE8ISO8859P15 9.0 SE
+
