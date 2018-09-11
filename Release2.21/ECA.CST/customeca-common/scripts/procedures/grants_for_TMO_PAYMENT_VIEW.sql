@@ -1,0 +1,6 @@
+GRANT SELECT                         ON  GENEVA_ADMIN.ACCOUNTPAYMENT             TO PUBLIC;
+GRANT SELECT                         ON  GENEVA_ADMIN.ACCOUNTPAYMENT             TO PUBLIC;
+GRANT SELECT                         ON  GENEVA_ADMIN.PHYSICALPAYMENT            TO PUBLIC;
+GRANT SELECT                         ON  GENEVA_ADMIN.ALLOCATIONTOBILL           TO PUBLIC;
+GRANT SELECT                         ON  GENEVA_ADMIN.BILLSUMMARY                TO PUBLIC;
+GRANT SELECT                         ON  GENEVA_ADMIN.ACCOUNTPAYATTRIBUTES       TO PUBLIC;

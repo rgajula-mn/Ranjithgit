@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ejb-jar id="pm">
+	<enterprise-beans>
+			
+		<session id="Session_14">
+			<display-name>BillingProfileService</display-name>
+			<ejb-name>BillingProfileService</ejb-name>
+			<home>com.convergys.custom.geneva.j2ee.billingProfile.BillingProfileSessionHome</home>
+			<remote>com.convergys.custom.geneva.j2ee.billingProfile.BillingProfileSession</remote>
+			<ejb-class>com.convergys.custom.geneva.j2ee.billingProfile.BillingProfileSessionImpl</ejb-class>
+			<session-type>Stateless</session-type>
+			<transaction-type>Container</transaction-type>
+			<env-entry>
+				<!-- Access in code using JNDI lookup("java:/comp/env/envvar1") -->
+				<description>
+					This env entry is for the Spring Framework
+				</description>
+				<env-entry-name>ejb/BeanFactoryPath</env-entry-name>
+				<env-entry-type>java.lang.String</env-entry-type>
+				<env-entry-value>
+			com/convergys/platform/beanResourcesContext.xml;com/convergys/custom/geneva/j2ee/billingProfile/ejb-service-spring.xml;com/convergys/custom/geneva/j2ee/billingProfile/pojoContext.xml;classpath:pf-services-spring.xml;
+				</env-entry-value>
+			</env-entry>
+		  			
+		</session>
+		
+	</enterprise-beans>
+
+	<assembly-descriptor>
+
+		<container-transaction>
+			<method>
+				<ejb-name>BillingProfileService</ejb-name>
+				<method-name>*</method-name>
+			</method>
+			<trans-attribute>Required</trans-attribute>
+		</container-transaction>
+	</assembly-descriptor>
+	<ejb-client-jar>customeca-j2ee.jar</ejb-client-jar>
+</ejb-jar>
+

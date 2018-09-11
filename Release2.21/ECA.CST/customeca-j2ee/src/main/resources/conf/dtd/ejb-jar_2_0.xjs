@@ -1,0 +1,22 @@
+<xml-java-binding-schema version="1.0ea">
+<!-- WhatString @(#)pf $Id$  -->
+<!-- (c) 2009 Convergys Information Management Group Inc. All Rights Reserved. Private and Confidential. May not be disclosed without permission. -->
+
+<!-- WhatString @(#)pf $Id$  -->
+<!-- (c) 2009 Convergys Information Management Group Inc. All Rights Reserved. Private and Confidential. May not be disclosed without permission. -->
+
+<options package="com.convergys.security.admin.util.xml.jxb.ejbjarxml" />
+<element name="ejb-jar" type="class" root="true" />
+<element name="method-permission" type="class">
+	<content>
+		<element-ref name="description" />
+		<choice property="rolename-or-unchecked" collection="list" />
+		<element-ref name="method" />
+	</content>
+</element>
+<element name="enterprise-beans" type="class" >
+	<content>
+		<choice property="beans" collection="list" />
+	</content>
+</element>
+</xml-java-binding-schema>

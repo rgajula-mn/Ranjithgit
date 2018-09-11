@@ -1,0 +1,179 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="NewProductInstanceData" version="6" since="3.1">
+    <doc>
+The new product instance data bean.
+    </doc>
+
+    <extends name="NewProductInstanceBase" version="6"/>
+
+    <mixin serviceId="" name="HistoriedByDateTime"/>
+
+
+    <field name="NewEventTypes">
+      <doc>
+Gets the product's event types which are to be created. Describes the product's
+event types which are going to be created. When a package is created all the
+event types that could be taken by the package receive new rows in
+PVCUSTPRODUCTEVENTTYPES. The product instance does not generate those event
+types until an event source is associated with it.
+      </doc>
+      <see name="NewProductInstanceEventTypeData" version="6"/>
+      <array nullable="true">
+        <structure nullable="false" name="NewProductInstanceEventTypeData" version="6"/>
+      </array>
+    </field>
+
+    <field name="NewContractData">
+      <doc>
+Databean to specify information regarding a new contract that is to be created.
+This instance of the new contract data bean defines whether a new contract
+should be created for this specific product instance.
+      </doc>
+      <see serviceId="Contract" name="NewContractData" version="5.1"/>
+      <structure nullable="true" serviceId="Contract" name="NewContractData" version="5.1"/>
+    </field>
+
+    <field name="ContractPK">
+      <doc>
+<![CDATA[
+Gets the contract primary key.
+<p></p>
+]]>
+      </doc>
+      <structure nullable="true" serviceId="Contract" name="ContractPK"/>
+    </field>
+
+    <field name="ProductPK">
+      <doc>
+<![CDATA[
+Gets the product primary key. 
+<p></p>
+]]>
+      </doc>
+      <structure nullable="false" serviceId="Product" name="ProductPK"/>
+    </field>
+
+    <field name="StartDtm" mixin="true">
+      <doc>
+<![CDATA[
+Gets the date and time when the product is taken. 
+<p></p>
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="EndDtm" mixin="true">
+      <doc>
+<![CDATA[
+Specifies the date and time when the customer stops taking the product.
+<p></p>
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+
+    <field name="ProductStatus">
+      <doc>
+<![CDATA[
+Gets the status of the product. 
+<p></p>
+]]>
+      </doc>
+      <enum nullable="false" name="ProductStatus"/>
+    </field>
+
+    <field name="StatusReasonTxt">
+      <doc>
+<![CDATA[
+Gets the reason for the status of the product.
+<p></p>
+]]>
+      </doc>
+      <string nullable="true" maxLength="255"/>
+    </field>
+
+    <field name="ParentProductInstancePK">
+      <doc>
+<![CDATA[
+Gets the parent product. This must be set if a package expects the product to
+have a parent.
+<p></p>
+]]>
+      </doc>
+      <structure nullable="true" name="ProductInstancePK"/>
+    </field>
+
+    <field name="ContractedPointOfSupplyId">
+      <doc>
+Gets the contracted point of supply identifier to which the product is
+registered.
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="BillingTariffPK">
+      <doc>
+Gets the  price plan primary key. When adding an optional product to a
+package, the price plan must be null because the package already has
+the  price plan details. 
+      </doc>
+      <structure nullable="false" serviceId="BillingTariff" name="BillingTariffPK"/>
+    </field>
+
+    <field name="CompetitorBillingTariffPK">
+      <doc>
+Gets the competitor  price plan primary key. This is used to compare how
+much the customer would be billed by another company for the same product. 
+      </doc>
+      <structure nullable="true" serviceId="BillingTariff" name="BillingTariffPK"/>
+    </field>
+
+    <field name="CustOrderNum">
+      <doc>
+<![CDATA[
+Gets the customer order number for the product. 
+<p></p>
+]]>
+      </doc>
+      <string nullable="true" maxLength="60"/>
+    </field>
+
+    <field name="SupplierOrderNumber">
+      <doc>
+<![CDATA[
+Gets the supplier order number for the product. 
+<p></p>
+]]>
+      </doc>
+      <string nullable="true" maxLength="20"/>
+    </field>
+
+    <field name="NewOverridePriceData">
+      <doc>
+Describes the product's Overriderate that would be applied.
+      </doc>
+      <structure nullable="true" serviceId="OverridePrice" name="NewOverridePriceData" version="1"/>
+    </field>
+
+
+    <field name="NewOverrideRateData">
+      <doc>
+Describes the product's Overriderate that would be applied.
+      </doc>
+      <structure nullable="true" serviceId="OverrideRate" name="NewOverrideRateData" version="1"/>
+    </field>
+
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/NewProductInstanceData_6.iml -->

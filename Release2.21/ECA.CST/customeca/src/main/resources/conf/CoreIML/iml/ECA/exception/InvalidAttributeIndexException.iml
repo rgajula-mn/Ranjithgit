@@ -1,0 +1,34 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="InvalidAttributeIndexException">
+    <doc>
+This exception is a subclass of BusinessLogicException and it is specific to
+Account and Customer Attributes, This exception is raised the given attribute
+index does not exist in the Corresponding table.
+    </doc>
+    <extends name="BusinessLogicException"/>
+
+    <field name="TableName">
+      <doc>
+Method to get the tableName from which this exception is been raised
+      </doc>
+      <string nullable="false"/>
+    </field>
+
+    <field name="Index">
+      <doc>
+Method to get the index, which caused this exception
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/InvalidAttributeIndexException.iml -->

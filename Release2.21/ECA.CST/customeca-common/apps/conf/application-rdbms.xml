@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE application PUBLIC "-//Sun Microsystems, Inc.//DTD J2EE Application 1.3//EN" "http://java.sun.com/dtd/application_1_3.dtd">
+<application id="Application_ID">
+	<display-name>ECA</display-name>
+		<library-directory>APP-INF/lib</library-directory>
+		<module id="EjbModule_10">
+			<ejb>RBServer.jar</ejb>
+		</module>
+		<module id="EjbModule_11">
+			<ejb>customeca.jar</ejb>
+		</module>
+		<module id="EjbModule_12">
+			<web>
+				<web-uri>CUSTOMECA.war</web-uri>
+				<context-root>/CUSTOMECA</context-root>
+			</web>
+		</module>
+		<module id="EjbModule_13">
+			<web>
+				<web-uri>eca-webservices.war</web-uri>
+				<context-root>/eca-webservices</context-root>
+			</web>
+		</module>
+		<security-role id="SecurityRole_1">
+			<description>the administrator</description>
+			<role-name>ECA</role-name>
+		</security-role>
+</application>

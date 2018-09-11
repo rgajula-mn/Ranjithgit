@@ -1,0 +1,39 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Address"
+>
+  <exceptionDef name="InvalidAddressException">
+    <doc>
+This exception is for invalid addresses.
+    </doc>
+    <extends serviceId="" name="BusinessLogicException"/>
+
+    <field name="AddressLines">
+      <doc>
+<![CDATA[
+Gets an array of the customer address lines (lines 1-5). This cannot be null.
+<p>
+  Address lines consist of the following: <br> address_1 (Not Nullable) =
+  The first line of the address as it would appear on a letter. <br> address_2
+  (Nullable) = The second line of the address as it would appear on a letter.
+  <br/> address_3 (Nullable) = The third line of the address as it would appear
+  on a letter. <br> address_4 (Nullable) = The fourth line of the address as
+  it would appear on a letter. <br> address_5 (Nullable) = The fifth line of
+  the address as it would appear on a letter.
+</p>
+]]>
+      </doc>
+      <array nullable="false">
+        <string nullable="true" maxLength="240"/>
+      </array>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/Address/exception/InvalidAddressException.iml -->

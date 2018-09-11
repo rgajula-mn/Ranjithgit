@@ -1,0 +1,54 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+	<methodDef name="CreatePaymentChannel">
+		<internal name="CvgMethodType" value="write" />
+		<doc>
+			The service shall create the Account Payment Channel in RB  
+		</doc>
+
+		<input name="IntegratorContext">
+			<doc>
+				Integration context for caller specific information.
+			</doc>
+			<structure nullable="false" name="IntegratorContext" />
+		</input>
+
+		<input name="PaymentChannelId">
+			<doc>RB Payment Channel Id</doc>
+			<int32 nullable="false" maxDigits="9"/>
+		</input>
+		
+		<input name="PaymentChannelName">
+			<doc>RB Payment Channel Name</doc>
+			<string nullable="false" maxLength="40" />
+		</input>
+		
+		
+		<input name="InvoicingCoId">
+			<doc>RB Invoicing Company Id</doc>
+			<int32 nullable="false" maxDigits="9"/>
+		</input>
+
+		<output name="CreatePaymentChannelOutput">
+			<doc>Message related to whether payment channel is created successfully</doc>
+				<string nullable="false" maxLength="50" />
+		</output>
+
+		<exception name="ParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="NullParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="ApplicationException" componentId="Platform"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+				
+	</methodDef>
+</iml:definitions>

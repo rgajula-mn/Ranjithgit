@@ -1,0 +1,3198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service RatingCatalog. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-RatingCatalog"
+  xmlns="urn:Convergys-Interface-ECA-RatingCatalog"
+  xmlns:ecaRatingCatalog="urn:Convergys-Interface-ECA-RatingCatalog"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaConfig="urn:Convergys-Interface-ECA-Config"
+  xmlns:ecaRatingTariff="urn:Convergys-Interface-ECA-RatingTariff"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Config"
+    schemaLocation="../../schema/ECA/ECA_Config.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-RatingTariff"
+    schemaLocation="../../schema/ECA/ECA_RatingTariff.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+  <xsd:simpleType name="USTLocationRule">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = Jcode_For_Rating_Binding
+       2 = Jcode_For_Specified_Costedevent_Attribute
+       3 = NPANXX_Number_From_Specified_Costedevent_Attribute
+       4 = Jcode_From_Service_address_OR_Billing_Address
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="USTRegulateOption">
+    <xsd:restriction base="xsd:int">
+<!-- Enums are represented as int values in IML. The following list provides a mapping of
+the different enum options supported by the server. Please note that the server might have
+been upgraded to a more uptodate release and might support additional options. Some options
+may also be deprecated.
+
+       1 = Regulated_US_Tax
+       2 = Unregulated_US_Tax
+
+-->
+    </xsd:restriction>
+  </xsd:simpleType>
+
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="BandingModelData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="bandingModelName" type="xsd:string"/>
+          <xsd:element name="bandingModelDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="matchTypeId" type="xsd:int"/>
+          <xsd:element name="hasCrossrefRatingBoo" type="xsd:boolean"/>
+          <xsd:element name="hasVhRatingBoo" type="xsd:boolean"/>
+          <xsd:element name="hasRegionsBoo" type="xsd:boolean"/>
+          <xsd:element name="region1SameName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="region2SameName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="region1DiffName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="region2DiffName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="vhGridUnitName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="vhDistanceUnitName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="vhMultiplierMantissa" type="xsd:double" minOccurs="0" nillable="true"/>
+          <xsd:element name="vhMultiplierExponent" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BandingModelPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BandingModelResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="parentBandingModelId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="bandingModelData" type="ecaRatingCatalog:BandingModelData_1"/>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BaseTimeRateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="timeRateDiaryId" type="xsd:int"/>
+          <xsd:element name="diaryVersion" type="xsd:int"/>
+          <xsd:element name="startDay" type="xsd:int"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="timeRateId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BaseTimeRateDataResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="baseTimeRateQueryAllPK" type="ecaRatingCatalog:BaseTimeRateQueryAllPK"/>
+          <xsd:element name="timeRateId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BaseTimeRateQueryAllPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="timeRateDiaryId" type="xsd:int"/>
+          <xsd:element name="diaryVersion" type="xsd:int"/>
+          <xsd:element name="startDay" type="xsd:int"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChangeRatingTariffPriorityInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="srcRatingTariffData" type="ecaRatingCatalog:RatingTariffData_1"/>
+          <xsd:element name="priorRatingTariffData" type="ecaRatingCatalog:RatingTariffData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextRatingTariffData" type="ecaRatingCatalog:RatingTariffData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChangeRatingTariffPriorityOutput_1">
+        <xsd:sequence>
+          <xsd:element name="changeRatingTariffPriorityResult" type="ecaRatingCatalog:ChangeRatingTariffPriorityResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChangeRatingTariffPriorityResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="srcPriorAndNextRatingTariffId" type="ecaRatingCatalog:PriorAndNextRatingTariffId_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="priorPriorAndNextRatingTariffId" type="ecaRatingCatalog:PriorAndNextRatingTariffId_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextPriorAndNextRatingTariffId" type="ecaRatingCatalog:PriorAndNextRatingTariffId_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChangeRatingTariffTypePriorityData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="proxyRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="priorTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChangeRatingTariffTypePriorityInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="ratingChargeId" type="xsd:int"/>
+          <xsd:element name="srcRatingTariffTypeData" type="ecaRatingCatalog:ChangeRatingTariffTypePriorityData_1"/>
+          <xsd:element name="priorRatingTariffTypeData" type="ecaRatingCatalog:ChangeRatingTariffTypePriorityData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextRatingTariffTypeData" type="ecaRatingCatalog:ChangeRatingTariffTypePriorityData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChangeRatingTariffTypePriorityOutput_1">
+        <xsd:sequence>
+          <xsd:element name="changeRatingTariffTypePriorityResult" type="ecaRatingCatalog:ChangeRatingTariffTypePriorityResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChangeRatingTariffTypePriorityResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="srcPriorAndNextRatingTariffTypeId" type="ecaRatingCatalog:PriorAndNextRatingTariffTypeId_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="priorPriorAndNextRatingTariffTypeId" type="ecaRatingCatalog:PriorAndNextRatingTariffTypeId_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextPriorAndNextRatingTariffTypeId" type="ecaRatingCatalog:PriorAndNextRatingTariffTypeId_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChargeSegmentData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="chargeSegmentName" type="xsd:string"/>
+          <xsd:element name="chargeSegmentDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChargeSegmentPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="chargeSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ChargeSegmentResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="chargeSegmentData" type="ecaRatingCatalog:ChargeSegmentData_1"/>
+          <xsd:element name="chargeSegmentId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CopyBaseTimeRateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="timeRateDiaryId" type="xsd:int"/>
+          <xsd:element name="diaryVersion" type="xsd:int"/>
+          <xsd:element name="startDay" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CopyBaseTimeRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="copyBaseTimeRateData" type="ecaRatingCatalog:CopyBaseTimeRateData_1"/>
+          <xsd:element name="copyToDay1" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="copyToDay2" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="copyToDay3" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="copyToDay4" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="copyToDay5" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="copyToDay6" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CopyCostingRulesInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="costingRulesPK" type="ecaRatingCatalog:CostingRulesPK"/>
+          <xsd:element name="newStartDat" type="xsd:dateTime"/>
+          <xsd:element name="costingRulesData" type="ecaRatingCatalog:CostingRulesData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CopyRatingCatalogueInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="catalogueName" type="xsd:string"/>
+          <xsd:element name="catalogueDesc" type="xsd:string"/>
+          <xsd:element name="sourceRatingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CopyRatingCatalogueOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingTariff:RatingCataloguePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CopyRatingTariffInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="copyFromRatingTariffPK" type="ecaRatingTariff:RatingTariffPK"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="copyToRatingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CopyRatingTariffOutput_1">
+        <xsd:sequence>
+          <xsd:element name="newCopyToRatingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostBandData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="costBandName" type="xsd:string"/>
+          <xsd:element name="costBandDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustCategoryId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostBandPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="costBandId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostBandResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costBandData" type="ecaRatingCatalog:CostBandData_1"/>
+          <xsd:element name="costBandId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostCodeData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="costCodeName" type="xsd:string"/>
+          <xsd:element name="costCodeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="costGroupId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="costBandId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustJcode" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostCodePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="costCode" type="xsd:string"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostCodeResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costCodeData" type="ecaRatingCatalog:CostCodeData_1"/>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="costCode" type="xsd:string"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostGroupData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="costGroupName" type="xsd:string"/>
+          <xsd:element name="costGroupDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="vValue" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="hValue" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="region1" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="region2" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostGroupPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="costGroupId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostGroupResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costGroupData" type="ecaRatingCatalog:CostGroupData_1"/>
+          <xsd:element name="costGroupId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostGroupXRefData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="costBandId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostGroupXRefPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="costGroup1Id" type="xsd:int"/>
+          <xsd:element name="costGroup2Id" type="xsd:int"/>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostGroupXRefResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costGroupXRefData" type="ecaRatingCatalog:CostGroupXRefData_1"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="costGroup1Id" type="xsd:int"/>
+          <xsd:element name="costGroup2Id" type="xsd:int"/>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostingRulesData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="costingRulesName" type="xsd:string"/>
+          <xsd:element name="costingRulesDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventProcessType" type="xsd:int"/>
+          <xsd:element name="scaleUnitSize" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="scaleRoundingType" type="ecaConfig:RoundingType" minOccurs="0" nillable="true"/>
+          <xsd:element name="costUnitSize" type="xsd:int"/>
+          <xsd:element name="costRoundingType" type="ecaConfig:RoundingType"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="authRetryCount" type="xsd:int"/>
+          <xsd:element name="minimumScalar" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostingRulesPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="costingRulesId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CostingRulesResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costingRulesData" type="ecaRatingCatalog:CostingRulesData_1"/>
+          <xsd:element name="costingRulesId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyModifierResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="modifierPriority" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteBandingModelInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="bandingModelId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="parentBandingModelId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="oldBandingModelData" type="ecaRatingCatalog:BandingModelData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newBandingModelData" type="ecaRatingCatalog:BandingModelData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteBandingModelOutput_1">
+        <xsd:sequence>
+          <xsd:element name="createModifyOrDeleteBandingModelResult" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteBaseTimeRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="oldBaseTimeRateData" type="ecaRatingCatalog:BaseTimeRateData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newBaseTimeRateData" type="ecaRatingCatalog:BaseTimeRateData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteChargeSegmentInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargeSegmentPK" type="ecaRatingCatalog:ChargeSegmentPK"/>
+          <xsd:element name="oldChargeSegmentData" type="ecaRatingCatalog:ChargeSegmentData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newChargeSegmentData" type="ecaRatingCatalog:ChargeSegmentData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteChargeSegmentOutput_1">
+        <xsd:sequence>
+          <xsd:element name="chargeSegmentIdResult" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCostBandInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="costBandPK" type="ecaRatingCatalog:CostBandPK"/>
+          <xsd:element name="oldCostBandData" type="ecaRatingCatalog:CostBandData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newCostBandData" type="ecaRatingCatalog:CostBandData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCostBandOutput_1">
+        <xsd:sequence>
+          <xsd:element name="costBandIdResult" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCostCodeInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="costCodePK" type="ecaRatingCatalog:CostCodePK"/>
+          <xsd:element name="oldCostCodeData" type="ecaRatingCatalog:CostCodeData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newCostCodeData" type="ecaRatingCatalog:CostCodeData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newCostCode" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="newStartDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCostGroupInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="costGroupPK" type="ecaRatingCatalog:CostGroupPK"/>
+          <xsd:element name="oldCostGroupData" type="ecaRatingCatalog:CostGroupData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newCostGroupData" type="ecaRatingCatalog:CostGroupData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="deleteCostGroupXRefsBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCostGroupOutput_1">
+        <xsd:sequence>
+          <xsd:element name="costGroupIdResult" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCostGroupXRefInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="costGroupXRefPK" type="ecaRatingCatalog:CostGroupXRefPK"/>
+          <xsd:element name="oldCostGroupXRefData" type="ecaRatingCatalog:CostGroupXRefData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newCostGroupXRefData" type="ecaRatingCatalog:CostGroupXRefData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newCostGroup1Id" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="newCostGroup2Id" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="newStartDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCostingRulesInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="costingRulesPK" type="ecaRatingCatalog:CostingRulesPK"/>
+          <xsd:element name="oldCostingRulesData" type="ecaRatingCatalog:CostingRulesData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newCostingRulesData" type="ecaRatingCatalog:CostingRulesData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCostingRulesOutput_1">
+        <xsd:sequence>
+          <xsd:element name="costingRulesIdResult" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteEventClassInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventClassPK" type="ecaRatingCatalog:EventClassPK"/>
+          <xsd:element name="oldEventClassData" type="ecaRatingCatalog:EventClassData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newEventClassData" type="ecaRatingCatalog:EventClassData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteEventClassOutput_1">
+        <xsd:sequence>
+          <xsd:element name="eventClassIdResult" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteModifierGroupInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierGroupPK" type="ecaRatingCatalog:ModifierGroupPK"/>
+          <xsd:element name="oldModifierGroupData" type="ecaRatingCatalog:ModifierGroupData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newModifierGroupData" type="ecaRatingCatalog:ModifierGroupData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteModifierGroupOutput_1">
+        <xsd:sequence>
+          <xsd:element name="modifierGroupResultIds" type="ecaRatingCatalog:ModifierGroupResultIds_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteModifierInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierPK" type="ecaRatingCatalog:ModifierPK"/>
+          <xsd:element name="oldModifierData" type="ecaRatingCatalog:ModifierData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newModifierData" type="ecaRatingCatalog:ModifierData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteModifierOutput_1">
+        <xsd:sequence>
+          <xsd:element name="createModifyModifierResult" type="ecaRatingCatalog:CreateModifyModifierResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteOverrideTimeRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="overrideTimeRatePK" type="ecaRatingCatalog:OverrideTimeRatePK"/>
+          <xsd:element name="oldOverrideTimeRateData" type="ecaRatingCatalog:OverrideTimeRateData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newOverrideTimeRateData" type="ecaRatingCatalog:OverrideTimeRateData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteOverrideTimeRateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="overrideTimeRateSeqIdResult" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeletePredicateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="predicateId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="oldPredicateData" type="ecaRatingCatalog:PredicateData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newPredicateData" type="ecaRatingCatalog:PredicateData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeletePredicateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="newPredicateId" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteRatingElementInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingElementPK" type="ecaRatingTariff:RatingElementPK"/>
+          <xsd:element name="oldRatingElementData" type="ecaRatingCatalog:RatingElementData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newRatingElementData" type="ecaRatingCatalog:RatingElementData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteRatingTariffInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="newRatingTariffData" type="ecaRatingCatalog:RatingTariffData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="oldRatingTariffData" type="ecaRatingCatalog:RatingTariffData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="deleteTariffBasisBoo" type="xsd:boolean" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteRatingTariffOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:RatingTariffResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteStepGroupInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="stepGroupPK" type="ecaRatingCatalog:StepGroupPK"/>
+          <xsd:element name="oldStepGroupData" type="ecaRatingCatalog:StepGroupData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newStepGroupData" type="ecaRatingCatalog:StepGroupData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteStepGroupOutput_1">
+        <xsd:sequence>
+          <xsd:element name="stepGroupIdResult" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteStepThresholdInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="stepThresholdPK" type="ecaRatingCatalog:StepThresholdPK"/>
+          <xsd:element name="oldStepThresholdData" type="ecaRatingCatalog:StepThresholdData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newStepThresholdData" type="ecaRatingCatalog:StepThresholdData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newThreshold" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="newStartDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteTariffBasisInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="tariffBasisPK" type="ecaRatingCatalog:TariffBasisPK"/>
+          <xsd:element name="oldTariffBasisData" type="ecaRatingCatalog:TariffBasisData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newTariffBasisData" type="ecaRatingCatalog:TariffBasisData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteTariffEventBindInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="oldTariffEventBindData" type="ecaRatingCatalog:TariffEventBindData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newTariffEventBindData" type="ecaRatingCatalog:TariffEventBindData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteTimeRateDiaryInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="timeRateDiaryPK" type="ecaRatingCatalog:TimeRateDiaryPK"/>
+          <xsd:element name="oldTimeRateDiaryData" type="ecaRatingCatalog:TimeRateDiaryData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newTimeRateDiaryData" type="ecaRatingCatalog:TimeRateDiaryData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="diaryVersion" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteTimeRateDiaryOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:TimeRateDiaryResult_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteTimeRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="timeRatePK" type="ecaRatingCatalog:TimeRatePK"/>
+          <xsd:element name="oldTimeRateData" type="ecaRatingCatalog:TimeRateData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newTimeRateData" type="ecaRatingCatalog:TimeRateData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteTimeRateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="timeRateIdResult" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteVHBandMapInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="oldVHBandMapData" type="ecaRatingCatalog:VHBandMapData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newVHBandMapData" type="ecaRatingCatalog:VHBandMapData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateRatingTariffTypeInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="ratingTariffTypeName" type="xsd:string"/>
+          <xsd:element name="ratingTariffTypeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingChargeId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateRatingTariffTypeOutput_1">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeResult" type="ecaRatingCatalog:RatingTariffTypeResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="DemoteCatalogueToDesignModeInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="EventClassData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="eventClassName" type="xsd:string"/>
+          <xsd:element name="eventClassDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="EventClassPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="eventClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="EventClassResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventClassData" type="ecaRatingCatalog:EventClassData_1"/>
+          <xsd:element name="eventClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ExchangeModifierPriorityInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierPK" type="ecaRatingCatalog:ModifierPK"/>
+          <xsd:element name="modifierData1" type="ecaRatingCatalog:ModifierData_1"/>
+          <xsd:element name="modifierData2" type="ecaRatingCatalog:ModifierData_1"/>
+          <xsd:element name="modifierIdForModifierData2" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ExchangeModifierPriorityOutput_1">
+        <xsd:sequence>
+          <xsd:element name="exchangeModifierPriorityResult" type="ecaRatingCatalog:ExchangeModifierPriorityResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ExchangeModifierPriorityResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="modifierPriority1" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierPriority2" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ImportRatingTariffInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="importRatingTariffData" type="ecaRatingCatalog:RatingTariffData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newRatingTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="InputBindingData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventTypeId" type="xsd:int"/>
+          <xsd:element name="fileTypeId" type="xsd:int"/>
+          <xsd:element name="fileSubtype" type="xsd:int"/>
+          <xsd:element name="inputBindingName" type="xsd:string"/>
+          <xsd:element name="inputBindingDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="costcode1Bind" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="costcode1Validate" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="costcode2Bind" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="costcode2Validate" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="scalingBind" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="scalingValidate" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="thresholdBind" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="thresholdValidate" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="scalingUnitsName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="scalingUnitsDivisor" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="thresholdUnitsName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="attrSetId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultCudValue" type="xsd:long" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="InputBindingPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="inputBindingId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="InputBindingResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="inputBindingData" type="ecaRatingCatalog:InputBindingData_1"/>
+          <xsd:element name="inputBindingId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifierData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="modifierName" type="xsd:string"/>
+          <xsd:element name="predicateId" type="xsd:int"/>
+          <xsd:element name="modifierDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierPriority" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifierGroupData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="modifierGroupName" type="xsd:string"/>
+          <xsd:element name="modifierGroupVersion" type="xsd:int"/>
+          <xsd:element name="modifierGroupDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifierGroupPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="modifierGroupId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifierGroupResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="modifierGroupData" type="ecaRatingCatalog:ModifierGroupData_1"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="modifierGroupId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifierGroupResultIds_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="modifierGroupId" type="xsd:int"/>
+          <xsd:element name="modifierGroupVersion" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifierPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="modifierGroupId" type="xsd:int"/>
+          <xsd:element name="modifierGroupVersion" type="xsd:int"/>
+          <xsd:element name="modifierId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifierResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="modifierData" type="ecaRatingCatalog:ModifierData_1"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="modifierGroupId" type="xsd:int"/>
+          <xsd:element name="modifierGroupVersion" type="xsd:int"/>
+          <xsd:element name="modifierId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyDeleteRatingTariffTypeData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeName" type="xsd:string"/>
+          <xsd:element name="ratingTariffTypeDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingChargeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="proxyRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyDeleteRatingTariffTypeInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypePK" type="ecaRatingTariff:RatingTariffTypePK"/>
+          <xsd:element name="priorTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="oldModifyDeleteRatingTariffTypeData" type="ecaRatingCatalog:ModifyDeleteRatingTariffTypeData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newModifyDeleteRatingTariffTypeData" type="ecaRatingCatalog:ModifyDeleteRatingTariffTypeData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="ModifyDeleteRatingTariffTypeOutput_1">
+        <xsd:sequence>
+          <xsd:element name="modifyRatingTariffTypeResult" type="ecaRatingCatalog:PriorAndNextRatingTariffTypeId_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewModifierGroupVersionData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="versionStartDat" type="xsd:dateTime"/>
+          <xsd:element name="versionEndDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="versionModifierGroupName" type="xsd:string"/>
+          <xsd:element name="versionModifierGroupDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewModifierGroupVersionInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierGroupPK" type="ecaRatingCatalog:ModifierGroupPK"/>
+          <xsd:element name="newModifierGroupVersionData" type="ecaRatingCatalog:NewModifierGroupVersionData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewModifierGroupVersionOutput_1">
+        <xsd:sequence>
+          <xsd:element name="newModifierGroupVersionIdResult" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewTimeRateDiaryVersionData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="timeRateDiaryId" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="versionStartDat" type="xsd:dateTime"/>
+          <xsd:element name="versionEndDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="versionTimeRateDiaryName" type="xsd:string"/>
+          <xsd:element name="versionTimeRateDiaryDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewTimeRateDiaryVersionInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newTimeRateDiaryVersionData" type="ecaRatingCatalog:NewTimeRateDiaryVersionData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="NewTimeRateDiaryVersionOutput_1">
+        <xsd:sequence>
+          <xsd:element name="timeRateDiaryVersionIdResult" type="xsd:int"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="OutputBindingData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventTypeId" type="xsd:int"/>
+          <xsd:element name="fileTypeId" type="xsd:int"/>
+          <xsd:element name="fileSubtype" type="xsd:int"/>
+          <xsd:element name="outputBindingName" type="xsd:string"/>
+          <xsd:element name="outputBindingDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr1Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr2Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr3Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr4Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr5Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr6Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr7Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr8Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr9Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr10Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr11Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr12Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr13Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr14Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr15Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr16Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr17Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr18Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr19Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr20Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr21Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr22Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr23Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr24Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr25Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr26Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr27Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr28Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr29Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr30Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr31Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr32Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr33Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr34Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr35Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attr36Out" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="attrSetId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eeaAttrSetAttrSeq" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="dropEventAsaNum" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="dropEventAsaValue" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OutputBindingPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="outputBindingId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OutputBindingResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="outputBindingData" type="ecaRatingCatalog:OutputBindingData_1"/>
+          <xsd:element name="outputBindingId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverrideTimeRateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+          <xsd:element name="endDtm" type="xsd:dateTime"/>
+          <xsd:element name="overrideName" type="xsd:string"/>
+          <xsd:element name="timeRateId" type="xsd:int"/>
+          <xsd:element name="overrideDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="predicateId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverrideTimeRatePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="timeRateDiaryId" type="xsd:int"/>
+          <xsd:element name="overrideTimeRateSeq" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="OverrideTimeRateResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="overrideTimeRateData" type="ecaRatingCatalog:OverrideTimeRateData_1"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="timeRateDiaryId" type="xsd:int"/>
+          <xsd:element name="overrideTimeRateSeq" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="PredicateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="predicateName" type="xsd:string"/>
+          <xsd:element name="predicateType" type="ecaConfig:PredicateType"/>
+          <xsd:element name="predicateDescription" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="sPredicateOperator" type="ecaConfig:MatchType" minOccurs="0" nillable="true"/>
+          <xsd:element name="cPredicateOperator" type="ecaConfig:LogicalOperator" minOccurs="0" nillable="true"/>
+          <xsd:element name="operand1AttributeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="operand2AttributeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="operand2Value" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="PredicatePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="predicateId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="PredicateResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="predicateData" type="ecaRatingCatalog:PredicateData_1"/>
+          <xsd:element name="predicateId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="PriorAndNextRatingTariffId_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="priorRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="PriorAndNextRatingTariffTypeId_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="priorTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="PromoteCatalogueToTestModeInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="PublishRatingCatalogueInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllBandingModelsForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncated" type="xsd:boolean"/>
+          <xsd:element name="lastBandingModelPK" type="ecaRatingCatalog:BandingModelPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllBandingModelsForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllBandingModelsResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllBandingModelsResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="bandingModelResultData" type="ecaRatingCatalog:ArrayOfBandingModelResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllBaseTimeRateForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="lastBaseTimeRateQueryAllPK" type="ecaRatingCatalog:BaseTimeRateQueryAllPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncated" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllBaseTimeRateForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllBaseTimeRatesResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllBaseTimeRatesResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="baseTimeRateDataResult" type="ecaRatingCatalog:ArrayOfBaseTimeRateDataResult_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllChargeSegmentsForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastChargeSegmentPK" type="ecaRatingCatalog:ChargeSegmentPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllChargeSegmentsForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllChargeSegmentsForRatingCatalogResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllChargeSegmentsForRatingCatalogResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="chargeSegmentResultData" type="ecaRatingCatalog:ArrayOfChargeSegmentResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostBandResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costBandResultData" type="ecaRatingCatalog:ArrayOfCostBandResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostBandsForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastCostBandPK" type="ecaRatingCatalog:CostBandPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostBandsForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryAllCostBandResult" type="ecaRatingCatalog:QueryAllCostBandResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostCodeResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costCodeResultDataArray" type="ecaRatingCatalog:ArrayOfCostCodeResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostCodesForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastCostCodePK" type="ecaRatingCatalog:CostCodePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostCodesForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryAllCostCodesResult" type="ecaRatingCatalog:QueryAllCostCodeResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostGroupResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costGroupResultData" type="ecaRatingCatalog:ArrayOfCostGroupResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostGroupXRefForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastCostGroupXRefPK" type="ecaRatingCatalog:CostGroupXRefPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostGroupXRefForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllCostGroupXRefResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostGroupXRefResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costGroupXRefResultData" type="ecaRatingCatalog:ArrayOfCostGroupXRefResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostGroupsForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastCostGroupPK" type="ecaRatingCatalog:CostGroupPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostGroupsForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryAllCostGroupResult" type="ecaRatingCatalog:QueryAllCostGroupResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostingRulesForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastCostingRulesPK" type="ecaRatingCatalog:CostingRulesPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostingRulesForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryAllCostingRulesResult" type="ecaRatingCatalog:QueryAllCostingRulesResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCostingRulesResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costingRulesResultDataArray" type="ecaRatingCatalog:ArrayOfCostingRulesResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllEventClassResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventClassResultData" type="ecaRatingCatalog:ArrayOfEventClassResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllEventClassesForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastEventClassPK" type="ecaRatingCatalog:EventClassPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllEventClassesForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllEventClassResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllInputBindingInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastInputBindingPK" type="ecaRatingCatalog:InputBindingPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllInputBindingOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllInputBindingResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllInputBindingResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="inputBindingResultData" type="ecaRatingCatalog:ArrayOfInputBindingResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllModifierGroupResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="modifierGroupResultDataArray"
+            type="ecaRatingCatalog:ModifierGroupResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllModifierGroupsForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastModifierGroupPK" type="ecaRatingCatalog:ModifierGroupPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllModifierGroupsForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryAllModifierGroupResult" type="ecaRatingCatalog:QueryAllModifierGroupResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllModifierResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="modifierResultDataArray"
+            type="ecaRatingCatalog:ModifierResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllModifiersForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastModifierPK" type="ecaRatingCatalog:ModifierPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllModifiersForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryAllModifiersResult" type="ecaRatingCatalog:QueryAllModifierResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOutputBindingInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastOutputBindingPK" type="ecaRatingCatalog:OutputBindingPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOutputBindingOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllOutputBindingResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOutputBindingResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element
+            name="outputBindingResultData"
+            type="ecaRatingCatalog:OutputBindingResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverrideTimeRatesForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncated" type="xsd:boolean"/>
+          <xsd:element name="lastOverrideTimeRatePK" type="ecaRatingCatalog:OverrideTimeRatePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverrideTimeRatesForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllOverrideTimeRatesResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllOverrideTimeRatesResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="overrideTimeRateResultData" type="ecaRatingCatalog:ArrayOfOverrideTimeRateResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllPredicatesForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastPredicatePK" type="ecaRatingCatalog:PredicatePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllPredicatesForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllPredicatesForRatingCatalogResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllPredicatesForRatingCatalogResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="predicateResultData" type="ecaRatingCatalog:ArrayOfPredicateResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingCataloguesInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncated" type="xsd:boolean"/>
+          <xsd:element name="lastRatingCataloguePK" type="ecaRatingTariff:RatingCataloguePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingCataloguesOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllRatingCataloguesResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingCataloguesResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueResultData" type="ecaRatingCatalog:ArrayOfRatingCatalogueResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingTariffResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffResultData" type="ecaRatingCatalog:ArrayOfRatingTariffResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingTariffsForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastRatingTariffPK" type="ecaRatingCatalog:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllRatingTariffsForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllRatingTariffResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllStepGroupResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="stepGroupResultDataArray" type="ecaRatingCatalog:ArrayOfStepGroupResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllStepGroupsForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastStepGroupPK" type="ecaRatingCatalog:StepGroupPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllStepGroupsForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryAllStepGroupsResult" type="ecaRatingCatalog:QueryAllStepGroupResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllStepThresholdResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="stepThresholdResultDataArray" type="ecaRatingCatalog:ArrayOfStepThresholdResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllStepThresholdsForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastStepThresholdPK" type="ecaRatingCatalog:StepThresholdPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllStepThresholdsForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryAllStepThresholdsResult" type="ecaRatingCatalog:QueryAllStepThresholdResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTariffBasisForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastTariffBasisPK" type="ecaRatingCatalog:TariffBasisPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTariffBasisForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllTariffBasisForRatingCatalogResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTariffBasisForRatingCatalogResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="tariffBasisResultData" type="ecaRatingCatalog:ArrayOfTariffBasisResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTimeRateDiarysForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastRatingCataloguePK" type="ecaRatingCatalog:TimeRateDiaryPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTimeRateDiarysForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllTimeRateDiarysForRatingCatalogResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTimeRateDiarysForRatingCatalogResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="timeRateDiaryResultData" type="ecaRatingCatalog:ArrayOfTimeRateDiaryResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTimeRateForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="lastTimeRatePK" type="ecaRatingCatalog:TimeRatePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTimeRateForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllTimeRateResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllTimeRateResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="timeRateResultData" type="ecaRatingCatalog:ArrayOfTimeRateResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllUSTCategoriesInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastUSTCategoryPK" type="ecaRatingCatalog:USTCategoryPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllUSTCategoriesOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryAllUSTCategoriesResult" type="ecaRatingCatalog:QueryAllUSTCategoryResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllUSTCategoryResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ustCategoryResultDataArray" type="ecaRatingCatalog:ArrayOfUSTCategoryResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllUSTCodeResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ustCodeResultDataArray" type="ecaRatingCatalog:ArrayOfUSTCodeResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllUSTCodesInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastUSTCodePK" type="ecaRatingCatalog:USTCodePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllUSTCodesOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryAllUSTCodesResult" type="ecaRatingCatalog:QueryAllUSTCodeResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllUSTEventBindingInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastUSTEventBindingPK" type="ecaRatingCatalog:USTEventBindingPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllUSTEventBindingOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllUSTEventBindingResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllUSTEventBindingResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ustEventBindingResultData" type="ecaRatingCatalog:ArrayOfUSTEventBindingResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllVHBandMapsForRatingCatalogInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncated" type="xsd:boolean"/>
+          <xsd:element name="lastVHBandMapPK" type="ecaRatingCatalog:VHBandMapPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllVHBandMapsForRatingCatalogOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:QueryAllVHBandMapsResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllVHBandMapsResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="vhBandMapResultData" type="ecaRatingCatalog:ArrayOfVHBandMapResultData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncated" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryBandingModelInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="bandingModelPK" type="ecaRatingCatalog:BandingModelPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryBandingModelOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:BandingModelResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryChargeSegmentInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargeSegmentPK" type="ecaRatingCatalog:ChargeSegmentPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryChargeSegmentOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryChargeSegmentResult" type="ecaRatingCatalog:ChargeSegmentResultData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryCostBandInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="costBandPK" type="ecaRatingCatalog:CostBandPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryCostBandOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:CostBandResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryCostGroupInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="costGroupPK" type="ecaRatingCatalog:CostGroupPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryCostGroupOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:CostGroupResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryEventClassInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventClassPK" type="ecaRatingCatalog:EventClassPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryEventClassOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:EventClassResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryInputBindingInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="inputBindingPK" type="ecaRatingCatalog:InputBindingPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryInputBindingOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:InputBindingResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryModifierInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierPK" type="ecaRatingCatalog:ModifierPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryModifierOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:ModifierResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryOutputBindingInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="outputBindingPK" type="ecaRatingCatalog:OutputBindingPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryOutputBindingOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:OutputBindingResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryOverrideTimeRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="overrideTimeRatePK" type="ecaRatingCatalog:OverrideTimeRatePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryOverrideTimeRateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:OverrideTimeRateResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryPredicateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="predicatePK" type="ecaRatingCatalog:PredicatePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryPredicateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryPredicateResult" type="ecaRatingCatalog:PredicateResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatingCatalogueInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCataloguePK" type="ecaRatingTariff:RatingCataloguePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatingCatalogueOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:RatingCatalogueResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatingTariffInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffPK" type="ecaRatingCatalog:RatingTariffPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryRatingTariffOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:RatingTariffResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryStepGroupInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="stepGroupPK" type="ecaRatingCatalog:StepGroupPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryStepGroupOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryStepGroupResult" type="ecaRatingCatalog:StepGroupResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTimeRateInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="timeRatePK" type="ecaRatingCatalog:TimeRatePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryTimeRateOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:TimeRateResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryUSTCategoryInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustCategoryPK" type="ecaRatingCatalog:USTCategoryPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryUSTCategoryOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryUSTCategoryResult" type="ecaRatingCatalog:USTCategoryResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryUSTCodeInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustCodePK" type="ecaRatingCatalog:USTCodePK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryUSTCodeOutput_1">
+        <xsd:sequence>
+          <xsd:element name="queryUSTCodeResult" type="ecaRatingCatalog:USTCodeResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryUSTEventBindingInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustEventBindingPK" type="ecaRatingCatalog:USTEventBindingPK"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryUSTEventBindingOutput_1">
+        <xsd:sequence>
+          <xsd:element name="result" type="ecaRatingCatalog:USTEventBindingResultData_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingCatalogueResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueName" type="xsd:string"/>
+          <xsd:element name="ratingCatalogueDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="catalogueStatus" type="xsd:int"/>
+          <xsd:element name="currencyCode" type="xsd:string"/>
+          <xsd:element name="invoicingCoId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingElementData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="fixedChargeMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargingRate" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="minCostMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="maxCostMny" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="fixedPoints" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="pointRate" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="unitDuration" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="revenueCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustCategoryId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxOverrideId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="unitName" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="dropEventBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffPK" type="ecaRatingTariff:RatingTariffPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="tariffName" type="xsd:string"/>
+          <xsd:element name="tariffDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesStartDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesEndDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="bandingModelId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultCostBandId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierGroupId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="internalRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplementaryRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxInclusiveBoo" type="xsd:boolean"/>
+          <xsd:element name="pluginTariffBoo" type="xsd:boolean"/>
+          <xsd:element name="automaticBoo" type="xsd:boolean"/>
+          <xsd:element name="partialRatingTariffBoo" type="xsd:boolean"/>
+          <xsd:element name="predicateId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTarrifPriorityNum" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="priorRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="importedTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="priorRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="tariffName" type="xsd:string"/>
+          <xsd:element name="tariffDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesStartDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="salesEndDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="bandingModelId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultCostBandId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="modifierGroupId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="defaultEventClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="internalRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="externalRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="supplementaryRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="taxInclusiveBoo" type="xsd:boolean"/>
+          <xsd:element name="pluginTariffBoo" type="xsd:boolean"/>
+          <xsd:element name="automaticBoo" type="xsd:boolean"/>
+          <xsd:element name="partialRatingTariffBoo" type="xsd:boolean"/>
+          <xsd:element name="predicateId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTarrifPriorityNum" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="priorRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="nextRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="importedTariffTypeId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="RatingTariffTypeResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="proxyRatingTariffId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="priorAndNextRatingTariffTypeId" type="ecaRatingCatalog:PriorAndNextRatingTariffTypeId_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="StepGroupData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+          <xsd:element name="stepGroupName" type="xsd:string"/>
+          <xsd:element name="stepGroupDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="StepGroupPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="stepGroupId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="StepGroupResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="stepGroupData" type="ecaRatingCatalog:StepGroupData_1"/>
+          <xsd:element name="stepGroupId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="StepThresholdData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="chargeSegmentId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="StepThresholdPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="stepGroupId" type="xsd:int"/>
+          <xsd:element name="threshold" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="StepThresholdResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="stepThresholdData" type="ecaRatingCatalog:StepThresholdData_1"/>
+          <xsd:element name="stepGroupId" type="xsd:int"/>
+          <xsd:element name="threshold" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TariffBasisData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="timeRateDiaryId" type="xsd:int"/>
+          <xsd:element name="stepGroupId" type="xsd:int"/>
+          <xsd:element name="costingRulesId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TariffBasisPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ratingTariffId" type="xsd:int"/>
+          <xsd:element name="costBandId" type="xsd:int"/>
+          <xsd:element name="eventClassId" type="xsd:int"/>
+          <xsd:element name="onNetBoo" type="xsd:boolean"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TariffBasisResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="tariffBasisData" type="ecaRatingCatalog:TariffBasisData_1"/>
+          <xsd:element name="ratingTariffId" type="xsd:int"/>
+          <xsd:element name="costBandId" type="xsd:int"/>
+          <xsd:element name="eventClassId" type="xsd:int"/>
+          <xsd:element name="onNetBoo" type="xsd:boolean"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TariffEventBindData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventTypeId" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="inputBindingId" type="xsd:int"/>
+          <xsd:element name="outputBindingId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="eventTaxBindingId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TimeRateData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="timeRateName" type="xsd:string"/>
+          <xsd:element name="timeRateDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TimeRateDiaryData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="startDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="endDat" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="timeRateDiaryName" type="xsd:string"/>
+          <xsd:element name="timeRateDiaryDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingTariffTypeId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TimeRateDiaryPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="timeRateDiaryId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TimeRateDiaryResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="timeRateDiaryId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="diaryVersion" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TimeRateDiaryResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="timeRateDiaryData" type="ecaRatingCatalog:TimeRateDiaryData_1"/>
+          <xsd:element name="diaryVersion" type="xsd:int"/>
+          <xsd:element name="timeRateDiaryId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="startDat" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TimeRatePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="timeRateId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TimeRateResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="timeRateData" type="ecaRatingCatalog:TimeRateData_1"/>
+          <xsd:element name="timeRateId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="USTCategoryData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="externalCategoryId" type="xsd:int"/>
+          <xsd:element name="externalCategoryName" type="xsd:string"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="USTCategoryPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ustCategoryId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="USTCategoryResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ustCategoryData" type="ecaRatingCatalog:USTCategoryData_1"/>
+          <xsd:element name="ustCategoryId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="USTCodeData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="externalCodeId" type="xsd:int"/>
+          <xsd:element name="externalCodeName" type="xsd:string"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="USTCodePK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ustCodeId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="USTCodeResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ustCodeData" type="ecaRatingCatalog:USTCodeData_1"/>
+          <xsd:element name="ustCodeId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="USTEventBindingData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="eventTaxBindingName" type="xsd:string"/>
+          <xsd:element name="eventTaxBindingDesc" type="xsd:string" minOccurs="0" nillable="true"/>
+          <xsd:element name="duration" type="xsd:int"/>
+          <xsd:element name="conversionMantissa" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="conversionExponent" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="origLocationAttr1Rule" type="ecaRatingCatalog:USTLocationRule"/>
+          <xsd:element name="origLocationAttr1" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="origLocationAttr2Rule" type="ecaRatingCatalog:USTLocationRule" minOccurs="0" nillable="true"/>
+          <xsd:element name="origLocationAttr2" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="termLocationAttr1Rule" type="ecaRatingCatalog:USTLocationRule"/>
+          <xsd:element name="termLocationAttr1" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="termLocationAttr2Rule" type="ecaRatingCatalog:USTLocationRule" minOccurs="0" nillable="true"/>
+          <xsd:element name="termLocationAttr2" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="ustRuleOptionId" type="xsd:int"/>
+          <xsd:element name="regulateOption" type="ecaRatingCatalog:USTRegulateOption"/>
+          <xsd:element name="precostedUstCategoryId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="precostedUstCodeId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="USTEventBindingPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="eventTypeId" type="xsd:int"/>
+          <xsd:element name="eventTaxBindingId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="USTEventBindingResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ustEventBindingData" type="ecaRatingCatalog:USTEventBindingData_1"/>
+          <xsd:element name="eventTypeId" type="xsd:int"/>
+          <xsd:element name="eventTaxBindingId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="VHBandMapData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+          <xsd:element name="vhBandThreshold" type="xsd:int"/>
+          <xsd:element name="costBandId" type="xsd:int"/>
+          <xsd:element name="costBandId2" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="costBandId3" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="costBandId4" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="VHBandMapPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:SimplePrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+          <xsd:element name="vhInterRegion1Boo" type="xsd:boolean"/>
+          <xsd:element name="vhInterRegion2Boo" type="xsd:boolean"/>
+          <xsd:element name="vhBandThreshold" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="VHBandMapResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="costBandId" type="xsd:int"/>
+          <xsd:element name="ratingCatalogueId" type="xsd:int"/>
+          <xsd:element name="bandingModelId" type="xsd:int"/>
+          <xsd:element name="vhInterRegion1Boo" type="xsd:boolean"/>
+          <xsd:element name="vhInterRegion2Boo" type="xsd:boolean"/>
+          <xsd:element name="vhBandThreshold" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfBandingModelResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:BandingModelResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfBaseTimeRateDataResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:BaseTimeRateDataResult_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfChargeSegmentResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:ChargeSegmentResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfCostBandResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:CostBandResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfCostCodeResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:CostCodeResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfCostGroupResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:CostGroupResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfCostGroupXRefResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:CostGroupXRefResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfCostingRulesResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:CostingRulesResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfEventClassResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:EventClassResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfInputBindingResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:InputBindingResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfOverrideTimeRateResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:OverrideTimeRateResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfPredicateResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:PredicateResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfRatingCatalogueResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:RatingCatalogueResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfRatingTariffResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:RatingTariffResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfStepGroupResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:StepGroupResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfStepThresholdResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:StepThresholdResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfTariffBasisResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:TariffBasisResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfTimeRateDiaryResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:TimeRateDiaryResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfTimeRateResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:TimeRateResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfUSTCategoryResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:USTCategoryResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfUSTCodeResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:USTCodeResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfUSTEventBindingResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:USTEventBindingResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfVHBandMapResultData_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaRatingCatalog:VHBandMapResultData_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_RatingCatalog.xsd -->

@@ -1,0 +1,25 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="AccountAttributes">
+		<doc>AccountAttributes </doc>
+
+		<field name="BillingAccountAttributes">
+			<doc>RatingAccountAttributes.</doc>
+			 <array nullable="false">
+				<structure name="AccountAttributeDetails" nullable="false"/>
+			</array>	
+		</field>
+		
+		<field name="RatingAccountAttributes">
+			<doc>BillingAccountAttributes.</doc>
+			 <array nullable="true">
+				<structure name="AccountAttributeDetails" nullable="false"/>
+			</array>	
+		</field>
+
+	</structureDef>
+</iml:definitions>

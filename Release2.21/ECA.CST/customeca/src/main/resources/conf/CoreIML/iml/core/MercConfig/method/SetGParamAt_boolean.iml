@@ -1,0 +1,45 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="MercConfig"
+>
+  <methodDef name="SetGParamAt_boolean">
+    <doc>
+For development use only. StartDtm should be obtained from the GPARAMS table.
+    </doc>
+
+    <input name="GparamName">
+      <doc>
+GParam name.
+      </doc>
+      <string nullable="false" maxLength="64"/>
+    </input>
+
+    <input name="StartDtm">
+      <doc>
+Effective date and time.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </input>
+
+    <input name="Value">
+      <doc>
+Boolean value.
+      </doc>
+      <boolean nullable="false"/>
+    </input>
+
+    <exception serviceId="" name="ApplicationException">
+      <doc>
+ECA base exception.
+      </doc>
+    </exception>
+  </methodDef>
+</iml:definitions>
+
+<!-- eof ECA/MercConfig/method/SetGParamAt_boolean.iml -->

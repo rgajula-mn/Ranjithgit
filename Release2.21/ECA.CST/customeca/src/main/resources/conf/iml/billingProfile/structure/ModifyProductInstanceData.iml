@@ -1,0 +1,56 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="ModifyProductInstanceData">
+		<doc>Array of information for ModifyEventSourceData  </doc>
+
+		<field name="ProductId">
+			<doc>ID of the product  .</doc>
+			<int32 nullable="false" maxDigits="9" />
+		</field>
+		<field name="Action">
+	        <doc>
+				Action - valid values -  Add/Remove/Modify/Terminate.					
+			</doc>
+			<string nullable="false" maxLength="20"/>
+   		</field>
+
+		<field name="StartDtm">
+			<doc>Date and Time when the product is taken.</doc>
+			<dateTime includeTimeZone="false" nullable="false" />
+		</field>
+		<field name="EndDtm">
+			<doc>Date and time when the customer stops taking the product.</doc>
+			<dateTime includeTimeZone="false" nullable="true" />
+		</field>
+		
+		 <field name="BillingTariffId">
+        	<doc>RB Price plan ID under which this customer-product will be billed.</doc>
+			<int32 nullable="true" maxDigits="9"/>
+    	</field>
+		<field name="ProductStatus">
+			<doc>Status of the Product. </doc>
+			<string nullable="true" maxLength="10" />
+		</field>
+		
+		<field name="TOMsServiceInstancekey">
+			<doc>Primary key of TOMS service record (corresponds to the RB product sequence) </doc>
+			<string nullable="false" maxLength="40" />
+		</field>
+				
+		<field name="TOMsServiceCompInstancekey">
+			<doc>Primary key of TOMS service record (corresponds to the RB product sequence) </doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+			<field name="ModifyProductInstanceAttrData">
+	        <doc>Array to specify products custom attributes values</doc>
+	        <array nullable="true">
+				<structure name="ModifyProductInstanceAttrData" nullable="true"/>
+			</array>	
+   		</field> 
+
+	</structureDef>
+</iml:definitions>

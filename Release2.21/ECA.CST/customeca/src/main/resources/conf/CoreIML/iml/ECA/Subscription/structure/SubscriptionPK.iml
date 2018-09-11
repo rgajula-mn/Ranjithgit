@@ -1,0 +1,42 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Subscription"
+>
+  <structureDef name="SubscriptionPK">
+    <doc>
+Uniquely identifies a subscription that has been taken by a customer.
+    </doc>
+
+    <extends serviceId="" name="PrimaryKey"/>
+
+    <mixin serviceId="Customer" name="CustomerOwnedEntity"/>
+
+    <field name="CustomerRef" mixin="true">
+      <doc>
+Gets the customer reference for the customer who owns this subscription. 
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+    <field name="SubscriptionSeq">
+      <doc>
+Gets the number that uniquely identifies the subscription within the context of
+the owning customer. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="CustomerRef"/>
+      <item fieldName="SubscriptionSeq"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Subscription/structure/SubscriptionPK.iml -->

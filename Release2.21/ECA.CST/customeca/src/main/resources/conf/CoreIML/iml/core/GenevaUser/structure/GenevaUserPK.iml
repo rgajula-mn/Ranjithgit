@@ -1,0 +1,32 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="GenevaUser"
+>
+  <structureDef name="GenevaUserPK">
+    <doc>
+
+    </doc>
+
+    <extends serviceId="" name="SimplePrimaryKey"/>
+
+    <field name="GenevaUser">
+      <internal name="ECA_TableColumn" value="PVGENEVAUSER2.GENEVA_USER_ORA VARCHAR2(30) NOT NULLABLE"/>
+      <doc>
+Gets the Infinys user primary key. 
+      </doc>
+      <string nullable="false" maxLength="30"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="GenevaUser"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/GenevaUser/structure/GenevaUserPK.iml -->

@@ -1,0 +1,126 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="NewProductInstanceBase" abstract="true" version="6" since="3.1">
+    <doc>
+The product instance attribute data bean.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="NewEventSources">
+      <doc>
+Gets the product's event sources which are to be created. Describes the
+product's event sources which are going to be created.
+      </doc>
+      <see  serviceId="EventSource" name="ModifyEventSourceData" version="6"/>
+      <array nullable="true">
+        <structure serviceId="EventSource" nullable="false" name="ModifyEventSourceData" version="6"/>
+      </array>
+    </field>
+
+    <field name="ServiceAddressData">
+      <doc>
+<![CDATA[
+Gets the new service address that has been created. This option is only usable
+if serviceAddressData is not null and the address primary key in
+serviceAddressData is null. When the address is created, the primary key will
+be used to set the product instances service address in serviceAddressData.
+<p>
+  Describes which service address to use with the product instance. This
+  may be null. If the field is not null and the address has not been created,
+  set the address primary key to null and complete the newAddressData field.
+</p>
+]]>
+      </doc>
+      <see name="NewProductInstanceAddressData" version="5.3"/>
+      <structure nullable="true" name="NewProductInstanceAddressData" version="5.3"/>
+    </field>
+
+    <field name="ProductInstanceAttrs">
+      <doc>
+Gets the new product instance attributes.
+      </doc>
+      <see name="NewProductInstanceAttrData" version="5.1"/>
+      <array nullable="true">
+        <structure nullable="false" name="NewProductInstanceAttrData" version="5.1"/>
+      </array>
+    </field>
+
+    <field name="ProductInstanceContactPK">
+      <doc>
+<![CDATA[
+Gets the contact primary key. 
+<p></p>
+]]>
+      </doc>
+      <structure nullable="true" serviceId="Contact" name="ContactPK"/>
+    </field>
+
+    <field name="BudgetCentrePK">
+      <doc>
+<![CDATA[
+Gets the budget center primary key.
+<p></p>
+]]>
+      </doc>
+      <structure nullable="true" serviceId="BudgetCentre" name="BudgetCentrePK"/>
+    </field>
+
+    <field name="ProductLabel">
+      <doc>
+<![CDATA[
+Gets the product label of the product. 
+<p></p>
+]]>
+      </doc>
+      <string nullable="true" maxLength="240"/>
+    </field>
+
+    <field name="TaxExemptRef">
+      <doc>
+<![CDATA[
+<p>Gets the tax exemption reference for the product. </p>
+<p>
+  If this is being used within the scenario of adding a package of products
+  or an optional product to a package that already exists, then if the
+  'contractedPointOfSupplyIdNbl' parameter within this bean is not null, the
+  values specified for this field will override and values defined for this
+  field in the parent package.
+</p>
+]]>
+      </doc>
+      <string nullable="true" maxLength="40"/>
+    </field>
+
+    <field name="TaxExemptText">
+      <doc>
+<![CDATA[
+Gets further tax exemption details for the product. 
+<p></p>
+]]>
+      </doc>
+      <string nullable="true" maxLength="255"/>
+    </field>
+
+    <field name="ProductQuantity">
+      <doc>
+<![CDATA[
+Gets the number of units of the product will be taken. If the product is not
+parametric, then the value must be one. 
+<p></p>
+]]>
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/NewProductInstanceBase_6.iml -->

@@ -1,0 +1,49 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+	<methodDef name="GetBulkRequests">
+		<internal name="CvgMethodType" value="write" />
+		<doc>
+
+		</doc>
+
+		<input name="IntegratorContext">
+			<doc>
+				Integration context for caller specific information.
+			</doc>
+			<structure nullable="false" name="IntegratorContext" />
+		</input>
+
+		<input name="PartnerID">
+			<doc>Partner Id</doc>
+			<string nullable="false" maxLength="40" />
+		</input>
+		
+		<input name="PortalUserID">
+			<doc>User ID from TOMS Web Portal</doc>
+			<string nullable="true" maxLength="40" />
+		</input>
+		
+		<output name="GetBulkRequestOutput">
+			<doc>The output structure of the Get Bulk Request based upon the inputs.</doc>
+			<structure nullable="false" name="GetBulkRequestOutputElements" />
+		</output>
+
+		<exception name="ParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="NullParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="ApplicationException" componentId="Platform"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		
+
+	</methodDef>
+</iml:definitions>

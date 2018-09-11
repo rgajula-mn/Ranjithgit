@@ -1,0 +1,32 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="PartnerUSTaxExemptionResult">
+		<doc>PartnerUSTaxExemptionResult</doc>
+
+		<field name="CustomerRef">
+			<doc>Customer Reference</doc>
+			<string nullable="false" maxLength="40" />
+		</field>
+		
+		<field name="ExemptionType">
+			<doc>Exemption Type</doc>
+			<string nullable="false" maxLength="40" />
+		</field>
+		<field name="ExemptionStartDate">
+			<doc>Exemption Start Date</doc>
+			<dateTime includeTimeZone="false" nullable="false"/>
+		</field>
+		<field name="ExemptionEndDate">
+			<doc>Exemption End Date</doc>
+			<dateTime includeTimeZone="false" nullable="true"/>
+		</field>
+		<field name="Status">
+			<doc>Status</doc>
+			<string nullable="false" maxLength="20" />
+		</field>			
+	</structureDef>
+</iml:definitions>

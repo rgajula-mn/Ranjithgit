@@ -1,0 +1,79 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Address"
+>
+  <structureDef name="NewAddressData" version="5.1">
+    <doc>
+Data used to create a new address.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="CountryId">
+      <internal name="ECA_TableColumn" value="PVADDRESS5.COUNTRY_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the identifier for the country in which the address is located. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="AddressFormatId">
+      <internal name="ECA_TableColumn" value="PVADDRESS5.ADDRESS_FORMAT_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the address format. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="Zipcode">
+      <internal name="ECA_TableColumn" value="PVADDRESS5.ZIPCODE VARCHAR2(16) NULLABLE"/>
+      <doc>
+Gets the zipcode portion of the address. This is subject to the validation
+rules for the relevant address format.
+      </doc>
+      <string nullable="true" maxLength="16"/>
+    </field>
+
+    <field name="AddressLines">
+      <internal name="ECA_TableColumn" value="PVADDRESS5.ADDRESS_1 VARCHAR2(240) NOT NULLABLE"/>
+      <internal name="ECA_TableColumn" value="PVADDRESS5.ADDRESS_2 VARCHAR2(240) NULLABLE"/>
+      <internal name="ECA_TableColumn" value="PVADDRESS5.ADDRESS_3 VARCHAR2(240) NULLABLE"/>
+      <internal name="ECA_TableColumn" value="PVADDRESS5.ADDRESS_4 VARCHAR2(240) NULLABLE"/>
+      <internal name="ECA_TableColumn" value="PVADDRESS5.ADDRESS_5 VARCHAR2(240) NULLABLE"/>
+      <doc>
+Gets an array of the customer address lines (lines 1-5).
+      </doc>
+      <array nullable="false">
+        <string nullable="true" maxLength="240"/>
+      </array>
+    </field>
+
+    <field name="USTJcode">
+      <internal name="ECA_TableColumn" value="PVADDRESS5.UST_JCODE VARCHAR2(12) NULLABLE"/>
+      <doc>
+Gets the jurisdiction code for the address. This is only
+required if the account uses U.S. tax. If the account uses VAT/GST tax, this must
+be null.
+      </doc>
+      <string nullable="true" maxLength="12"/>
+    </field>
+
+    <field name="USTIncityBoo">
+      <internal name="ECA_TableColumn" value="PVADDRESS5.UST_INCITY_BOO VARCHAR2(1) NULLABLE"/>
+      <doc>
+Indicates if the address is in a city or not (for tax purposes). This may be
+null. This is only required if the account uses U.S. tax. If the account uses
+VAT/GST tax, this must be null.
+      </doc>
+      <boolean nullable="true"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Address/structure/5.1/NewAddressData.iml -->

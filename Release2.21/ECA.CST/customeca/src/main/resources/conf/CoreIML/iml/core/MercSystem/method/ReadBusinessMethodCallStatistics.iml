@@ -1,0 +1,46 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="MercSystem"
+>
+  <methodDef name="ReadBusinessMethodCallStatistics">
+    <doc>
+<![CDATA[
+Reads the statistics on calls at the business method level.
+<p>
+  Note: In a clustered environment this will only operate on
+  information on one JVM in the cluster.
+</p>
+]]>
+    </doc>
+
+    <input name="Clear">
+      <doc>
+True implies clearing out statistics.
+      </doc>
+      <boolean nullable="false"/>
+    </input>
+
+    <output name="Result">
+      <doc>
+An array of CallStatistics objects in random order, or null if not enabled.
+      </doc>
+      <array nullable="true">
+        <structure nullable="false" name="CallStatistics"/>
+      </array>
+    </output>
+
+    <exception serviceId="" name="ApplicationException">
+      <doc>
+ECA base exception.
+      </doc>
+    </exception>
+  </methodDef>
+</iml:definitions>
+
+<!-- eof ECA/MercSystem/method/ReadBusinessMethodCallStatistics.iml -->

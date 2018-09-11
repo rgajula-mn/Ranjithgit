@@ -1,0 +1,166 @@
+<project name="installer" default="install">
+	<property name="NETCRACKER_HOME" location="./" />
+	<property name="patch_name" value="COMPONENT_PATCH" />
+
+	<!--property name="req.AIVersion" value="RELEASE_VERSION"/>-->
+    <property name="node_step_list" value="1"/>
+
+	<property name="nc.previous.version" value="" />
+	<property name="nc.installed.version" value="" />
+
+	<!-- Setup this property to dir with installer-->
+	<property name="INSTALLER_HOME" location="${NETCRACKER_HOME}/AutoInstaller" />
+
+	<import file="${INSTALLER_HOME}/build.xml" />
+
+	<property file="${INSTALLER_HOME}/config_rbm.properties" /> 
+	<property file="${INSTALLER_HOME}/config_eca.properties" /> 
+
+	<property name="step_list" value="1-99"/>
+
+	<property name="node_step_list" value="" />
+
+	<property name="INFINYS_ROOT" value="${env.INFINYS_ROOT}"/>
+	<property name="STAGE_ROOT" value="${env.STAGE_ROOT}"/>
+	<!-- <property name="TMP_ROOT" value="${env.TMP_ROOT}"/> -->
+	
+	<property name="version" value="@version@"/>
+	
+	<property name="PF_ORA_HOSTNAME" value="${env.DB_HOST}"/>
+	<property name="PF_ORA_PORT" value="${env.DB_PORT}"/>
+	<property name="PF_ORA_SID" value="${env.ORACLE_SID}"/>
+
+	<property name="ora_driver" value="oracle.jdbc.OracleDriver" />
+	<property name="oracle_jar" value="ojdbc6.jar" />            	
+	<property name="admin_db_driver_loc" value="${STAGE_ROOT}/java/system/lib/sqljdbc4.jar" />
+	
+	<property name="COMPONENT" value="CUSTOMECA" />
+	
+	<property name="PF_SCHEMA" value="${pf_schema}"/>
+	<property name="PF_SCHEMA_PASSWORD" value="${pf_schema_password}"/>
+	<property name="PF_USER" value="${pf_user}"/>
+	<property name="PF_USER_PASSWORD" value="${pf_user_password}"/>
+		
+	<!-- Deploying -->
+	<property name="INF_ALIAS" value="infinys"/>
+	<property name="INF_DNAME" value="CN=infinys,OU=platform,O=convergys.com,C=US"/>
+	<!-- -->
+	<property name="customeca_temp.dir" value="install/CUSTOMECA_TMP"/>
+	
+	<target name="preinstall_step1">
+		<failIfEmpty property="env.INFINYS_ROOT" message="Variable 'INFINYS_ROOT' is not set. Please export it and restart the installation"/>
+		<failIfEmpty property="env.STAGE_ROOT" message="Variable 'STAGE_ROOT' is not set. Please export it and restart the installation"/>
+		<failIfEmpty property="env.TMP_ROOT" message="Variable 'TMP_ROOT' is not set. Please export it and restart the installation"/>
+		<failIfEmpty property="env.DB_HOST" message="Variable 'DB_HOST' is not set. Please export it and restart the installation"/>
+		<failIfEmpty property="env.DB_PORT" message="Variable 'DB_PORT' is not set. Please export it and restart the installation"/>
+		<failIfEmpty property="env.ORACLE_SID" message="Variable 'ORACLE_SID' is not set. Please export it and restart the installation"/>
+		<failIfEmpty property="inf_password" message="Variable 'inf_password' is not defined in properties file. Please export it and restart the installation"/>
+		<failIfEmpty property="pf_schema" message="Variable 'pf_schema' is not defined in properties file. Please export it and restart the installation"/>
+		<failIfEmpty property="pf_schema_password" message="Variable 'pf_schema_password' is not defined in properties file. Please export it and restart the installation"/>
+		<failIfEmpty property="pf_user" message="Variable 'pf_user' is not defined in properties file. Please export it and restart the installation"/>
+		<failIfEmpty property="pf_user_password" message="Variable 'pf_user_password' is not defined in properties file. Please export it and restart the installation"/>
+		<failIfEmpty property="TMOBILE_CUSTOM_USER" message="Variable 'TMOBILE_CUSTOM_USER' is not defined in properties file. Please export it and restart the installation"/>
+		<failIfEmpty property="TMOBILE_CUSTOM_PASSWORD" message="Variable 'TMOBILE_CUSTOM_PASSWORD' is not defined in properties file. Please export it and restart the installation"/>
+		<failIfEmpty property="geneva_batch_password" message="Variable 'geneva_batch_password' is not defined in properties file. Please export it and restart the installation"/>
+		<failIfEmpty property="geneva_batch_user" message="Variable 'geneva_batch_user' is not defined in properties file. Please export it and restart the installation"/>
+	</target>	
+	
+	<target name="preinstall_step2">
+        <!-- clean customeca_temp.dir, reunzip for avoid previous pathes affects-->
+        <delete failonerror="false" includeEmptyDirs="true">
+            <fileset dir="${INFINYS_ROOT}/${customeca_temp.dir}" />
+        </delete>
+		<antcall target="add.db.scheme.manager"> 
+			<param name="component_name" value="CUSTOM"/>
+			<param name="scheme" value="TMOBILE_CUSTOM"/>
+			<param name="url" value="(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=${env.DB_HOST})(PORT=${env.DB_PORT}))(CONNECT_DATA=(SERVICE_NAME=${env.ORACLE_SID})))"/> 
+			<param name="user" value="${TMOBILE_CUSTOM_USER}"/> 
+			<param name="password" value="${TMOBILE_CUSTOM_PASSWORD}"/>
+		</antcall>
+		<antcall target="add.db.scheme.manager"> 
+			<param name="component_name" value="CUSTOM"/>
+			<param name="scheme" value="GEN_BATCH"/>
+			<param name="url" value="(DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=${env.DB_HOST})(PORT=${env.DB_PORT}))(CONNECT_DATA=(SERVICE_NAME=${env.ORACLE_SID})))"/> 
+			<param name="user" value="${geneva_batch_user}"/> 
+			<param name="password" value="${geneva_batch_password}"/>
+		</antcall>
+	</target>
+
+	<target name="step1">
+		<unzip src="${INFINYS_ROOT}/java/ECA.ear" dest="${env.TMP_ROOT}/temp_eca"/>
+
+		<copy file="${INFINYS_ROOT}/java/ECA.ear" tofile="${INFINYS_ROOT}/${customeca_temp.dir}/ECA_original.ear" overwrite="true"/>
+		
+		<copy file="${INFINYS_ROOT}/${customeca_temp.dir}/CUSTOMECA/CUSTOMECA/java/ECA.ear/customeca.jar" tofile="${env.TMP_ROOT}/temp_eca/customeca.jar" overwrite="true"/>
+		<copy file="${INFINYS_ROOT}/${customeca_temp.dir}/CUSTOMECA/CUSTOMECA/java/ECA.ear/CUSTOMECA.war" tofile="${env.TMP_ROOT}/temp_eca/CUSTOMECA.war" overwrite="true"/>
+		<copy file="${INFINYS_ROOT}/${customeca_temp.dir}/CUSTOMECA/CUSTOMECA/java/ECA.ear/APP-INF/lib/customeca-j2ee.jar" tofile="${env.TMP_ROOT}/temp_eca/APP-INF/lib/customeca-j2ee.jar" overwrite="true"/>
+	
+		<zip destfile="${INFINYS_ROOT}/${customeca_temp.dir}/ECA.ear"  basedir="${env.TMP_ROOT}/temp_eca"/>
+		<copy file="${INFINYS_ROOT}/${customeca_temp.dir}/ECA.ear" tofile="${INFINYS_ROOT}/java/ECA.ear" overwrite="true"/>
+	</target>
+
+	<target name="step2">
+		<echo>infinysctl stop</echo>
+		<exec executable="infinysctl">
+			<arg value="stop" />
+			<env key="INF_SCHEMA_PASSWORD" value="${inf_password}" />
+			<env key="PF_USER_PASSWORD" value="${PF_USER_PASSWORD}" />
+			<env key="PF_SCHEMA_PASSWORD" value="${PF_SCHEMA_PASSWORD}" />
+			<env key="PF_SEC_SCHEMA_PASSWORD" value="${PF_SEC_SCHEMA_PASSWORD}" />
+		</exec>
+		<sleep seconds="60"/>
+		
+		<echo>infinysctl start</echo>
+		<exec executable="infinysctl" output="infinysctl_start.txt">
+			<env key="INF_SCHEMA_PASSWORD" value="${inf_password}" />
+			<env key="PF_USER_PASSWORD" value="${PF_USER_PASSWORD}" />
+			<env key="PF_SCHEMA_PASSWORD" value="${PF_SCHEMA_PASSWORD}" />
+			<env key="PF_SEC_SCHEMA_PASSWORD" value="${PF_SEC_SCHEMA_PASSWORD}" />
+			<arg value="start" />
+		</exec>
+		<echo>sleep 20</echo>
+		
+		<sleep seconds="60"/>
+		<echo>infinysctl deploy</echo>
+		<exec executable="infinysctl" output="infinysctl_deploy.txt">
+			<arg value="deploy" />
+			<env key="INF_SCHEMA_PASSWORD" value="${inf_password}" />
+			<env key="PF_USER_PASSWORD" value="${PF_USER_PASSWORD}" />
+			<env key="PF_SCHEMA_PASSWORD" value="${PF_SCHEMA_PASSWORD}" />
+			<env key="PF_SEC_SCHEMA_PASSWORD" value="${PF_SEC_SCHEMA_PASSWORD}" />
+		</exec>
+		<sleep seconds="20"/>
+
+	</target>
+
+	<target name="step3">
+		<antcall target="execute_sql" >
+			<param name="sql.workdir" value="${INFINYS_ROOT}/scripts" />
+			<param name="sql.file" value="GNV.sql" />
+			<param name="sql.db.scheme" value="DATABASE"/>
+			<param name="ignore_sql_errors" value="false"/>
+		</antcall>
+	</target>
+	<target name="step4">
+		<antcall target="execute_sql" >
+			<param name="sql.workdir" value="${INFINYS_ROOT}/scripts/" />
+			<param name="sql.file" value="genevabatch.sql" />
+			<param name="sql.db.scheme" value="GEN_BATCH"/>
+			<param name="ignore_sql_errors" value="false"/>
+		</antcall>
+		<antcall target="execute_sql" >
+			<param name="sql.workdir" value="${INFINYS_ROOT}/scripts" />
+			<param name="sql.file" value="first.sql" />
+			<param name="sql.db.scheme" value="TMOBILE_CUSTOM"/>
+			<param name="ignore_sql_errors" value="false"/>
+		</antcall>
+	</target>
+	<target name="step5">
+		<antcall target="execute_sql" >
+			<param name="sql.workdir" value="${INFINYS_ROOT}/scripts/General" />
+			<param name="sql.file" value="version.sql" />
+			<param name="sql.db.scheme" value="AI_ADMIN"/>
+			<param name="ignore_sql_errors" value="false"/>
+		</antcall>
+	</target>
+</project> 	

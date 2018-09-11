@@ -1,0 +1,44 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  
+>
+  <exceptionDef name="NoBillingOfferFoundException">
+    <doc>
+<![CDATA[
+This exception is a subclass of BusinessLogicException that is thrown when
+the account number or customer specified does not have an active billing offer.
+<p>
+  This excludes system level problems which are handled by the EJB
+  specification.
+</p>
+]]>
+    </doc>
+    <extends name="BusinessLogicException"/>
+
+    <field name="AccountPK">
+      <doc>
+A method to obtain the AccountPK for which the exception has been thrown.
+      </doc>
+      <structure nullable="true" name="AccountPK" serviceId="Account"/>
+    </field>
+	
+	
+	<field name="CustomerPK">
+      <doc>
+A method to obtain the CustomerPK for which the exception has been thrown.
+      </doc>
+      <structure nullable="true" name="CustomerPK" serviceId="Customer"/>
+    </field>
+	
+
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/NoBillingOfferFoundException.iml -->
+

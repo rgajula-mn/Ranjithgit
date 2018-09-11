@@ -1,0 +1,44 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="GenevaUser"
+>
+  <structureDef name="BusinessRoleData" version="5.1">
+    <doc>
+Shows the business roles available for the Infinys user.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="BusinessRoleId">
+      <internal name="ECA_TableColumn" value="PVBUSINESSROLE.BUSINESS_ROLE_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the business role identifier. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="BusinessRoleName">
+      <internal name="ECA_TableColumn" value="PVBUSINESSROLE.BUSINESS_ROLE_NAME VARCHAR2(40) NOT NULLABLE"/>
+      <doc>
+Gets the business role name. 
+      </doc>
+      <string nullable="false" maxLength="40"/>
+    </field>
+
+    <field name="BusinessRoleDesc">
+      <internal name="ECA_TableColumn" value="PVBUSINESSROLE.BUSINESS_ROLE_DESC VARCHAR2(255) NULLABLE"/>
+      <doc>
+Describes the business role. 
+      </doc>
+      <string nullable="true" maxLength="255"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/GenevaUser/structure/5.1/BusinessRoleData.iml -->

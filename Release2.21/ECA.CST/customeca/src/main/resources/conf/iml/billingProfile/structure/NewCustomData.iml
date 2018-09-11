@@ -1,0 +1,24 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="NewCustomData">
+		<doc>NewCustomData </doc>
+
+		<field name="TableName">
+			<doc>TableName</doc>
+			<string nullable="false" maxLength="80" />
+		</field>
+		
+		<field name="ColumnDataArray">
+			<doc>Array of the NewCustomData.This input array contains partner short name etc..</doc>
+			 <array nullable="false">
+				<structure name="ColumnDetails" nullable="false"/>
+			</array>
+		</field>
+		
+
+	</structureDef>
+</iml:definitions>

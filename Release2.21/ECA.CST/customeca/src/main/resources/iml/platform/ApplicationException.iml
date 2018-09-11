@@ -1,0 +1,14 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://churn.oz.convergys.com/IML/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="Platform"
+>
+<exceptionDef name="ApplicationException" since="3.0">
+  <doc>
+    All the business methods will be declared as throwing this exception. This exception is thrown if these business methods encounter an exception relating to application other than the database exceptions.
+  </doc>
+</exceptionDef>
+</iml:definitions>

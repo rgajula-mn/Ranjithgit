@@ -1,0 +1,50 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Contract"
+>
+  <enumDef name="ModificationType">
+    <doc>
+<![CDATA[
+The enumeration values for overrid prices.
+]]>
+    </doc>
+    <option name="MT_NO_MODIFIER" index="0">
+      <doc>
+No modifiers.
+      </doc>
+    </option>
+
+    <option name="MT_OVERRIDE" index="1">
+      <doc>
+Override prices.
+      </doc>
+    </option>
+
+    <option name="MT_MONETARY_MODIFIER" index="2">
+      <doc>
+Monetary modifier.
+      </doc>
+    </option>
+
+    <option name="MT_PERCENTAGE_MODIFIER" index="3">
+      <doc>
+Percentage modifier.
+      </doc>
+    </option>
+
+    <option name="MT_NO_CHARGE" index="4">
+      <doc>
+No charge modifier.
+      </doc>
+    </option>
+
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/OverridePrice/enum/ModificationType.iml -->

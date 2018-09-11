@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- WhatString @(#)pf $Id$  -->
+<!-- (c) 2009 Convergys Information Management Group Inc. All Rights Reserved. Private and Confidential. May not be disclosed without permission. -->
+
+<!-- WhatString @(#)pf $Id$  -->
+<!-- (c) 2009 Convergys Information Management Group Inc. All Rights Reserved. Private and Confidential. May not be disclosed without permission. -->
+
+<jxb:bindings
+  version="1.0"
+  xmlns:jxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xs="http://www.w3.org/2001/XMLSchema"
+>
+  <jxb:bindings schemaLocation="ejb-jar_2_0.xsd" node="/xs:schema">
+    <jxb:globalBindings bindingStyle="modelGroupBinding" choiceContentProperty="0" />
+    <jxb:schemaBindings>
+      <jxb:package name="com.convergys.security.admin.util.xml.jxb.ejbjarxml" />
+      <jxb:nameXmlTransform>
+        <jxb:elementName suffix="Element"/>
+      </jxb:nameXmlTransform> 
+    </jxb:schemaBindings> 
+ </jxb:bindings>
+</jxb:bindings>
+ 

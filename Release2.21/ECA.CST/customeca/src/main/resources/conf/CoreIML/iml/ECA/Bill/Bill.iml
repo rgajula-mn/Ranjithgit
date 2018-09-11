@@ -1,0 +1,19 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Bill"
+>
+  <serviceDef>
+    <doc>The business methods for bills.</doc>
+    <scopeName>Geneva</scopeName>
+    <scopeName>J2ee</scopeName>
+    <scopeName>Bill</scopeName>
+  </serviceDef>
+</iml:definitions>
+
+<!-- eof ECA/Bill/Bill.iml -->

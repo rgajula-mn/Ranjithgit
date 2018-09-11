@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN" "http://www.springframework.org/dtd/spring-beans.dtd">
+<beans>
+  <bean id="CUSTOMECA_BillingProfilePojo"
+        class="com.convergys.custom.geneva.j2ee.billingProfile.BillingProfilePojo"        
+        lazy-init="true">  
+   <property name="queryInvoiceSummaryDataDao"><ref bean="queryInvoiceSummaryDataDao"/></property>
+   <property name="queryInvoiceSectionDetailsDao"><ref bean="queryInvoiceSectionDetailsDao"/></property>
+   <property name="queryLineItemDetailsDao"><ref bean="queryLineItemDetailsDao"/></property>
+   <property name="queryCDRDataDao"><ref bean="queryCDRDataDao"/></property>
+   <property name="createBillingProfileDao"><ref bean="createBillingProfileDao"/></property>
+   <property name="updateBillingProfileDao"><ref bean="updateBillingProfileDao"/></property>
+   <property name="queryLastRatedUsageDtmByTypeDao"><ref bean="queryLastRatedUsageDtmByTypeDao"/></property>
+   <property name="createBulkRequestDao"><ref bean="createBulkRequestDao"/></property>
+   <property name="queryDUFFileNameDao"><ref bean="queryDUFFileNameDao"/></property>
+   <property name="queryPatnerBillingandFinanceDataDao"><ref bean="queryPatnerBillingandFinanceDataDao"/></property>
+   
+   <property name="getBulkReqDao"><ref bean="getBulkReqDao"/></property>
+   <property name="cancelAdjustmentDao"><ref bean="cancelAdjustmentDao"/></property>
+   <property name="sendInvoiceByEmailDao"><ref bean="sendInvoiceByEmailDao"/></property>
+   <property name="cancelPaymentsDao"><ref bean="cancelPaymentsDao"/></property>
+   <property name="createAccountPaymentsDao"><ref bean="createAccountPaymentsDao"/></property>
+   <property name="createAdjustmentDao"><ref bean="createAdjustmentDao"/></property>
+   <property name="queryCDRDetailsDao"><ref bean="queryCDRDetailsDao"/></property>
+   <property name="queryPartnerContactDetailsDao"><ref bean="queryPartnerContactDetailsDao"/></property>
+   <property name="paymentsDao"><ref bean="paymentsDao"/></property>
+   <property name="deletePartnerUSTaxExemptionDao"><ref bean="deletePartnerUSTaxExemptionDao"/></property>
+   <property name="addPartnerUSTaxExemptionDao"><ref bean="addPartnerUSTaxExemptionDao"/></property>
+   <property name="createCustomerAndAccountDao"><ref bean="createCustomerAndAccountDao"/></property>   
+  </bean> 
+ 
+  <bean id="queryInvoiceSummaryDataDao" class="com.convergys.custom.geneva.j2ee.billingProfile.QueryInvoiceSummaryDataDao" autowire="byType">
+  </bean>
+  <bean id="queryInvoiceSectionDetailsDao" class="com.convergys.custom.geneva.j2ee.billingProfile.QueryInvoiceSectionDetailsDao" autowire="byType">
+  </bean>
+  <bean id="queryLineItemDetailsDao" class="com.convergys.custom.geneva.j2ee.billingProfile.QueryLineItemDetailsDao" autowire="byType">
+  </bean>
+  <bean id="queryCDRDataDao" class="com.convergys.custom.geneva.j2ee.billingProfile.QueryCDRDataDao" autowire="byType">
+  </bean>
+  <bean id="createBillingProfileDao" class="com.convergys.custom.geneva.j2ee.billingProfile.CreateBillingProfileDao" autowire="byType">
+  </bean>
+  <bean id="updateBillingProfileDao" class="com.convergys.custom.geneva.j2ee.billingProfile.UpdateBillingProfileDao" autowire="byType">
+  </bean>
+  <bean id="queryLastRatedUsageDtmByTypeDao" class="com.convergys.custom.geneva.j2ee.billingProfile.QueryLastRatedUsageDtmByTypeDao" autowire="byType">
+  </bean>
+  <bean id="createBulkRequestDao" class="com.convergys.custom.geneva.j2ee.billingProfile.CreateBulkRequestDao" autowire="byType">
+  </bean>
+  <bean id="queryDUFFileNameDao" class="com.convergys.custom.geneva.j2ee.billingProfile.QueryDUFFileNameDao" autowire="byType">
+  </bean>
+  <bean id="queryPatnerBillingandFinanceDataDao" class="com.convergys.custom.geneva.j2ee.billingProfile.QueryPatnerBillingandFinanceDataDao" autowire="byType">
+  </bean>
+  
+  <bean id="getBulkReqDao" class="com.convergys.custom.geneva.j2ee.billingProfile.GetBulkReqDao" autowire="byType">  
+  </bean>  
+  <bean id="cancelAdjustmentDao" class="com.convergys.custom.geneva.j2ee.billingProfile.CancelAdjustmentDao" autowire="byType">   
+  </bean>  
+  <bean id="sendInvoiceByEmailDao" class="com.convergys.custom.geneva.j2ee.billingProfile.SendInvoiceByEmailDao" autowire="byType">   
+  </bean>  
+  <bean id="cancelPaymentsDao" class="com.convergys.custom.geneva.j2ee.billingProfile.CancelPaymentsDao" autowire="byType">  
+  </bean>  
+  <bean id="createAccountPaymentsDao" class="com.convergys.custom.geneva.j2ee.billingProfile.CreateAccountPaymentsDao" autowire="byType"> 
+  </bean>  
+   <bean id="createAdjustmentDao" class="com.convergys.custom.geneva.j2ee.billingProfile.CreateAdjustmentDao" autowire="byType">
+   </bean>
+   <bean id="queryCDRDetailsDao" class="com.convergys.custom.geneva.j2ee.billingProfile.QueryCDRDetailsDao" autowire="byType">
+   </bean>
+   <bean id="queryPartnerContactDetailsDao" class="com.convergys.custom.geneva.j2ee.billingProfile.QueryPartnerContactDetailsDao" autowire="byType">
+   </bean>
+   <bean id="paymentsDao" class="com.convergys.custom.geneva.j2ee.billingProfile.PaymentsDao" autowire="byType">
+   </bean>
+   <bean id="deletePartnerUSTaxExemptionDao" class="com.convergys.custom.geneva.j2ee.billingProfile.DeletePartnerUSTaxExemptionDao" autowire="byType">
+   </bean>
+   <bean id="addPartnerUSTaxExemptionDao" class="com.convergys.custom.geneva.j2ee.billingProfile.AddPartnerUSTaxExemptionDao" autowire="byType">
+   </bean>
+   <bean id="createCustomerAndAccountDao" class="com.convergys.custom.geneva.j2ee.billingProfile.CreateCustomerAndAccountDao" autowire="byType">
+   </bean>
+  <bean id="util" class="com.convergys.custom.geneva.j2ee.util.Util">
+   <property name="dataSource"><ref bean="dataSource"/></property>
+  </bean>
+  <bean id="taskExecutor" class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+  <property name="corePoolSize" value="5" />
+  <property name="maxPoolSize" value="10" />
+  <property name="queueCapacity" value="25" />
+  </bean>
+  <bean id="billingProfileErrorLog" class="com.convergys.custom.geneva.j2ee.util.BillingProfileErrorLog">
+  <property name="taskExecutorins"><ref bean="taskExecutor"/></property>
+  <property name="utilins"><ref bean="util"/></property>
+  </bean>
+  
+</beans>

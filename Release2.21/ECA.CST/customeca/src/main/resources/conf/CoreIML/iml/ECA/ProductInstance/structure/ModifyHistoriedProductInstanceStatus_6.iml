@@ -1,0 +1,64 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="ModifyHistoriedProductInstanceStatus" version="6" since="4.3">
+    <doc>
+The data bean for modifying historied customer product status information.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <mixin serviceId="" name="HistoriedByDateTime"/>
+
+    <field name="StartDtm" mixin="true">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTSTATUS2.EFFECTIVE_DTM DATE  NOT NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the effective date and time. This is the date and time these status
+details came into effect. 
+<b>Note:</b>
+This value depends on AccountData.allowProdChangesFromDat. If this value is non
+null then the startDtm should not be less than this value; otherwise it can 
+have any value.
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="EndDtm" mixin="true">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTSTATUS2.EFFECTIVE_DTM DATE NULLABLE"/>
+      <doc>
+This will be the next effective date and time minus 1 second. If this value is
+null then it will be returned as Null.LONG. 
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+
+    <field name="ProductStatus">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTSTATUS2.PRODUCT_STATUS VARCHAR2(2)  NOT NULLABLE"/>
+      <doc>
+Gets the status of the product instance. 
+      </doc>
+      <see name="ProductStatus"/>
+      <enum nullable="false" name="ProductStatus"/>
+    </field>
+
+    <field name="StatusReasonTxt">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTSTATUS2.STATUS_REASON_TXT VARCHAR2(255)  NULLABLE"/>
+      <doc>
+Gets the text describing the reason for the current status.
+      </doc>
+      <string nullable="true" maxLength="255"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/ModifyHistoriedProductInstanceStatus_6.iml -->
+

@@ -1,0 +1,90 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<enumDef name="QueryType">
+    <doc>
+	Enumeration of possible values.
+    </doc>
+    <option name="Payments" index="1">
+      <doc>
+		Payments.
+      </doc>
+    </option>
+    <option name="Adjustments" index="2">
+      <doc>
+		Adjustments.
+	  </doc>
+    </option>
+    <option name="BillingHistory" index="3">
+      <doc>
+		Billinghistory.
+      </doc>
+    </option>
+    <option name="TaxExemptions" index="4">
+      <doc>
+		Tax Exemptions.
+	  </doc>
+    </option>
+    <option name="GLAccount" index="5">
+      <doc>
+		GLaccount.
+      </doc>
+    </option>
+    <option name="PromotionsAndDiscounts" index="6">
+      <doc>
+		PromotionsAndDiscounts.
+	  </doc>
+    </option>
+    <option name="AdjustmentTypes" index="7">
+      <doc>
+		AdjustmentTypes.
+      </doc>
+    </option>
+    <option name="CCPC" index="8">
+      <doc>
+		CCPC.
+	  </doc>
+    </option>
+    <option name="EventTypes" index="9">
+      <doc>
+		Eventtypes.
+	  </doc>
+    </option>
+    <option name="SKFCategory" index="10">
+      <doc>
+		SKFCategory.
+	  </doc>
+    </option>
+	<option name="GLAdjustTypeMapping" index="11">
+      <doc>
+		SKFCategory.
+	  </doc>
+    </option>
+    <option name="InvoiceHistory" index="12">
+      <doc>
+		InvoiceHistory.
+	  </doc>
+    </option>
+    <option name="PaymentChannels" index="13">
+      <doc>
+		PaymentChannels.
+	  </doc>
+    </option>
+    <option name="TaxExemptionType" index="14">
+      <doc>
+		TaxExemptionType.
+	  </doc>
+    </option>
+    <option name="AcctExemption" index="15">
+      <doc>
+		AccountExemption.
+	  </doc>
+    </option>
+  </enumDef>
+</iml:definitions>

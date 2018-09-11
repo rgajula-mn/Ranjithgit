@@ -1,0 +1,36 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="ContactResultElements">
+		<doc>ContactResultElements</doc>
+
+		<field name="ContactName">
+			<doc>ContactName</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		
+		<field name="ContactSurname">
+			<doc>ContactSurname</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		
+		<field name="ContactEmail">
+			<doc>ContactEmail</doc>
+			<string nullable="true" maxLength="50" />
+		</field>
+		
+		<field name="ContactPhone">
+			<doc>ContactPhone</doc>
+			<string nullable="true" maxLength="30" />
+		</field>
+		
+		<field name="ContactPosition">
+			<doc>ContactPosition</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		
+	</structureDef>
+</iml:definitions>

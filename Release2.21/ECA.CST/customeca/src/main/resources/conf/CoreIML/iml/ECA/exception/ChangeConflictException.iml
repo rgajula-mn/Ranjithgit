@@ -1,0 +1,21 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="ChangeConflictException">
+    <doc>
+This exception is a subclass of BusinessLogicException when parameters are
+acceptable, but the state of the database has changed prior to the update. This
+is detected by the field values currently stored in the database not matching
+the old field values passed to the method.
+    </doc>
+    <extends name="BusinessLogicException"/>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/ChangeConflictException.iml -->

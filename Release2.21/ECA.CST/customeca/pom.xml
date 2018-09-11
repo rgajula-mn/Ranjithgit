@@ -1,0 +1,182 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0    http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.netcracker.solutions.tmus.rbm.eca</groupId>
+        <artifactId>RB.ECA</artifactId>
+        <version>2.21.0</version>
+    </parent>
+    <artifactId>customeca</artifactId>
+    <packaging>war</packaging>
+    <name>customeca</name>
+    <build>
+        <sourceDirectory>${project.build.directory}/gensrc</sourceDirectory>
+        <resources>
+            <resource>
+                <directory>${project.basedir}/src/main/resources</directory>
+                <excludes>
+                    <exclude>**</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${project.build.directory}/gensrc/iml/CUSTOMECA/ejb</directory>
+                <includes>
+                    <include>**.xml</include>
+                    <include>**/**.xml</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>com.google.code.maven-svn-revision-number-plugin</groupId>
+                <artifactId>svn-revision-number-maven-plugin</artifactId>
+                <version>${svn-revision-number.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>get svn revision numbers</id>
+                        <phase>validate</phase>
+                        <goals>
+                            <goal>revision</goal>
+                        </goals>
+                        <configuration>
+                            <entries>
+                                <entry>
+                                    <prefix>svn-rev</prefix>
+                                    <path>${project.basedir}</path>
+                                    <depth>empty</depth>
+                                </entry>
+                            </entries>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <version>${antrun.plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>generate-war</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target>
+                                <taskdef resource="net/sf/antcontrib/antcontrib.properties" classpathref="maven.plugin.classpath" />
+                                <taskdef name="generateWS2EJBTask" classname="com.convergys.intrface.imlc.ant.GenerateWS2EJBTask" onerror="report">
+                                    <classpath refid="maven.compile.classpath" />
+                                </taskdef>
+                                <generateWS2EJBTask destdir="${project.build.directory}/gensrc/iml" ejbdir="${project.build.directory}/gensrc/iml" ejbDescriptorDir="${project.build.directory}/gensrc/iml" generateEJBDescriptors="true" wsdldir="${project.build.directory}/gensrc/iml" serverOnly="false" warFileOnly="false">
+                                    <classpath>
+                                        <path refid="maven.compile.classpath" />
+                                    </classpath>
+                                    <component name="CUSTOMECA" process="true">
+                                        <fileset file="${basedir}/src/main/resources/conf/iml/*" />
+                                    </component>
+                                    <component name="CommonIML" process="false">
+                                        <fileset file="${basedir}/src/main/resources/iml/commonIML/*" />
+                                    </component>
+                                    <component name="Platform" process="true">
+                                        <fileset file="${basedir}/src/main/resources/iml/platform/*" />
+                                    </component>
+                                    <component name="ECA" process="false">
+                                        <fileset file="${basedir}/src/main/resources/conf/CoreIML/iml*" />
+                                    </component>
+                                </generateWS2EJBTask>
+                            </target>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>clean-classes</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                        <configuration>
+                            <target name="delete notcustom classes">
+                                <delete includeemptydirs="true">
+                                    <fileset dir="${project.build.directory}/classes" includes="**/*.class">
+                                        <present targetdir="${project.build.directory}/gensrc/iml/CUSTOMECA/client">
+                                            <mapper type="regexp" from="^(.*?)(\$.*?)?\.class$" to="\1.java" />
+                                        </present>
+                                    </fileset>
+                                    <fileset dir="${project.build.directory}/classes" includes="**/*.class">
+                                        <present targetdir="${project.build.directory}/gensrc/iml/CUSTOMECA/ejb">
+                                            <mapper type="regexp" from="^(.*?)(\$.*?)?\.class$" to="\1.java" />
+                                        </present>
+                                    </fileset>
+                                    <fileset dir="${project.build.directory}/classes" includes="**/*.class">
+                                        <present targetdir="${project.build.directory}/gensrc/iml/Platform/client">
+                                            <mapper type="regexp" from="^(.*?)(\$.*?)?\.class$" to="\1.java" />
+                                        </present>
+                                    </fileset>
+                                    <fileset dir="${project.build.directory}/classes" includes="**/*.class">
+                                        <present targetdir="${project.build.directory}/gensrc/iml/Platform/ejb">
+                                            <mapper type="regexp" from="^(.*?)(\$.*?)?\.class$" to="\1.java" />
+                                        </present>
+                                    </fileset>
+                                    <fileset dir="${project.build.directory}/classes" includes="**/*.xml" />
+                                </delete>
+                            </target>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>customECAClient packaging</id>
+                        <phase>process-classes</phase>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                        <configuration>
+                            <classifier>classes</classifier>
+                            <classesDirectory>${project.build.directory}/classes</classesDirectory>
+                            <excludes>
+                                <exclude>com/convergys/iml/**</exclude>
+                                <exclude>com/convergys/platform/**</exclude>
+                            </excludes>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>${war.plugin.version}</version>
+                <configuration>
+                    <attachClasses>false</attachClasses>
+                    <packagingExcludes>WEB-INF/lib/*</packagingExcludes>
+                    <warSourceIncludes>WEB-INF/</warSourceIncludes>
+                    <warSourceDirectory>${project.build.directory}/gensrc/iml/CUSTOMECA</warSourceDirectory>
+                    <webResources>
+                        <resource>
+                            <directory>${project.build.directory}/gensrc/iml/wsdl/CUSTOMECA</directory>
+                            <targetPath>WEB-INF/classes/wsdl/wsdl</targetPath>
+                            <includes>
+                                <include>*.wsdl</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <directory>${project.build.directory}/gensrc/iml/schema</directory>
+                            <targetPath>schema</targetPath>
+                            <includes>
+                                <include>**/*.xsd</include>
+                            </includes>
+                        </resource>
+                        <resource>
+                            <directory>${project.build.directory}/gensrc/iml/schema</directory>
+                            <targetPath>schema</targetPath>
+                            <includes>
+                                <include>**/*.xsd</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+</project>

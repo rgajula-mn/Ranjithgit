@@ -1,0 +1,27 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="BillingTariff"
+>
+  <serviceDef>
+    <doc><![CDATA[
+Business methods for price plan.
+<p>
+  Note: If the suspension charges are in use and controlled by the core
+  system parameter SYSconfigureSuspensionChargesBoo, suspension charge details
+  for the price plan must contain valid data (which can include charge amounts
+  of zero). If not, suspension charge data will not be used.
+</p>
+]]></doc>
+    <scopeName>Geneva</scopeName>
+    <scopeName>J2ee</scopeName>
+    <scopeName>BillingTariff</scopeName>
+  </serviceDef>
+</iml:definitions>
+
+<!-- eof ECA/BillingTariff/BillingTariff.iml -->

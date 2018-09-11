@@ -1,0 +1,43 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Address"
+>
+  <structureDef name="AddressPK">
+    <doc>
+The primary key for address.
+    </doc>
+
+    <extends serviceId="" name="PrimaryKey"/>
+
+    <mixin serviceId="Customer" name="CustomerOwnedEntity"/>
+
+    <field name="CustomerRef" mixin="true">
+      <internal name="ECA_TableColumn" value="PVADDRESS5.CUSTOMER_REF VARCHAR2(20)  NOT NULLABLE"/>
+      <doc>
+Gets the customer reference. 
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+    <field name="AddressSeq">
+      <internal name="ECA_TableColumn" value="PVADDRESS5.ADDRESS_SEQ NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the address sequence number.
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="CustomerRef"/>
+      <item fieldName="AddressSeq"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Address/structure/AddressPK.iml -->

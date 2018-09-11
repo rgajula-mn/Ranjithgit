@@ -1,0 +1,34 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  
+>
+  <exceptionDef name="AccountNotFoundException">
+    <doc>
+<![CDATA[
+This exception is a subclass of BusinessLogicException that is thrown when
+the account number specified to be addressed can not be found.
+<p>
+  This excludes system level problems which are handled by the EJB
+  specification.
+</p>
+]]>
+    </doc>
+    <extends name="NoSuchEntityException"/>
+
+    <field name="AccountPK">
+      <doc>
+A method to obtain the AccountPK for which the exception has been thrown.
+      </doc>
+      <structure nullable="false" name="AccountPK" serviceId="Account"/>
+    </field>
+
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/AccountNotFoundException.iml -->

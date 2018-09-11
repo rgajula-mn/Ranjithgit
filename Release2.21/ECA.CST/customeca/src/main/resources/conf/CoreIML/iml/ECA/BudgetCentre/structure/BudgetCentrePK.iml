@@ -1,0 +1,43 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="BudgetCentre"
+>
+  <structureDef name="BudgetCentrePK">
+    <doc>
+The primary key for budget center.
+    </doc>
+
+    <extends serviceId="" name="PrimaryKey"/>
+
+    <mixin serviceId="Account" name="AccountOwnedEntity"/>
+
+    <field name="AccountNum" mixin="true">
+      <internal name="ECA_TableColumn" value="PVBUDGETCENTRE3.ACCOUNT_NUM VARCHAR2(20) NOT NULLABLE"/>
+      <doc>
+Gets the account number.
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+    <field name="BudgetCentreSeq">
+      <internal name="ECA_TableColumn" value="PVBUDGETCENTRE3.BUDGET_CENTRE_SEQ NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the budget center sequence. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="AccountNum"/>
+      <item fieldName="BudgetCentreSeq"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+

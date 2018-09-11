@@ -1,0 +1,27 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <exceptionDef name="ProductHasBeenTerminatedException">
+    <doc>
+This exception is a subclass of BusinessLogicException used when the product in
+question has been terminated.
+    </doc>
+    <extends serviceId="" name="BusinessLogicException"/>
+
+    <field name="ProductInstancePK">
+      <doc>
+gets the terminated product.
+      </doc>
+      <structure nullable="false" name="ProductInstancePK"/>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/exception/ProductHasBeenTerminatedException.iml -->

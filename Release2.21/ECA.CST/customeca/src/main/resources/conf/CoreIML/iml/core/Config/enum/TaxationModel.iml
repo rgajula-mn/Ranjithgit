@@ -1,0 +1,31 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Config"
+>
+  <enumDef name="TaxationModel" since="5.1">
+    <doc>
+Enumeration of the taxation model for the invoicing company. This is not for
+use in the Infinys Rating and Billing system parameters.
+    </doc>
+    <option name="TM_UST" index="0">
+      <doc>
+U.S. Tax style taxation.
+      </doc>
+    </option>
+
+    <option name="TM_VAT_GST" index="1">
+      <doc>
+VAT/GST style taxation.
+      </doc>
+    </option>
+
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/Config/enum/TaxationModel.iml -->

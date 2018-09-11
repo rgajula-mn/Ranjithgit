@@ -1,0 +1,133 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="NewProductInstanceEventTypeData" version="6" since="3.1">
+    <doc>
+The data bean used for creating new event types.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <mixin serviceId="" name="HistoriedByDate"/>
+
+    <field name="EventTypeId">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTEVENTTYPES.EVENT_TYPE_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the event type identifier used to identify the event type. 
+<p></p>
+]]>
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="StartDat" mixin="true">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTEVENTTYPES.START_DAT DATE NOT NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the date when the event type becomes active. 
+<p></p>
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="EndDat" mixin="true">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTEVENTTYPES.END_DAT DATE NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the date when the event type becomes inactive. 
+<p></p>
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+
+    <field name="DefaultRatingTariffPK">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTEVENTTYPES.DEFAULT_RATING_TARIFF_ID NUMBER(9) NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the rate plan identifier used by event sources when no other
+rate plan has been specified. 
+<p></p>
+]]>
+      </doc>
+      <see serviceId="RatingTariff" name="RatingTariffPK"/>
+      <structure nullable="true" serviceId="RatingTariff" name="RatingTariffPK"/>
+    </field>
+
+    <field name="DefaultCmpRatingTariffPK">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTEVENTTYPES.DEFAULT_CMP_RATING_TARIFF_ID NUMBER(9) NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the rate  plan identifier used by event sources for comparing
+against competitors when no other rate plan has been specified.
+<p>
+  When defaultRatingTariffPK is null then defaultCmpRatingTariffPK should
+  be null.
+</p>
+]]>
+      </doc>
+      <see serviceId="RatingTariff" name="RatingTariffPK"/>
+      <structure nullable="true" serviceId="RatingTariff" name="RatingTariffPK"/>
+    </field>
+
+    <field name="ItemisationMny">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTEVENTTYPES2.ITEMISATION_MNY NUMBER(18) NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the level at which events are itemized on the bill. 
+<p></p>
+]]>
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="ItemisationOrderId">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTEVENTTYPES2.ITEMISATION_ORDER_ID NUMBER(9) NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the bill display order. 
+<p></p>
+]]>
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+    
+    <field name="MaskBillRuleId">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTEVENTTYPES2.MASK_BILL_RULE_ID NUMBER(9) NULLABLE"/>
+      <doc>
+Identifies the masking rule to be applied to the events of this product instance and event type,
+when displayed on the bill.
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+    
+    <field name="MaskStoreRuleId">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTEVENTTYPES2.MASK_STORE_RULE_ID NUMBER(9) NULLABLE"/>
+      <doc>
+Identifies the masking rule to be applied to the events of this product instance and event type, 
+in the data store after they are billed.
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+      <field name="EventDeletionMode">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTEVENTTYPES2.EVENT_DELETION_MODE NUMBER(1) NULLABLE"/>
+      <doc>
+Determines whether or not to delete the event records immediately after billing without
+archiving.
+      </doc>
+      <enum nullable="true" serviceId="Event" name="EventDeletionMode"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/NewProductInstanceEventTypeData_6.iml -->

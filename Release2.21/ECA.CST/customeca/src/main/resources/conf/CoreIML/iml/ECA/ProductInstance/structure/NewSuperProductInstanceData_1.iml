@@ -1,0 +1,53 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+<structureDef name="NewSuperProductInstanceData" version="1" since="4.1">
+<doc>
+<![CDATA[
+ The CreateSuperProductSubscriptionAndPackageInstance_1 method uses this data bean to
+ creates a product and other entities.
+]]>
+    </doc>
+    <extends serviceId="" name="DataObject"/>
+    
+    <field name="SubscriptionPK">
+          <doc>
+              Gets the subscription primary key.
+          </doc>
+          <see serviceId="Subscription" name="SubscriptionPK"/>
+          <structure serviceId="Subscription" nullable="true" name="SubscriptionPK"/>
+    </field>
+    
+    
+        <field name="NewProductInstanceData">
+          <doc>
+	It contains information regarding the new products to be added (instance to be
+	created).
+          </doc>
+          <see serviceId="ProductInstance" name="NewProductInstanceData" version="6"/>
+          <structure nullable="false" serviceId="ProductInstance" name="NewProductInstanceData" version="6"/>
+        </field>
+
+        <field name="NewChildProductInstanceDataArray">
+          <doc>
+	It contains information regarding the new child products to be added (instance to be
+	created).
+          </doc>
+          <see serviceId="ProductInstance" name="NewSuperProductInstanceData" version="1"/>
+          <array nullable="true">
+            <structure nullable="true" serviceId="ProductInstance" name="NewSuperProductInstanceData" version="1"/>
+          </array>
+        </field>        
+        
+</structureDef>
+
+</iml:definitions>
+
+

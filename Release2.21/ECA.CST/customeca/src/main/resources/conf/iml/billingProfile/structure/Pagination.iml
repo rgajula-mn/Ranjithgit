@@ -1,0 +1,26 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<structureDef name="Pagination" >
+    <doc>Pagination details</doc>
+   		
+	    
+	    <field name="OffSetStart">
+        	<doc>Name of the column</doc>
+			<int32 nullable="true" maxDigits="9" />
+    	</field>    
+    	
+        <field name="OffSetEnd">
+        	<doc>OffSetEnd</doc>
+			<int32 nullable="true" maxDigits="9" />
+    	</field>     
+   		
+    	
+ </structureDef>
+</iml:definitions>

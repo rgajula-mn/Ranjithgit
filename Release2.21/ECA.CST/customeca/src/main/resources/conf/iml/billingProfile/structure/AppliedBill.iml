@@ -1,0 +1,30 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<enumDef name="AppliedBill">
+    <doc>
+		Enumeration of possible values.
+    </doc>
+    <option name="Billed" index="1">
+      <doc>
+		Billed.
+      </doc>
+    </option>
+    <option name="Unbilled" index="2">
+      <doc>
+		Unbilled.
+	  </doc>
+    </option>
+    <option name="All" index="3">
+      <doc>
+		All.
+      </doc>
+    </option>
+  </enumDef>
+</iml:definitions>

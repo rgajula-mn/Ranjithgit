@@ -1,0 +1,31 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://churn.oz.convergys.com/IML/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="CUSTOMECA"
+>
+  <structureDef name="SimplePrimaryKey" abstract="true">
+    <doc>
+<![CDATA[
+The base class for the primary keys of entities. The PrimaryKey class has the
+name of the associated entity class with the suffix PK attached.
+<p>
+  Entities which require a hint for which database in a group to use should
+  use the subclass PrimaryKey instead.
+  <p>
+    Subclasses must implement equals hashCode compareTo, and define a
+    serialVersionUID.
+  </p>
+</p>
+]]>
+    </doc>
+
+    <extends name="DataObject"/>
+
+    <sortOrder>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/structure/SimplePrimaryKey.iml -->

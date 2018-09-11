@@ -1,0 +1,47 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="NewAddressDataDetails">
+		<doc>NewAddressDataDetails </doc>
+
+		<field name="CountryId">
+			<doc>countryId.</doc>
+			<int32 nullable="false" maxDigits="2" />
+		</field>
+		
+		<field name="AddressLine1">
+			<doc>AddressLine1</doc>
+			<string nullable="false" maxLength="240" />
+		</field>
+		<field name="AddressLine2">
+			<doc>AddressLine2</doc>
+			<string nullable="true" maxLength="240" />
+		</field>
+		<field name="AddressLine3">
+			<doc>AddressLine3</doc>
+			<string nullable="false" maxLength="240" />
+		</field>
+		<field name="AddressLine4">
+			<doc>AddressLine4</doc>
+			<string nullable="false" maxLength="240" />
+		</field>
+		<field name="AddressLine5">
+			<doc>AddressLine5</doc>
+			<string nullable="true" maxLength="240" />
+		</field>
+		
+		<field name="Zipcode">
+			<doc>zipcode</doc>
+			<string nullable="false" maxLength="10" />
+		</field>
+		
+		<field name="USTJcode">
+			<doc>USTJcode</doc>
+			<string nullable="false" maxLength="12" />
+		</field>
+
+	</structureDef>
+</iml:definitions>

@@ -1,0 +1,26 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="LastMonthInvoiceDetails">
+		<doc>LastMonthInvoiceDetails Data  </doc>
+
+		<field name="PreviousBalanceMny">
+			<doc>PreviousBalanceMny</doc>
+			<double nullable="false"/>
+		</field>
+
+		<field name="PaymentReceivedMny">
+			<doc>PaymentReceivedMny</doc>
+			<double nullable="false" />
+		</field>
+		
+			<field name="OutstandingBalanceMny">
+			<doc>"OutstandingBalanceMny"</doc>
+			<double nullable="false" />
+		</field>
+		
+	</structureDef>
+</iml:definitions>

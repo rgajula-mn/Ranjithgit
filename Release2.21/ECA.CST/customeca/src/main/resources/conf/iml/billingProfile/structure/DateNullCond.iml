@@ -1,0 +1,30 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<enumDef name="DateNullCond">
+    <doc>
+		Enumeration of possible values.
+    </doc>
+    <option name="NA" index="1">
+      <doc>
+		NA.
+      </doc>
+    </option>
+    <option name="WithDate" index="2">
+      <doc>
+		WithDate.
+	  </doc>
+    </option>
+    <option name="Both" index="3">
+      <doc>
+		Both.
+      </doc>
+    </option>
+  </enumDef>
+</iml:definitions>

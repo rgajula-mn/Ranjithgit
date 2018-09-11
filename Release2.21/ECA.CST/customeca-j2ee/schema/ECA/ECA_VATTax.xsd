@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service VATTax. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-VATTax"
+  xmlns="urn:Convergys-Interface-ECA-VATTax"
+  xmlns:ecaVATTax="urn:Convergys-Interface-ECA-VATTax"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="CalculateVATSalesTaxInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="cpsId" type="xsd:int"/>
+          <xsd:element name="otcTypeId" type="xsd:int"/>
+          <xsd:element name="taxPointDate" type="xsd:string"/>
+          <xsd:element name="receivableClassId" type="xsd:int" minOccurs="0" nillable="true"/>
+          <xsd:element name="icoId" type="xsd:int"/>
+          <xsd:element name="currencyCode" type="xsd:string"/>
+          <xsd:element name="taxInclusive" type="xsd:string"/>
+          <xsd:element name="amount" type="xsd:long"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CalculateVATSalesTaxOutput_1">
+        <xsd:sequence>
+          <xsd:element
+            name="result"
+            type="ecaVATTax:VATTaxResult_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+            nillable="true"
+          />
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="VATTaxResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="taxAmount" type="xsd:long"/>
+          <xsd:element name="taxableAmount" type="xsd:long"/>
+          <xsd:element name="nonTaxableAmount" type="xsd:long"/>
+          <xsd:element name="taxExemptAmount" type="xsd:long"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+
+</xsd:schema>
+
+<!-- eof ECA_VATTax.xsd -->

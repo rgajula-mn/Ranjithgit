@@ -1,0 +1,43 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Contract"
+>
+  <structureDef name="ContractPK">
+    <doc>
+The primary key for a contract.
+    </doc>
+
+    <extends serviceId="" name="PrimaryKey"/>
+
+    <mixin serviceId="Customer" name="CustomerOwnedEntity"/>
+
+    <field name="CustomerRef" mixin="true">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.CUSTOMER_REF VARCHAR2(20)  NOT NULLABLE"/>
+      <doc>
+Gets the customer reference. 
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+    <field name="ContractSeq">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.CONTRACT_SEQ NUMBER(9)  NOT NULLABLE"/>
+      <doc>
+Gets the contract sequence (within the customer record). 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="CustomerRef"/>
+      <item fieldName="ContractSeq"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Contract/structure/ContractPK.iml -->

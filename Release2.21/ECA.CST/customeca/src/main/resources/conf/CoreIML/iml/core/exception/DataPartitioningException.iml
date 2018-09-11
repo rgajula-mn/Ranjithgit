@@ -1,0 +1,19 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="DataPartitioningException">
+    <doc>
+This exception is thrown when a user attempts to access data for a customer
+whom he is not allowed access to by the data partitioning rules.
+    </doc>
+    <extends name="BusinessLogicException"/>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/DataPartitioningException.iml -->

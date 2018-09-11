@@ -1,0 +1,55 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="ModifyHistoriedProductInstanceStatusPair" version="6" since="4.3">
+    <doc>
+This data bean contains the parameters for modifying the status of a product
+instance.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="OldModifyHistoriedProductInstanceStatus">
+      <doc>
+Gets the data bean containing the existing information which is required when
+modifying the status of a product instance.
+      </doc>
+      <see name="ModifyHistoriedProductInstanceStatus" version="6"/>
+      <structure nullable="true" name="ModifyHistoriedProductInstanceStatus" version="6"/>
+    </field>
+
+    <field name="NewModifyHistoriedProductInstanceStatus">
+      <doc>
+Gets the data bean containing the new information which is required when
+modifying the status of a product instance.
+      </doc>
+      <see name="ModifyHistoriedProductInstanceStatus" version="6"/>
+      <structure nullable="true" name="ModifyHistoriedProductInstanceStatus" version="6"/>
+    </field>
+
+    <field name="EarlyTermSurchargeBoo">
+      <doc>
+Indicates if early termination charges apply. Only used when inserting a
+termination status with a date earlier than the  natural end date of the 
+contract.
+      </doc>
+      <boolean nullable="true"/>
+    </field>
+
+    <field name="ApplyToProductHierarchyBoo">
+      <doc>
+Indicates if the product is in a hierarchy.
+      </doc>
+      <boolean nullable="true"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/ModifyHistoriedProductInstanceStatusPair_6.iml -->

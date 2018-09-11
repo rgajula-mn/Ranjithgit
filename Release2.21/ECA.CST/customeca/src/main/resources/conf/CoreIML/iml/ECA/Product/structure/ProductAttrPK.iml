@@ -1,0 +1,41 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Product"
+>
+  <structureDef name="ProductAttrPK">
+    <doc>
+The product attribute primary key.
+    </doc>
+
+    <extends serviceId="" name="SimplePrimaryKey"/>
+
+    <field name="ProductId">
+      <internal name="ECA_TableColumn" value="PVPRODUCTATTRIBUTE2.PRODUCT_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the product identifier.
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="ProductAttrSubId">
+      <internal name="ECA_TableColumn" value="PVPRODUCTATTRIBUTE2.PRODUCT_ATTRIBUTE_SUBID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the product attribute sub identifier. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="ProductId"/>
+      <item fieldName="ProductAttrSubId"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Product/structure/ProductAttrPK.iml -->

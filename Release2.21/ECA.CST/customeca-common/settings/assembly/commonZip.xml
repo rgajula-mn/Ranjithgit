@@ -1,0 +1,102 @@
+<assembly xmlns="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0" 
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://maven.apache.org/plugins/maven-assembly-plugin/assembly/1.1.0 
+					http://maven.apache.org/xsd/assembly-1.1.0.xsd">
+	<id>make eca.cst zip</id>
+	<formats>		
+		<format>zip</format>
+	</formats>
+	<includeBaseDirectory>false</includeBaseDirectory>
+	
+	<fileSets>
+		<fileSet>
+			<directory>${project.build.directory}/patch</directory>
+			<outputDirectory></outputDirectory>
+			<excludes>
+				<exclude>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/lib/webservices/client/WEB-INF/**</exclude>
+				<exclude>install/comp_install.xml</exclude>
+				<exclude>etalon_config_eca.properties</exclude>
+				<exclude>install.xml</exclude>
+				<exclude>applications/**</exclude>
+			</excludes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}/patch/install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/lib/webservices/client/WEB-INF/classes/wsdl/wsdl</directory>
+			<outputDirectory>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/lib/webservices/client/wsdl/CUSTOMECA</outputDirectory>
+			<includes>
+				<include>*.wsdl</include>
+			</includes>
+		</fileSet>
+		<!-- <fileSet> -->
+			<!-- <directory>${project.build.directory}</directory> -->
+			<!-- <outputDirectory>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/bin</outputDirectory> -->
+			<!-- <excludes> -->
+				<!-- <exclude>**/*</exclude> -->
+			<!-- </excludes> -->
+		<!-- </fileSet> -->
+		<fileSet>
+			<directory>${project.build.directory}</directory>
+			<outputDirectory>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/java/lib</outputDirectory>
+			<excludes>
+				<exclude>**/*</exclude>
+			</excludes>
+		</fileSet>
+		<fileSet>
+			<directory>${project.build.directory}</directory>
+			<outputDirectory>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/java/ECA.ear/META-INF</outputDirectory>
+			<excludes>
+				<exclude>**/*</exclude>
+			</excludes>
+		</fileSet>
+		<!-- <fileSet> -->
+			<!-- <directory>${project.build.directory}</directory> -->
+			<!-- <outputDirectory>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/schema/definitions</outputDirectory> -->
+			<!-- <excludes> -->
+				<!-- <exclude>**/*</exclude> -->
+			<!-- </excludes> -->
+		<!-- </fileSet> -->
+		<!-- <fileSet> -->
+			<!-- <directory>${project.build.directory}</directory> -->
+			<!-- <outputDirectory>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/schema/java</outputDirectory> -->
+			<!-- <excludes> -->
+				<!-- <exclude>**/*</exclude> -->
+			<!-- </excludes> -->
+		<!-- </fileSet> -->
+		<!-- <fileSet> -->
+			<!-- <directory>${project.build.directory}</directory> -->
+			<!-- <outputDirectory>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/schema/procedures</outputDirectory> -->
+			<!-- <excludes> -->
+				<!-- <exclude>**/*</exclude> -->
+			<!-- </excludes> -->
+		<!-- </fileSet> -->
+		<!-- <fileSet> -->
+			<!-- <directory>${project.build.directory}</directory> -->
+			<!-- <outputDirectory>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/schema/scripts</outputDirectory> -->
+			<!-- <excludes> -->
+				<!-- <exclude>**/*</exclude> -->
+			<!-- </excludes> -->
+		<!-- </fileSet> -->
+		<!-- <fileSet> -->
+			<!-- <directory>${project.build.directory}</directory> -->
+			<!-- <outputDirectory>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/schema/staticdata</outputDirectory> -->
+			<!-- <excludes> -->
+				<!-- <exclude>**/*</exclude> -->
+			<!-- </excludes> -->
+		<!-- </fileSet> -->
+		<!-- <fileSet> -->
+			<!-- <directory>${project.build.directory}</directory> -->
+			<!-- <outputDirectory>install/CUSTOMECA_TMP/CUSTOMECA/CUSTOMECA/schema/triggers</outputDirectory> -->
+			<!-- <excludes> -->
+				<!-- <exclude>**/*</exclude> -->
+			<!-- </excludes> -->
+		<!-- </fileSet> -->
+	</fileSets>
+	<files>
+		<file>
+			<source>${project.build.directory}/patch/install/comp_install.xml</source>
+			<outputDirectory>install</outputDirectory>
+			<destName>${build.name}_install.xml</destName>
+		</file>
+	</files>
+	
+</assembly>

@@ -1,0 +1,22 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://churn.oz.convergys.com/IML/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="CUSTOMECA"
+>
+  <!-- use externallyExtensible here so TCAInternal can extend it -->
+  <structureDef name="DataObject" abstract="true" externallyExtensible="true">
+    <doc>
+<![CDATA[
+The base class for all data objects such as data beans and primary keys.
+<p>
+  Subclasses must implement equals and hashCode and define a
+  serialVersionUID.
+</p>
+]]>
+    </doc>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/structure/DataObject.iml -->

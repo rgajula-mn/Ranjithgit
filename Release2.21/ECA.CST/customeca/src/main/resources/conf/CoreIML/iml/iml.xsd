@@ -1,0 +1,1153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/*
+ * Module Name: $Workfile:   iml.xsd  $
+ *
+ *   $Author:   sgraham  $
+ *   $Date:   21 Oct 2004 13:33:04  $
+ *   $Modtime:   21 Oct 2004 13:32:30  $
+ *   $Revision:   1.5  $
+ *
+ *   $Log:   /pvcs/archive/iml/server/data/xml/iml.xvd  $
+#   
+#      Rev 1.5   21 Oct 2004 13:33:04   sgraham
+#   Changed the way componentLevelVersioning works.
+#   
+#      Rev 1.4   11 Jun 2004 15:04:16   vsreekan
+#   Added externallyExtensible element to structuredDef
+#
+#      Rev 1.3   10 May 2004 14:00:08   vsreekan
+#   Date / DateTime changes
+#
+#      Rev 1.2   27 Feb 2004 13:38:06   sgraham
+#   Moved internal to meta data from documented.
+#
+#      Rev 1.1   10 Feb 2004 09:29:58   vsreekan
+#   changed defaultVersion in the definitions element to version format from number format
+#
+#      Rev 1.0   17 Dec 2003 14:36:16   vsreekan
+#   Initial Version
+ *
+ *   This program is proprietary property of
+ *   CONVERGYS INFORMATION MANAGEMENT GROUP,
+ *   and may not be used or copied without
+ *   its prior written consent.
+ *
+ */
+-->
+
+<xsd:schema
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  targetNamespace="urn:Convergys-Interface-Markup-Language"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  elementFormDefault="qualified"
+  attributeFormDefault="unqualified"
+>
+  <!-- ==================================================================== -->
+  <!-- The root element and it's type ===================================== -->
+  <!-- ==================================================================== -->
+
+  <xsd:element name="definitions" type="Definitions">
+    <xsd:annotation>
+      <xsd:documentation>
+The root element simply provides a container for all the different
+kinds of top level definitions that can be made.
+      </xsd:documentation>
+    </xsd:annotation>
+  </xsd:element>
+
+  <xsd:complexType name="Definitions">
+    <xsd:annotation>
+      <xsd:documentation>
+This is the root element type, and simply contains an arbitrary number
+of each of the top level definitions in the order component, service,
+enum, structure, exception, method.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="MetaData">
+        <xsd:sequence>
+          <xsd:element
+            name="componentDef"
+            type="ComponentDef"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element
+            name="serviceDef"
+            type="ServiceDef"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element
+            name="enumDef"
+            type="EnumDef"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element
+            name="mixinDef"
+            type="MixinDef"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+           <xsd:element
+            name="structureDef"
+            type="StructureDef"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element
+            name="exceptionDef"
+            type="ExceptionDef"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element
+            name="methodDef"
+            type="MethodDef"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+        <xsd:attribute
+          name="defaultComponentId" type="NameFormat" use="optional"
+        />
+        <xsd:attribute
+          name="defaultServiceId" type="NameFormat" use="optional"
+        />
+        <xsd:attribute
+          name="defaultVersion" type="VersionFormat" use="optional"
+        />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+  <!-- ==================================================================== -->
+  <!-- The base type for meta data ======================================== -->
+  <!-- ==================================================================== -->
+
+  <xsd:complexType name="MetaData" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+The base from which all meta data extends.
+      </xsd:documentation>
+    </xsd:annotation>
+      <xsd:sequence>
+        <xsd:element
+          name="internal"
+          type="NameValuePair"
+          minOccurs="0"
+          maxOccurs="unbounded"
+        >
+          <xsd:annotation>
+            <xsd:documentation>
+This allows a component to attatch it's own internal metadata as name
+value pairs. This should not affect the generated interface artefacts
+and so can be ignored by clients.
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:element>
+      </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="Documented" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+Meta data with end user documentation.
+      </xsd:documentation>
+    </xsd:annotation>
+     <xsd:complexContent>
+      <xsd:extension base="MetaData">
+        <xsd:sequence>
+          <xsd:element name="doc" type="xsd:string"/>
+          <xsd:element name="see" type="See" minOccurs="0" maxOccurs="unbounded"/>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="See">
+    <xsd:annotation>
+      <xsd:documentation>
+Meta data for documentation cross reference.
+
+This identifies a particular definition by the usual four attributes of
+componentId, serviceId, name and version. It can also optionally identify a
+particular named member of that definition. This member can be a structure
+field, exception field, method parameter, or enumeration option.
+      </xsd:documentation>
+    </xsd:annotation>
+     <xsd:complexContent>
+      <xsd:extension base="ScopedReference">
+        <xsd:attribute name="member" type="NameFormat" use="optional"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="NameValuePair">
+    <xsd:annotation>
+      <xsd:documentation>
+Holder for a single piece of private metadata. The values are
+currently restricted to strings but could be extended to compound content
+in future.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute name="name" type="NameFormat">
+      <xsd:annotation>
+        <xsd:documentation>
+This is the name that identifies the piece of private metadata. It
+must begin with a centrally registered prefix to avoid name clashes.
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="value" type="xsd:string" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+This hold the value if any associated with the piece of private metadata.
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:complexType>
+
+
+  <!-- ==================================================================== -->
+  <!-- The top level definition elements ================================== -->
+  <!-- ==================================================================== -->
+
+  <xsd:complexType name="Definition" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+The base from which all top level definitions extend.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Documented">
+        <xsd:sequence>
+          <xsd:element name="deprecated" type="Deprecated" minOccurs="0"/>
+        </xsd:sequence>
+        <xsd:attribute
+          name="since" type="VersionFormat" use="optional"
+        >
+          <xsd:annotation>
+            <xsd:documentation>
+This can be used to record the component version at which the definition was
+added.
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ScopingDefinition" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+A definition whose primary role is to define the scope for other
+definitions, and configure options at that scope.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Definition">
+        <xsd:sequence>
+          <xsd:element
+            name="scopeName"
+            type="NameFormat"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          >
+            <xsd:annotation>
+              <xsd:documentation>
+Some bindings of IML to particular protocols and languages will
+support a richer namespace model than the simple model that IML
+assumes as the lowest common denominator. This allows the
+ScopingDefinition to declare a namespace for it's definitions as a
+series of scopeNames (going from general to more specific). A binding
+of IML to a particular protocol or language may choose to use this
+when forming namespaces for definitions. This logical namespace has
+nothing to do with the XML namespaces of the iml files.
+
+If no scopeNames are declared for a component the scopeNames will
+default to a single name taking the value of the componentId attribute.
+
+If no scopeNames are declared for a service then scopeNames will
+default to scopeNames for the containing component with an additional
+element appended which takes it's value from the serviceId attribute.
+
+The companyURL on the ComponentDef may also be used to construct a
+prefix for the namespace, if it is appropriate to the protocol or
+language.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute name="componentId" type="NameFormat" use="optional">
+          <xsd:annotation>
+            <xsd:documentation>
+componentId is the first level of scoping supported by all
+ScopingDefinitions, and identifies a ComponentDef.
+
+componentid must identify the component uniquely and are centrally
+managed by the Convergys Product Line Architecture (PLA).
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ComponentDef">
+    <xsd:annotation>
+      <xsd:documentation>
+The definition of a component. Components provide a set of services.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ScopingDefinition">
+        <xsd:sequence>
+          <xsd:element
+            name="validVersion" type="VersionFormat" maxOccurs="unbounded"
+          >
+            <xsd:annotation>
+              <xsd:documentation>
+A component must declare it's valid versions, and these must be
+declared in ascending order of release. The versions do not need to be
+in numerical order but the first validVersion must be listed prior to
+the subsequent validVersion. For example, if version 5.3 was released
+prior to version 2.2, validVersion 5.3 must be listed prior to validVersion
+2.2.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute
+          name="componentLevelVersioning"
+          type="xsd:boolean"
+          use="optional"
+          default="false"
+        >
+          <xsd:annotation>
+            <xsd:documentation>
+In early versions of IML, if this boolean is true then all version
+numbers needed to  be valid component versions of the component making 
+the definition. If it is false, definitions are free to use whatever
+version numbers they choose, unless the context requires a component
+version. Currently, all definitions behave as if the setting is false.
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute
+          name="companyURL"
+          type="xsd:string"
+          use="optional"
+          default="http://www.convergys.com"
+        >
+          <xsd:annotation>
+            <xsd:documentation>
+The companyURL identifies the company providing the component by it's
+Web URL. This can be used as a basis for constructing unique namespace
+prefixes (typically after stripping off standard elements such as
+'http://' and 'www.').
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ServiceDef">
+    <xsd:annotation>
+      <xsd:documentation>
+The definition of a service. Services provide a set of methods..
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ScopingDefinition">
+        <xsd:sequence/>
+        <xsd:attribute name="serviceId" type="NameFormat" use="optional"/>
+        <xsd:attribute name="private" type="xsd:boolean" use="optional"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ScopedDefinition" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+A definition which is scoped by a ScopedIdentifier
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Definition">
+        <xsd:sequence/>
+        <xsd:attributeGroup ref="ScopedIdentifier"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="EnumDef">
+    <xsd:annotation>
+      <xsd:documentation>
+The definition of an enumeration, it must support at least one option.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ScopedDefinition">
+        <xsd:sequence>
+          <xsd:element
+            name="option"
+            type="EnumOption"
+            minOccurs="1"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="EnumOption">
+    <xsd:annotation>
+      <xsd:documentation>
+The definition of a single option for an enumeration.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Member">
+        <xsd:attribute name="index" type="xsd:int" use="required"/>
+        <xsd:attribute
+          name="since" type="VersionFormat" use="optional"
+        >
+          <xsd:annotation>
+            <xsd:documentation>
+Enumerations can be extended by adding new options in later versions
+of the component, without creating new versions of the
+enumeration. This records the component version at which the option
+was added.
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute
+          name="deprecatedAt" type="VersionFormat" use="optional"
+        >
+          <xsd:annotation>
+            <xsd:documentation>
+In a similar way to 'since' enumerations can also be modified
+by deprecating existing options in later versions of the component,
+without creating new versions of the enumeration. This records the
+component version at which the option was deprecated.
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:group name="FieldOrMixinGroup">
+    <xsd:choice>
+      <xsd:element name="field" type="Field"/>
+      <xsd:element name="mixin" type="ScopedReference"/>
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:complexType name="StructuredDef" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+Common base for StructureDef and ExceptionDef.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ScopedDefinition">
+        <xsd:sequence>
+          <xsd:element
+            name="extends" minOccurs="0" type="ScopedReference"
+          />
+          <xsd:group ref="FieldOrMixinGroup" minOccurs="0" maxOccurs="unbounded"/>
+          <xsd:element name="sortOrder" type="SortOrder" minOccurs="0">
+            <xsd:annotation>
+              <xsd:documentation>
+If provided the StructuredDef and all it's in inherited StructureDefs
+support a sort order. This can be used to provide more intelligent
+generated objects.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+        <xsd:attribute
+          name="abstract" type="xsd:boolean" use="optional" default="false"
+        />
+        <xsd:attribute
+          name="externallyExtensible" type="xsd:boolean" use="optional" default="false"
+        />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SortOrder">
+    <xsd:annotation>
+      <xsd:documentation>
+Specifies an ordering for a StructuredDef in terms of some of the
+fields it defines or inherits.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="MetaData">
+        <xsd:sequence>
+          <xsd:element
+            name="item"
+            type="SortOrderItem"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          >
+            <xsd:annotation>
+              <xsd:documentation>
+This defines the fields determining the sort order starting with the
+most significant, and it completely replaces rather than extends any
+inherited sort order. In the case of abstract StructuredDefs when the
+sort order will be determined by the inherited StructuredDef this may
+be left empty.
+              </xsd:documentation>
+            </xsd:annotation>
+          </xsd:element>
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="SortOrderItem">
+    <xsd:annotation>
+      <xsd:documentation>
+An individual item in a SortOrder
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="MetaData">
+        <xsd:attribute name="fieldName" type="NameFormat" use="required"/>
+        <xsd:attribute
+          name="ascending" type="xsd:boolean" use="optional" default="true"
+        />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="MixinDef">
+    <xsd:annotation>
+      <xsd:documentation>
+A Mixin allows the ability to define a common set of fields which can
+be "mixed in" into Structures (or Exceptions) to capture some deeper
+"is a" relationships. For examples Structures representing date and
+time dependent information might use a Mixin containing the start and
+end times.
+
+When the IML is mapped to a programming language the mapping should if
+possible support the ability to cast the Structure (or Exception)
+class to a class providing the accessor methods for the Mixin. This
+allows common processing to be used for all Structures (or Exceptions)
+that use the Mixin.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="StructuredDef">
+        <xsd:sequence/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="StructureDef">
+    <xsd:annotation>
+      <xsd:documentation>
+The definition of a class of structured object.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="StructuredDef">
+        <xsd:sequence/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+ <xsd:complexType name="ExceptionDef">
+    <xsd:annotation>
+      <xsd:documentation>
+The definition of a structured exception.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="StructuredDef">
+        <xsd:sequence/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+ <xsd:complexType name="ExceptionRef">
+    <xsd:annotation>
+      <xsd:documentation>
+A reference to a structured exception.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Documented">
+        <xsd:attributeGroup ref="ScopedIdentifier"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="MethodDef">
+    <xsd:annotation>
+      <xsd:documentation>
+The definition of a business method offered by a service.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="ScopedDefinition">
+        <xsd:sequence>
+          <xsd:element
+            name="input"
+            type="Parameter"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element
+            name="output"
+            type="Parameter"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+          <xsd:element
+            name="exception"
+            type="ExceptionRef"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="Deprecated">
+    <xsd:complexContent>
+      <xsd:extension base="Documented">
+        <xsd:sequence>
+          <xsd:element
+            name="replacement" type="ScopedReference" minOccurs="0"
+          />
+        </xsd:sequence>
+        <xsd:attribute name="at" type="VersionFormat" use="required">
+          <xsd:annotation>
+            <xsd:documentation>
+This identifies the component version at which the definition was deprecated.
+            </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:attributeGroup name="ScopedIdentifier">
+    <xsd:annotation>
+      <xsd:documentation>
+A scoped identifier for a definition consisting of a componentId,
+optional serviceid, name, and optional version. All but the name can
+be defaulted from the top level definitions element.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:attribute
+      name="componentId" type="NameFormat" use="optional"
+    />
+    <xsd:attribute name="serviceId" type="OptionalNameFormat" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+An empty string can be used to override the defaultServiceId to unset.
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+    <xsd:attribute name="name" type="NameFormat" use="required"/>
+    <xsd:attribute name="version" type="OptionalVersionFormat" use="optional">
+      <xsd:annotation>
+        <xsd:documentation>
+An empty string can be used to override the defaultVersion to unset.
+        </xsd:documentation>
+      </xsd:annotation>
+    </xsd:attribute>
+  </xsd:attributeGroup>
+
+  <xsd:complexType name="ScopedReference">
+    <xsd:annotation>
+      <xsd:documentation>
+An element to wrap up a reference to a scoped identifier.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="MetaData">
+        <xsd:attributeGroup ref="ScopedIdentifier"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="Member" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+Abstract base for named members of top level definitions.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="Documented">
+        <xsd:attribute name="name" type="NameFormat" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="TypedMember" abstract="true">
+    <xsd:complexContent>
+      <xsd:extension base="Member">
+        <xsd:group ref="TypeGroup"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="Parameter">
+    <xsd:complexContent>
+      <xsd:extension base="TypedMember">
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="Field">
+    <xsd:complexContent>
+      <xsd:extension base="TypedMember">
+        <xsd:attribute
+          name="mixin"
+          type="xsd:boolean"
+          use="optional"
+          default="false"
+        >
+          <xsd:annotation>
+           <xsd:documentation>
+If true the Field is expected to be overridden by one from a
+Mixin. The reason for doing this rather than to let the Mixin add the
+Field automatically is to provide more specific documentation than the
+generic documentation the Mixin provides for the Field. The type must
+match the type defined by the Mixin for the Field in this case.
+           </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute
+          name="delegate"
+          type="xsd:boolean"
+          use="optional"
+          default="false"
+        >
+          <xsd:annotation>
+           <xsd:documentation>
+Set delegate to true when you are doing extension by composition
+rather than inheritance. In plainer words you are wrapping up one
+structure in another structure, but you still want the outer structure
+to support convenience accessors for the mixins and fields of the inner
+structure.
+
+You can only use delegate=true for fields whose type is a non nullable
+structures. An error will be reported if the mixins or fields required
+for delegation conflict with the ones on the outer structure, or with
+each other.
+
+Delegation is applied recursively, so the outer structure
+gains not only the accessors for the inner structure, but also any
+structures the inner structures delegates to recursively, (the closure
+of all the delegates).
+
+If the outer structure does not define a sort order, and exactly one
+of it's immediate delegates does define a sort order then it will gain
+a sort order from that delegate (the delegate in turn may have gained
+it's sort order from one of it's delegates). The typical use case is
+when a data transfer object has a delegate representing a primary key.
+           </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute
+          name="useInEquality"
+          type="xsd:boolean"
+          use="optional"
+          default="true"
+        >
+          <xsd:annotation>
+           <xsd:documentation>
+If true (the default) the value contributes to the equality
+relationship between two instances of the containing StructuredDef. If
+false it should be ignored when determining equality.
+           </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+        <xsd:attribute
+          name="breakMutualRecursion"
+          type="xsd:boolean"
+          use="optional"
+          default="false"
+        >
+          <xsd:annotation>
+           <xsd:documentation>
+Some clients, for example Siebel, cannot handle recursively defined
+types, and alternate bindings of the interface may need to be generated
+for them.
+
+It is possible to automatically detect and handle simple self
+recursion where a structure type has a field which is either the same
+structure or an array of the same structure.
+
+However in the case of more complicated mutual recursion where a type
+refers to itself by a chain of more than one field definitions the
+developer has to provide guidance on which field in the chain is the
+least important, and hence the best point to introduce the necessary
+workarounds.
+
+The developer does this by marking the field with the attribute
+breakMutualRecursion="true". In practice this only needs to be done
+very rarely, so the burden on the developer is minor, and imlc reports
+if it has been omitted when essential.
+           </xsd:documentation>
+          </xsd:annotation>
+        </xsd:attribute>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+  <!-- ==================================================================== -->
+  <!-- The restricted type system ========================================= -->
+  <!-- ==================================================================== -->
+
+  <xsd:group name="TypeGroup">
+    <xsd:choice>
+      <xsd:element name="boolean" type="BooleanType"/>
+      <xsd:element name="string" type="StringType"/>
+      <xsd:element name="calendarDate" type="DateType"/>
+      <xsd:element name="dateTime" type="DateTimeType"/>
+      <xsd:element name="int32" type="Int32Type"/>
+      <xsd:element name="int64" type="Int64Type"/>
+      <xsd:element name="double" type="DoubleType"/>
+      <xsd:element name="decimal" type="DecimalType"/>
+      <xsd:element name="binary" type="BinaryType"/>
+      <xsd:element name="enum" type="EnumType"/>
+      <xsd:element name="structure" type="StructureType"/>
+      <xsd:element name="array" type="ArrayType"/>
+    </xsd:choice>
+  </xsd:group>
+
+  <xsd:complexType name="RestrictedType" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+This is the abstract base type for meta data on all types within the
+restricted type system.
+
+The additional attributes of the types fall into three categories:
+
+1. Type Determining Attribute
+These attributes may affect the generated type in some concrete
+binding of iml to a data format or programming language.
+The only example of this category at present is nullable.
+
+2. Client Validation Attribute
+These attributes may not affect the generated type, but can safely be
+used in client side validation, because they cannot change between
+releases of the component. There are no examples of this category at present.
+
+3. Server Validation Attribute
+These attributes not only may not affect the generated type, but also
+may change between releases of a component, and so can only be used
+for server side validation.  However the changes allowed only included
+changing a bound from one value to another value that allows a wider
+set of alternatives, and explictly does not include removing the bound
+altogether. So maxLength on a string or maxDigits on an int32 cannot
+change from set to unset.
+
+The individual type definitions below make clear which category each
+attribute falls into.
+
+The nullable attribute is a "Type Determining Attribute".
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="MetaData">
+        <!--
+          The default for nullable is false since that is the simpler case.
+          The server and the transport shouldn't have to worry about null,
+          unless it has been explicitly declared to be a possibility.
+        -->
+        <xsd:attribute
+          name="nullable" type="xsd:boolean" use="optional" default="false"
+        />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayType">
+    <xsd:annotation>
+      <xsd:documentation>
+Array types are fully specified by the element type, minLength, maxLength, and
+nullability. They have no independent name or identity beyond this.
+
+The ArrayType may be nullable independently of the element type.
+
+Multidimensional arrays can be constructed by using ArrayType as the
+element type.
+
+minLength and maxLength are "Server Validation Attributes" as defined in
+RestrictedType.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="RestrictedType">
+        <xsd:group ref="TypeGroup"/>
+        <xsd:attribute name="minLength" type="PositiveInt" use="optional"/>
+        <xsd:attribute name="maxLength" type="PositiveInt" use="optional"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BuiltInType" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+Base for all the fixed built in types of the resticted type system.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="RestrictedType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BooleanType">
+    <xsd:annotation>
+      <xsd:documentation>
+Boolean holds a xsd:boolean.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="BuiltInType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="IntegerType" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+Signed integer type optionally bounded by maxDigits.
+
+maxDigits is a "Server Validation Attribute" as defined in RestrictedType.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="BuiltInType">
+        <xsd:attribute
+          name="maxDigits" type="PositiveInt" use="optional"
+        />
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="Int32Type">
+    <xsd:annotation>
+      <xsd:documentation>
+32 bit signed integer type optionally bounded by maxDigits.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="IntegerType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="Int64Type">
+    <xsd:annotation>
+      <xsd:documentation>
+64 bit signed integer type optionally bounded by maxDigits.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="IntegerType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="DecimalType">
+    <xsd:annotation>
+      <xsd:documentation>
+Decimal holds a fixed point decimal.
+
+Precision is a "Server Validation Attribute" as defined in RestrictedType.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="BuiltInType">
+        <xsd:attribute name="precision" type="PositiveInt" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="DoubleType">
+    <xsd:annotation>
+      <xsd:documentation>
+Double holds an IEEE double
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="BuiltInType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="DateType">
+    <xsd:annotation>
+      <xsd:documentation>
+CalendarDate holds an xsd:date.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="BuiltInType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="DateTimeType">
+    <xsd:annotation>
+      <xsd:documentation>
+DateTime holds an xsd:datetime.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="BuiltInType">
+         <xsd:attribute name="includeTimeZone" type="xsd:boolean" use="required"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="BinaryType">
+    <xsd:annotation>
+      <xsd:documentation>
+Binary is a special type for transmitting binary data (byte
+arrays). It is expected that text based transports will use base 64
+encoding.
+
+maxLength is a "Server Validation Attribute" as defined in RestrictedType.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="BuiltInType">
+        <xsd:attribute name="maxLength" type="PositiveInt" use="optional"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="StringType">
+    <xsd:annotation>
+      <xsd:documentation>
+String holds an xsd:string, and may have a restriction on maximum length.
+
+maxLength is a "Server Validation Attribute" as defined in RestrictedType.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="BuiltInType">
+        <xsd:attribute name="maxLength" type="PositiveInt" use="optional"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="DefinedType" abstract="true">
+    <xsd:annotation>
+      <xsd:documentation>
+Base for all the component defined types of the resticted type system, apart
+from array types which are anonymous.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="RestrictedType">
+        <xsd:attributeGroup ref="ScopedIdentifier"/>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="StructureType">
+    <xsd:complexContent>
+      <xsd:extension base="DefinedType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="EnumType">
+    <xsd:annotation>
+      <xsd:documentation>
+The set of options supported by an enumeration is a "Server Validation
+Attribute" as defined in RestrictedType.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:complexContent>
+      <xsd:extension base="DefinedType"/>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+  <!-- ==================================================================== -->
+  <!-- Simple Types ======================================================= -->
+  <!-- ==================================================================== -->
+
+  <xsd:simpleType name="NameFormat">
+    <xsd:annotation>
+      <xsd:documentation>
+A string type for identifiers composed of A-Z a-z 0-9 and _ and
+starting with an uppercase letter. Upper case letters indicate start
+of words or acronyms.
+
+The empty string is not allowed, unlike OptionalNameFormat.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[A-Z][A-Za-z0-9_]*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="OptionalNameFormat">
+    <xsd:annotation>
+      <xsd:documentation>
+This differs from NameFormat only in that the empty string is allowed
+to indicate unset.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="[A-Z][A-Za-z0-9_]*|"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="VersionFormat">
+    <xsd:annotation>
+      <xsd:documentation>
+A version number is a string made up of one or more non negative
+integers of up to 9 digits, seperated with '.' for example
+'12.0.3'. The complexities in the regular expression are simply to do
+with excluding multiple leading zeros, and terms bigger than 9 digits.
+
+The empty string is not allowed, unlike OptionalVersionFormat.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="(0|[1-9][0-9]{0,8})(\.(0|[1-9][0-9]{0,8}))*"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="OptionalVersionFormat">
+    <xsd:annotation>
+      <xsd:documentation>
+This differs from VersionFormat only in that the empty string is allowed
+to indicate unset.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:string">
+      <xsd:pattern value="(0|[1-9][0-9]{0,8})(\.(0|[1-9][0-9]{0,8}))*|"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="PositiveInt">
+    <xsd:annotation>
+      <xsd:documentation>
+An int type with a minimum value of 1. We don't use
+xsd:positiveInteger since that can be arbitrarily large, and requires
+arbritrary precision arithmetic.
+      </xsd:documentation>
+    </xsd:annotation>
+    <xsd:restriction base="xsd:int">
+      <xsd:minInclusive value="1"/>
+    </xsd:restriction>
+  </xsd:simpleType>
+
+</xsd:schema>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<component
+    xmlns="urn:Convergys-Infinys-Install-Manifest"
+    name="CUSTOMECA"
+    version="@version@"
+    incremental="false"
+    description="This is the installable for Platform 1.0RC0"
+    compType="custom"
+    compDescription="CUSTOMECA"
+>
+    <!-- incremental or full -->
+    <!-- This element lists the database, operating system and the container
+        versions against which this installable has been certified.
+        The Infinys Installer should make sure that the operating system,
+        database and the container is valid.
+    -->
+    <env>
+        <os name="SunOS">
+            <exactVersion version="2.10" />
+        </os>
+        <os name="AIX">
+            <exactVersion version="5.3" />
+        </os>
+        <os name="HP-UX">
+            <exactVersion version="11.31" />
+        </os>
+        <os name="Linux">
+            <exactVersion version="2.6" />
+        </os>
+        <db name="oracle">
+            <exactVersion version="11.1.0" />
+            <exactVersion version="12.1.0" />
+        </db>
+        <container name="wls">
+            <exactVersion version="10.3.6" />
+        </container>
+        <container name="was">
+            <exactVersion version="6.1" />
+        </container>
+        <container name="jboss">
+            <exactVersion version="4.3.0" />
+        </container>
+    </env>
+    <!-- This element lists the software and database installables that must be
+        installed prior to installing this installable. If a greater version is
+        found it would be considered ok.
+    -->
+    <depends>
+     <software component="PF" minVersion="6.0.2.4"/>
+         <software component="ECA" minVersion="8.0.4"/>
+    </depends>
+    <!-- The order of installation -->
+    <installationOrder>
+        <!-- These must exists as subdirectories under the component root. -->
+        <installable name="CUSTOMECA"
+            description="This is the Custom ECA Installable" />
+    </installationOrder>
+    <container-config>
+<datasource jndiName="jdbc/CVG_TX_DATASOURCE"
+            transactional="true" description="The TX datasource"
+            createIfNeeded="true" name="CVG_TX_DATASOURCE" />
+        <datasource jndiName="jdbc/CVG_NON_TX_DATASOURCE"
+            transactional="false" description="The NON TX datasource"
+            createIfNeeded="true" name="CVG_NON_TX_DATASOURCE" />
+    </container-config>
+    <deployables>
+        <!-- The ear files created/updated by this installable. -->
+        <ear name="ECA.ear">
+            <security-role name="ECARole"
+                description="the administrator" />
+            <lib>
+                <jar name="commons-logging.jar" />
+                <jar name="log4j.jar" />
+                <jar name="pf-install.jar" />
+                <jar name="spring.jar" />
+                <jar name="xercesImpl.jar" />
+                <jar name="xmlParserAPIs.jar" />
+                <jar name="RBClient.jar" />
+            </lib>
+            </ear>
+    </deployables>
+    <configFiles>
+        <!-- file(s) relative to installable that are managed by the component
+            They will be copied during install but not copied during upgrade -->
+    </configFiles>
+    <libraries>
+    </libraries>
+    <database>
+        <unif_admin>
+            <roles>
+                <role name="INFINYS_PF" schema="ipf_admin">
+                    <grants all_objects="true" />
+                </role>
+            </roles>
+        </unif_admin>
+        <roles></roles>
+        <!-- sAMPLE
+            <schema name="ipfappuser" owner="false"
+                description="PF user">
+                <schemagrants>
+                    <rolepriv privilege="connect" />
+                    <rolepriv privilege="resource" />
+                    <rolepriv privilege="infinys_public_install" />
+                    <syspriv privilege="create synonym" />
+                </schemagrants>
+            </schema>
+                    -->
+    </database>
+</component>
+

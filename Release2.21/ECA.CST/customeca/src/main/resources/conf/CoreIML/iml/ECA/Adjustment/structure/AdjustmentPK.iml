@@ -1,0 +1,43 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Adjustment"
+>
+  <structureDef name="AdjustmentPK">
+    <doc>
+The primary key for adjustment.
+    </doc>
+
+    <extends serviceId="" name="PrimaryKey"/>
+
+    <mixin serviceId="Account" name="AccountOwnedEntity"/>
+
+    <field name="AccountNum" mixin="true">
+      <internal name="ECA_TableColumn" value="PVADJUSTMENT6.ACCOUNT_NUM VARCHAR2(20) NOT NULLABLE"/>
+      <doc>
+Gets the account number. This cannot be null.
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+    <field name="AdjustmentSeq">
+      <internal name="ECA_TableColumn" value="PVADJUSTMENT6.ADJUSTMENT_SEQ NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the adjustment sequence number. This cannot be null.
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="AccountNum"/>
+      <item fieldName="AdjustmentSeq"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Adjustment/structure/AdjustmentPK.iml -->

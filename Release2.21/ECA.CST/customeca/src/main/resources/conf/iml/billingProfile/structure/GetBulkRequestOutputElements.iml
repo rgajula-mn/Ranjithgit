@@ -1,0 +1,18 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="GetBulkRequestOutputElements">
+		<doc> GetBulkRequestOutputElements </doc>
+
+   	    <field name="BulkRequestDetailInfo">
+		  <doc>  BulkRequestDetailInfo for a specific request </doc>
+		  <array nullable="true">
+		  	<structure nullable="false" name="BulkRequestDetailInfoElements"/>
+		  </array>
+		</field>
+		
+	</structureDef>
+</iml:definitions>

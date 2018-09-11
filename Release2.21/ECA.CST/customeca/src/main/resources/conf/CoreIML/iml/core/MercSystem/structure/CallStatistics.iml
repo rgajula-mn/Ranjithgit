@@ -1,0 +1,97 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="MercSystem"
+>
+  <structureDef name="CallStatistics">
+    <doc>
+<![CDATA[
+Statistics gathered on each kind of call.
+<p>
+  This bean is deliberately immutable to avoid having to clone them all
+  before processing them begins.
+</p>
+]]>
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="Name">
+      <doc>
+Name to identify call.
+      </doc>
+      <string nullable="false"/>
+    </field>
+
+    <field name="FirstCallTime">
+      <doc>
+<![CDATA[
+Elapsed time of first call.
+<p>
+  The first call is excluded from the other statistics because of the high
+  initialization overheads which would distort the results.
+</p>
+]]>
+      </doc>
+      <int64 nullable="false" maxDigits="18"/>
+    </field>
+
+    <field name="SampleCallCount">
+      <doc>
+<![CDATA[
+The number of sample calls.
+<p>This excludes the first call.</p>
+]]>
+      </doc>
+      <int64 nullable="false" maxDigits="18"/>
+    </field>
+
+    <field name="MinSampleCallTime">
+      <doc>
+<![CDATA[
+Minimum elapsed time of the sample calls.
+<p>This excludes the first call.</p>
+]]>
+      </doc>
+      <int64 nullable="false" maxDigits="18"/>
+    </field>
+
+    <field name="MaxSampleCallTime">
+      <doc>
+<![CDATA[
+Maximum elapsed time of the sample calls.
+<p>This excludes the first call.</p>
+]]>
+      </doc>
+      <int64 nullable="false" maxDigits="18"/>
+    </field>
+
+    <field name="SumSampleCallTimes">
+      <doc>
+<![CDATA[
+Sum of elapsed times of sample calls.
+<p>This excludes the first call.</p>
+]]>
+      </doc>
+      <double nullable="false"/>
+    </field>
+
+    <field name="SumSquaresSampleCallTimes">
+      <doc>
+<![CDATA[
+Sum of squares of elapsed times of sample calls, for calculating standard
+deviation.
+<p>This excludes the first call.</p>
+]]>
+      </doc>
+      <double nullable="false"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/MercSystem/structure/CallStatistics.iml -->

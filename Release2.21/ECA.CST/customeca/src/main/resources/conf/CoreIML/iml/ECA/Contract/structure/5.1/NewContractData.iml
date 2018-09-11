@@ -1,0 +1,115 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Contract"
+>
+  <structureDef name="NewContractData" version="5.1">
+    <doc>
+A data bean containing new contract information.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="ContractTypeId">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.CONTRACT_TYPE_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the contract type identifier. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="StartDat">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.START_DAT DATE NOT NULLABLE"/>
+      <doc>
+Gets the start date of the contract. 
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="EndDat">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.END_DAT DATE NOT NULLABLE"/>
+      <doc>
+Gets the end date of the contract. It is assumed that all
+contracts have a limited time span. This time may be changed and may even be
+automatically renewed but they cannot be left open-ended.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="ContractTerm">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.CONTRACT_TERM NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the contract length in contract term units. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="ContractTermUnits">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.CONTRACT_TERM_UNITS VARCHAR2(1) NOT NULLABLE"/>
+      <doc>
+Gets the contract term units. These are used to measure the length of the
+contract. 
+      </doc>
+      <see name="ContractTermUnits"/>
+      <enum nullable="false" name="ContractTermUnits"/>
+    </field>
+
+    <field name="ContractRef">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.CONTRACT_REF VARCHAR2(40) NOT NULLABLE"/>
+      <doc>
+Gets the reference for this contract. This field may be left null if the 
+Infinys Rating and Billing system parameter SYSautoCustomerContractRefBoo is
+set to T (true). In which case, the
+system will automatically generate the contract reference.
+      </doc>
+      <string nullable="true" maxLength="40"/>
+    </field>
+
+    <field name="ContractName">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.CONTRACT_NAME VARCHAR2(40) NULLABLE"/>
+      <doc>
+Gets the name of the contract. 
+      </doc>
+      <string nullable="true" maxLength="40"/>
+    </field>
+
+    <field name="CustomerOrderRef">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.CUSTOMER_ORDER_REF VARCHAR2(40) NULLABLE"/>
+      <doc>
+Gets the customer's order reference. 
+      </doc>
+      <string nullable="true" maxLength="40"/>
+    </field>
+
+    <field name="SupplierOrderRef">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.SUPPLIER_ORDER_REF VARCHAR2(40) NULLABLE"/>
+      <doc>
+Gets the supplier's order reference. 
+      </doc>
+      <string nullable="true" maxLength="40"/>
+    </field>
+
+    <field name="SalesPerson">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.SALESPERSON VARCHAR2(40) NULLABLE"/>
+      <doc>
+Gets the name of the salesperson involved with the contract. 
+      </doc>
+      <string nullable="true" maxLength="40"/>
+    </field>
+
+    <field name="ContractNotesTxt">
+      <internal name="ECA_TableColumn" value="PVCUSTOMERCONTRACT2.CONTRACT_NOTES_TXT VARCHAR2(255) NULLABLE"/>
+      <doc>
+Gets any comments about the contract. 
+      </doc>
+      <string nullable="true" maxLength="255"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Contract/structure/5.1/NewContractData.iml -->

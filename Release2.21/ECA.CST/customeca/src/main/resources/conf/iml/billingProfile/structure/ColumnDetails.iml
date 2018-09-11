@@ -1,0 +1,26 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="ColumnDetails">
+		<doc>ColumnDetails</doc>
+
+		<field name="ColumnName">
+			<doc>ColumnName</doc>
+			<string nullable="false" maxLength="80" />
+		</field>
+		
+		<field name="ColumnDataType">
+			<doc>columnDataType</doc>
+			<string nullable="false" maxLength="80" />
+		</field>
+		
+		<field name="ColumnValue">
+			<doc>columnValue</doc>
+			<string nullable="false" maxLength="80" />
+		</field>
+		
+	</structureDef>
+</iml:definitions>

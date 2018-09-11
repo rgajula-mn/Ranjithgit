@@ -1,0 +1,151 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<structureDef name="CDRVoiceSMSDetails" >
+    <doc>CDR Records Data  </doc>
+   		
+		<field name="EventType">
+	        <doc>Event Type</doc>
+			<string nullable="false" maxLength="20"/>
+   		</field>
+		<field name="DUFFile">
+	        <doc>DUF File</doc>
+			<string nullable="false" maxLength="200"/>
+   		</field>
+	    <field name="RecordType">
+        	<doc>Record Type</doc>
+			<int32 nullable="false" maxDigits="9"/>
+    	</field>
+		<field name="AccountNum">
+			<doc>Account Number</doc>
+			<string nullable="false" maxLength="20"/>
+		</field>
+		<field name="SequenceNumber">
+        	<doc>Sequence Number</doc>
+			<int32 nullable="false" maxDigits="9"/>
+    	</field>	
+		<field name="IMSI">
+			<doc>IMSI</doc>
+			<string nullable="false" maxLength="40"/>
+		</field>
+		<field name="MSISDN">
+			<doc>MSISDN</doc>
+			<string nullable="false" maxLength="40"/>
+		</field>
+		<field name="ChannelSeizureDate">
+	        <doc>Channel Seizure Date</doc>
+			<string nullable="true" maxLength="40"/>
+   		</field>
+		<field name="SwitchId">
+			<doc>Switch Id</doc>
+			<string nullable="true" maxLength="40"/>
+		</field>
+		<field name="IMEI">
+			<doc>IMEI</doc>
+			<string nullable="true" maxLength="40"/>
+		</field>
+		<field name="HomeSID">
+			<doc>Home SID</doc>
+			<string nullable="true" maxLength="40"/>
+		</field>
+		<field name="ServeSID">
+			<doc>Serve SID</doc>
+			<string nullable="true" maxLength="40"/>
+		</field>
+		<field name="CellIdentity">
+			<doc>Cell Identity</doc>
+			<string nullable="true" maxLength="40"/>
+		</field>
+		<field name="CallToTelephoneNumber">
+			<doc>Call to telephone number</doc>
+			<string nullable="true" maxLength="40"/>
+		</field>
+		<field name="CallToPlace">
+			<doc>Call to Place</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="CallToRegion">
+			<doc>Call to Region</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="OutgoingCellTrunkID">
+			<doc>Outgoing Cell Trunk ID</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="IncomingTrunkID">
+			<doc>Incoming Trunk ID</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="AnswerTimeDurationMin">
+			<doc>Answer Time Duration rounded to minutes</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="AnswerTimeDurationSec">
+			<doc>Answer Time Duration in seconds</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="AirRate">
+			<doc>Air Rate</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="AirChargeAmount">
+			<doc>Air Charge Amount</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="AirChargeCode">
+        	<doc>Air Charge Code</doc>
+			<int32 nullable="false" maxDigits="9"/>
+    	</field>
+		<field name="TollRate">
+			<doc>Toll Rate</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="TollChargeAmount">
+			<doc>Toll Charge Amount</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="TollChargeCode">
+        	<doc>Toll Charge Code</doc>
+			<int32 nullable="true" maxDigits="9"/>
+    	</field>
+		<field name="OnNetwork">
+			<doc>On Network</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="CallDirection">
+			<doc>Call Direction</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="TranslatedNumber">
+			<doc>Translated Number</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="PLMNCode">
+			<doc>PLMN Code</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="CountryName">
+			<doc>Country Name</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="TechnologyUsed">
+			<doc>Technology Used</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="PackageName">
+			<doc>Package Name</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		<field name="BillDate">
+			<doc>Bill Date</doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+		
+ </structureDef>
+</iml:definitions>

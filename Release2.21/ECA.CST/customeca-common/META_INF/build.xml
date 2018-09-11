@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="customECA" default="postInstall">
+    <taskdef resource="net/sf/antcontrib/antcontrib.properties" />
+    <property environment="env" />
+    <property name="JAVA_HOME_1_5" value="${env.JAVA_HOME}" />
+    <property name="root" location="." />
+    <property name="lib" location="lib" />
+    <property name="componentID" value="CUSTOMECA" />
+    <property name="installableID" value="CUSTOMECA" />
+    <property name="javaStagingDir" location="${INF_STAGING_DIR}/java" />
+    <property name="stagingLibDir"
+              location="${INF_STAGING_DIR}/${componentID}/${installableID}/lib" />
+
+    <!-- This macro fails if the given property is not set or if it is null string. -->
+    <macrodef name="failIfNotSet">
+        <attribute name="property" />
+        <sequential>
+            <fail message="Please set the property @{property} to a not null value">
+                <condition>
+                    <or>
+                        <not>
+                            <isset property="@{property}" />
+                        </not>
+                        <equals arg1="${@{property}}" arg2="" />
+                    </or>
+                </condition>
+            </fail>
+        </sequential>
+    </macrodef>
+
+    <target name="preInstall" />
+    <target name="preUpgrade" />
+    <target name="postUpgrade" />
+    <target name="postInstall" />
+</project>

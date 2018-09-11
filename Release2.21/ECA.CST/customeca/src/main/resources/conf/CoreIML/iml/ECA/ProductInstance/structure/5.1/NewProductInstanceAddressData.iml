@@ -1,0 +1,67 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="NewProductInstanceAddressData" version="5.1">
+    <doc>
+The data bean used to add new addresses to product instances.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <mixin serviceId="" name="HistoriedByDate"/>
+
+    <field name="AddressPK">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTADDRESS2.ADDRESS_SEQ NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the service address. 
+      </doc>
+      <see serviceId="Address" name="AddressPK"/>
+      <structure nullable="true" serviceId="Address" name="AddressPK"/>
+    </field>
+
+    <field name="USTUsedForTaxPurposesBoo">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTADDRESS2.UST_USEDFORTAXPURPOSES_BOO VARCHAR2(1) NULLABLE"/>
+      <doc>
+<![CDATA[
+Indicates if the address is used for US tax purposes. If VAT/GST is enabled
+then the value must be null. If VAT/GST is not enabled, the value must be T 
+(true)  or F (false).
+<p></p>
+]]>
+      </doc>
+      <boolean nullable="true"/>
+    </field>
+
+    <field name="StartDat" mixin="true">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTADDRESS2.START_DAT DATE NOT NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the date from when the address will be used as the service address. 
+<p></p>
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="EndDat" mixin="true">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTADDRESS2.END_DAT DATE NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the date when the address is no longer to be used as the service address.
+If no end date is required then this will be set to null.
+<p></p>
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/5.1/NewProductInstanceAddressData.iml -->

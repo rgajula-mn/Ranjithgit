@@ -1,0 +1,97 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Config"
+>
+  <structureDef name="CPSData" version="5.1">
+    <doc>
+The summary bean for contracted point of supply data.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="CPSSummary" delegate="true">
+      <doc>
+Gets the CPSSummary data bean.
+      </doc>
+      <see name="CPSSummary" version="5.1"/>
+      <structure nullable="false" name="CPSSummary" version="5.1"/>
+    </field>
+
+    <field name="CPSDesc">
+      <internal name="ECA_TableColumn" value="PVCONTRACTEDPOINTOFSUPPLY2.CPS_DESC VARCHAR2(255) NULLABLE"/>
+      <doc>
+Gets a description of the contracted point of supply. 
+      </doc>
+      <string nullable="true" maxLength="255"/>
+    </field>
+
+    <field name="InvoicingCoId">
+      <internal name="ECA_TableColumn" value="PVCONTRACTEDPOINTOFSUPPLY2.INVOICING_CO_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the ID of the invoicing company to which this contracted point of supply
+relates. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="VATRegRequiredBoo">
+      <internal name="ECA_TableColumn" value="PVCONTRACTEDPOINTOFSUPPLY2.VAT_REG_REQUIRED_BOO VARCHAR2(1) NOT NULLABLE"/>
+      <doc>
+Indicates if a VAT registration number is required when a product is registered
+to a customer under this contracted point of supply. 
+      </doc>
+      <boolean nullable="false"/>
+    </field>
+
+    <field name="TaxExemptBoo">
+      <internal name="ECA_TableColumn" value="PVCONTRACTEDPOINTOFSUPPLY2.TAX_EXEMPT_BOO VARCHAR2(1) NOT NULLABLE"/>
+      <doc>
+<![CDATA[
+Indicates if this is a tax exempt contracted point of supply. <br/> A tax
+exempt customer can only take products under a tax exempt contracted point of
+supply. <br/> A non tax exempt customer can take products under a tax exempt or
+non tax exempt contracted point of supply. 
+]]>
+      </doc>
+      <boolean nullable="false"/>
+    </field>
+
+    <field name="CPSBillTxt">
+      <internal name="ECA_TableColumn" value="PVCONTRACTEDPOINTOFSUPPLY2.CPS_BILL_TXT VARCHAR2(255) NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets optional text that will be output on the bill. Used to comply with tax
+regulations regarding the description of supplies on an invoice. <br/> For
+example, "Outside the scope of U.K. VAT - Internal supply". 
+]]>
+      </doc>
+      <string nullable="true" maxLength="255"/>
+    </field>
+
+    <field name="TaxExemptRefRequiredBoo">
+      <internal name="ECA_TableColumn" value="PVCONTRACTEDPOINTOFSUPPLY2.TAX_EXEMPT_REF_REQUIRED_BOO VARCHAR2(1) NULLABLE"/>
+      <doc>
+Indicates if it is necessary to record an exemption reference and other
+exemption details against any customer product that is registered under this
+contracted point of supply.
+      </doc>
+      <boolean nullable="true"/>
+    </field>
+
+    <field name="InvoicingCoData">
+      <doc>
+Gets InvoicingCoData. This is only non null if the corresponding
+invoicingCoDataJoin is supplied and the join succeeds.
+      </doc>
+      <structure nullable="true" name="InvoicingCoData" version="5.1"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Config/structure/5.1/CPSData.iml -->

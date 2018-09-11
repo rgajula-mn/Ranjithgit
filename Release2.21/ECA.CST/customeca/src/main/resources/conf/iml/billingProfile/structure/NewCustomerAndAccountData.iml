@@ -1,0 +1,56 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="NewCustomerAndAccountData">
+		<doc>NewCustomerAndAccountData </doc>
+
+		
+		
+		<field name="CompanyName">
+			<doc>PartnerName</doc>
+			<string nullable="false" maxLength="80" />
+		</field>
+
+		<field name="BillingAccountName">
+			<doc>BillingAccountName</doc>
+			<string nullable="false" maxLength="40" />
+		</field>
+		
+		<field name="PartnerAccountType">
+			<doc>PartnerAccountType</doc>
+			<string nullable="false" maxLength="10" />
+		</field>
+		
+		<field name="RequestedBillCycleCloseDate">
+			<doc>requestedBillCycleCloseDate</doc>
+			<string nullable="true" maxLength="10" />
+		</field>
+		
+		<field name="RequestedBillCycleRunDate">
+			<doc>requestedBillCycleRunDate</doc>
+			<int32 nullable="false" maxDigits="2" />
+		</field>
+		
+		<field name="PartnerDUFFrequency">
+			<doc>partnerDUFFrequency.</doc>
+			<string nullable="true" maxLength="30" />
+		</field>
+		
+		<field name="StartDtm">
+			<doc>Date and Time when the account  is active.</doc>
+			<dateTime includeTimeZone="false" nullable="false" />
+		</field>
+		
+		<field name="IsDemoPartner">
+	        <doc>Indicates demp partner or not</doc>
+			<boolean nullable="false"/>
+		</field>
+		<field name="TelephoneNumber">
+			<doc>"TelephoneNumber".</doc>
+			<string nullable="true" maxLength="20" />
+		</field>
+	</structureDef>
+</iml:definitions>

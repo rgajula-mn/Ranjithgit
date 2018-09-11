@@ -1,0 +1,49 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+	<methodDef name="SendInvoiceByEmail">
+		<internal name="CvgMethodType" value="write" />
+		<doc>
+
+		</doc>
+
+		<input name="IntegratorContext">
+			<doc>
+				Integration context for caller specific information.
+			</doc>
+			<structure nullable="false" name="IntegratorContext" />
+		</input>
+
+		<input name="EmailAddress">
+			<doc>EmailAddress</doc>
+			<string nullable="false" maxLength="60" />
+		</input>
+		<input name="InvoiceNum">
+	        <doc>
+				InvoiceNum.					
+			</doc>
+			<string nullable="false" maxLength="30"/>
+   		</input>
+		
+		<output name="Status">
+	  		<doc> output</doc>
+	       <string nullable="false" maxLength="40" />
+    	</output>
+			<exception name="ParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="NullParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="ApplicationException" componentId="Platform"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		
+
+	</methodDef>
+</iml:definitions>

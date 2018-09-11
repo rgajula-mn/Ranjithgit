@@ -1,0 +1,29 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Product"
+>
+  <serviceDef>
+    <doc><![CDATA[
+An interface to hold all the business methods relating to products (that is,.
+products that are available for a customer to purchase).
+<p>
+  Products are the entities which are purchased by accounts and are grouped
+  into families of related products. Products may be parents of other products.
+  For example, Call Waiting is dependent on Line Rental and is thus a child
+  product. A child
+  product inherits the price plan of its parent when taken by an account.
+</p>
+]]></doc>
+    <scopeName>Geneva</scopeName>
+    <scopeName>J2ee</scopeName>
+    <scopeName>Product</scopeName>
+  </serviceDef>
+</iml:definitions>
+
+<!-- eof ECA/Product/Product.iml -->

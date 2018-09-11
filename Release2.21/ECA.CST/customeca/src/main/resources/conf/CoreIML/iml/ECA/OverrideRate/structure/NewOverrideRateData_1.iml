@@ -1,0 +1,145 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="ECA"
+  defaultServiceId="OverrideRate" >
+
+ <structureDef name="NewOverrideRateData" version="1" since="3.0">
+    <doc>
+        The override rate data bean.
+    </doc>
+    <extends serviceId="" name="DataObject"/>    
+
+    <field name="RatingTariffPK">
+      <doc>
+		The rate plan for which the override rate is defined.
+      </doc>
+      <structure nullable="false" serviceId="RatingTariff" name="RatingTariffPK"/>
+    </field>
+
+    <field name="StartDat">
+      <doc>
+		The date from which the override definition is valid.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="EndDat">
+      <doc>
+		The date on which the override ceases to be valid.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+
+    <field name="CostBandId">
+      <doc>
+		The CostBand ID of the CostBand selected for the override rate.
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+    <field name="EventClassId">
+      <doc>
+		The event class ID of the event class selected for the override rate.
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+    <field name="OnNetBoo">
+      <doc>
+		The on-net Boolean value of the override rate.
+      </doc>
+      <boolean nullable="true"/>
+    </field>
+
+    <field name="TimeRateId">
+      <doc>
+		The TimeRate ID of the TimeRate selected for the override rate.
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+    <field name="ChargeSegmentId">
+      <doc>
+		The charge segment ID of the charge segment selected for the override rate.
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+    <field name="FixedChargeNumber">
+      <doc>
+		The number used to define the fixed charge amount to be used when rating an event.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="FixedChargeModTypeId">
+      <doc>
+		This is always 1, indicating that the fixed_charge_number is an absolute amount of money.
+		This is the amount used as the fixed charge component of an event.
+      </doc>
+      <enum nullable="true" serviceId="OverridePrice" name="ModificationType"/>
+    </field>
+
+    <field name="ChargingRateNumber">
+      <doc>
+		The number used to define the charging rate amount to be used when rating an event.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="ChargingRateModTypeId">
+      <doc>
+		This is always 1, indicating that the charging_rate_number is an absolute amount of money.
+		This is the rate used when pricing an event.
+      </doc>
+      <enum nullable="true" serviceId="OverridePrice" name="ModificationType"/>
+    </field>
+
+
+
+
+    <field name="MinCostNumber">
+      <doc>
+		The number used to define the minimum cost amount to be used when rating an event.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="MinCostModTypeId">
+      <doc>
+		This is always 1, indicating that the min_cost_number_number is an absolute amount of money.
+		This is the minimum cost to be generated when rating an event.
+      </doc>
+      <enum nullable="true" serviceId="OverridePrice" name="ModificationType"/>
+    </field>
+
+    <field name="MaxCostNumber">
+      <doc>
+		The number used to define the maximum cost amount to be used when rating an event.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="MaxCostModTypeId">
+      <doc>
+		This is always 1, indicating that the max_cost_number_number is an absolute amount of money.
+		This is the maximum cost to be generated when rating an event.
+      </doc>
+      <enum nullable="true" serviceId="OverridePrice" name="ModificationType"/>
+    </field>
+
+    <field name="NotesTxt">
+          <doc>
+		Free-form notes relating to the override.
+          </doc>
+          <string nullable="true" maxLength="255"/>
+    </field>
+
+    
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/OverrideRate/structure/NewOverrideRateData_1.iml -->

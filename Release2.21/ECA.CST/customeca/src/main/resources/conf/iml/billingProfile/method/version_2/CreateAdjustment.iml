@@ -1,0 +1,94 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+	<methodDef name="CreateAdjustment" version='2'>
+		<internal name="CvgMethodType" value="write" />
+		<doc>
+			The service shall create the Account Payment in RB  
+		</doc>
+
+		<input name="IntegratorContext">
+			<doc>
+				Integration context for caller specific information.
+			</doc>
+			<structure nullable="false" name="IntegratorContext" />
+		</input>
+
+		<input name="AccountPK">
+			<doc>account primary key information</doc>
+			<structure nullable="false" name="AccountPK" componentId="ECA"
+				serviceId="Account" />
+		</input>
+		<input name="AdjustmentDate">
+			<doc>The date/time that the account payment entered into the system</doc>
+			<dateTime includeTimeZone="false" nullable="true" />
+
+		</input>
+			
+			<input name="AdjustmentTypeId">
+			<doc>The type of the adjustment.</doc>
+			<string nullable="false" maxLength="200" />
+		</input>
+
+		<input name="AdjustmentText">
+			<doc>The description of the adjustment</doc>
+			<string nullable="false" maxLength="255" />
+		</input>
+
+		<input name="AdjustmentMny">
+			<doc>The amount of the adjustment in tenths of the minor account currency, excluding tax. A positive amount indicates the adjustment is in the customer's favor. A negative amount indicates the adjustment is in the supplier's favor.</doc>
+			<int64 nullable="false" maxDigits="18" />
+		</input>
+		<input name="BudgetCentreSeqNbl">
+			<doc>The sequence number of the budget center to which the adjustments are to be assigned. If specified, it must be a valid budget center that exists for the account.</doc>
+			<int32 nullable="true" maxDigits="9" />
+		</input>
+
+		<input name="RequestCreditNote">
+			<doc>Request whether a credit note should be created or not. If null, then no credit note will be created.</doc>
+			<boolean nullable="true" />
+		</input>
+
+		<input name="CreatedDtm">
+	        <doc>The date that the adjustment was created in the database. This is only used when inputting historical data</doc>
+			<dateTime includeTimeZone="false" nullable="true"/>
+			
+   		</input>
+		
+
+		<input name="ContractedPointOfSupplyId">
+			<doc>The contracted point of supply associated with the adjustment.</doc>
+			<int32 nullable="false" maxDigits="9" />
+		</input>
+		<input name="CreatedByUser">
+			<doc>CreatedByUser</doc>
+			<string nullable="true" maxLength="40" />
+		</input>
+		
+		<input name="WpsInfo">
+			<doc>WpsInfo</doc>
+			<string nullable="true" maxLength="40" />
+		</input>
+
+		<output name="AdjustmentResult">
+			<doc>This data bean holds information about an adjustment. It consists of an adjustmentPK and an optional BillRequestPK if a credit note has been requested.</doc>
+			<structure nullable="false" name="AdjustmentResult" version='2'/>
+		</output>
+
+		<exception name="ParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="NullParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="ApplicationException" componentId="Platform"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+
+	</methodDef>
+</iml:definitions>

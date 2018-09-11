@@ -1,0 +1,32 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<structureDef name="ModifyProductInstanceAttrData" >
+    <doc>This data bean shows output of products custom attributes values  </doc>
+	    
+	    <field name="ProductAttributeName">
+        	<doc>Attribute Identifier for the product .</doc>
+			<string nullable="false" maxLength="40"/>
+    	</field>
+   		
+   		<field name="AttributeValue">
+	        <doc>Attribute value to apply to the product attribute for the date range, where null implies removing the attribute.</doc>
+			<string nullable="true" maxLength="40"/>
+   		</field>
+   		<field name="StartDate">
+	        <doc>The start of the change period (inclusive) is specified by fromDat.</doc>
+			<dateTime includeTimeZone="false" nullable="true" />
+   		</field>
+   		
+   		<field name="EndDate">
+	        <doc>If toDatNbl is not null the change will propagate up to that date (exclusive). If toDatNbl is left null the change propagates indefinitely into the future</doc>
+			<dateTime includeTimeZone="false" nullable="true" />
+   		</field>
+ </structureDef>
+</iml:definitions>

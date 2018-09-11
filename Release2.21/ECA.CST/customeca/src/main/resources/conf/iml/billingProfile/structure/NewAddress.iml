@@ -1,0 +1,21 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="NewAddress">
+		<doc>NewAddress Data </doc>
+
+		<field name="NewBillingAddressData">
+			<doc>This field contains billing address details.</doc>
+			<structure nullable="false" name="NewAddressDataDetails" />
+		</field>
+		
+		<field name="NewDataCentreAddressData">
+			<doc>This field contains datacentre address details.</doc>
+			<structure nullable="true" name="NewAddressDataDetails" />
+		</field>
+
+	</structureDef>
+</iml:definitions>

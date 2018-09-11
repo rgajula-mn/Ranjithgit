@@ -1,0 +1,36 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="PrimaryKeyViolationException">
+    <doc>
+Indicates that duplicate data was detected within the database during an Insert
+or Create.
+    </doc>
+    <extends name="BusinessLogicException"/>
+
+    <field name="PrimaryKey">
+      <doc>
+Gets the value of the primary key that was in error.
+      </doc>
+      <structure nullable="false" name="PrimaryKey"/>
+    </field>
+
+    <field name="ColumnValues">
+      <doc>
+Gets the values of the columns. This is non null when the duplication is not of
+the entity itself, but dependent data is identified by these values.
+      </doc>
+      <array nullable="true">
+        <structure nullable="false" name="DatabaseValueUnion"/>
+      </array>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/PrimaryKeyViolationException.iml -->

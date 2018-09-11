@@ -1,0 +1,42 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Contract"
+>
+  <enumDef name="ContractTermUnits" since="5.1">
+    <doc>
+Enumerates possible values for contract term units, encoded as an int.
+    </doc>
+    <option name="CTUDay" index="0">
+      <doc>
+Contract term units: D (Day).
+      </doc>
+    </option>
+
+    <option name="CTUWeek" index="1">
+      <doc>
+Contract term units: W (Week).
+      </doc>
+    </option>
+
+    <option name="CTUMonth" index="2">
+      <doc>
+Contract term units: M (Month).
+      </doc>
+    </option>
+
+    <option name="CTUYear" index="3">
+      <doc>
+Contract term units: Y (Year).
+      </doc>
+    </option>
+
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/Contract/enum/ContractTermUnits.iml -->

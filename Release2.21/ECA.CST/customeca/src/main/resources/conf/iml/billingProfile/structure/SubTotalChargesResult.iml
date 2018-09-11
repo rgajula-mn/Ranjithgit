@@ -1,0 +1,40 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="SubTotalChargesResult">
+		<doc>SubTotalChargesResultArray Data  </doc>
+
+		<field name="SectionType">
+			<doc>SectionType</doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+
+		<field name="SubTotal">
+			<doc>SubTotal</doc>
+			<double nullable="false"  />
+		</field>
+
+		<field name="PartnerName">
+			<doc>PartnerName</doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+		<field name="SectionName">
+			<doc>SectionName</doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+		<field name="SubSectionTotalChargesResultArray">
+          	<doc>This section shows the SubSectionTotalChargesResultArray</doc>
+          		<array nullable="true">
+			<structure nullable="false" name="SubSectionTotalChargesResult" />
+			</array>
+   		</field>
+
+		<field name="InvoiceSectionDetailsKey">
+			<doc>This Key Object will be built based on the line item details which will be used as input  for next level of drill down.</doc>
+			<structure nullable="true" name="InvoiceSummaryKey" />
+		</field>
+	</structureDef>
+</iml:definitions>

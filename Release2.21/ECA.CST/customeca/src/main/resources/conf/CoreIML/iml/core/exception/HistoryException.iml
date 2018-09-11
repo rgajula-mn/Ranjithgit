@@ -1,0 +1,34 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="HistoryException" abstract="true">
+    <doc>
+An abstract superclass of BeforeHistoryStartException and
+AfterHistoryEndException.
+    </doc>
+    <extends name="BusinessLogicException"/>
+
+    <field name="PrimaryKey">
+      <doc>
+Gets the primary key of the entity. Nullable.
+      </doc>
+      <structure nullable="true" name="PrimaryKey"/>
+    </field>
+
+    <field name="WhenDtm">
+      <doc>
+Gets the effective date (and time if appropriate) being requested. Not
+nullable.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/HistoryException.iml -->

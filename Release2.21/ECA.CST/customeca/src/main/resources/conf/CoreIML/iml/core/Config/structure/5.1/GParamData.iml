@@ -1,0 +1,76 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Config"
+>
+  <structureDef name="GParamData" version="5.1">
+    <doc>
+The holder for the results of ConfigService.readGParam_5_1.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <mixin serviceId="" name="HistoriedByDateTime"/>
+
+    <field name="Name">
+      <internal name="ECA_TableColumn" value="PVGPARAMS.NAME VARCHAR2(64) NOT NULLABLE"/>
+      <doc>
+Gets the system parameter name. 
+      </doc>
+      <string nullable="false" maxLength="64"/>
+    </field>
+
+    <field name="Type">
+      <internal name="ECA_TableColumn" value="PVGPARAMS.TYPE VARCHAR2(8) NOT NULLABLE"/>
+      <doc>
+Gets the system parameter type. 
+      </doc>
+      <see name="GParamType"/>
+      <enum nullable="false" name="GParamType"/>
+    </field>
+
+    <field name="StartDtm" mixin="true">
+      <internal name="ECA_TableColumn" value="PVGPARAMS.START_DTM DATE NOT NULLABLE"/>
+      <doc>
+Gets the start date and time of the system parameter. 
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="EndDtm" mixin="true">
+      <doc>
+<![CDATA[
+Gets the end date and time of the system parameter. 
+<p>
+  If not null the start date of the next record for the system parameter
+  will be the end date of the previous record plus one second.
+</p>
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+
+    <field name="ValueInt">
+      <internal name="ECA_TableColumn" value="PVGPARAMS.INTEGER_VALUE NUMBER(9) NULLABLE"/>
+      <doc>
+Gets the value of the system parameter (if it is an integer).
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+    <field name="ValueString">
+      <internal name="ECA_TableColumn" value="PVGPARAMS.STRING_VALUE VARCHAR2(255) NULLABLE"/>
+      <doc>
+Gets the value of the system parameter (if it is a string).
+      </doc>
+      <string nullable="true" maxLength="255"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Config/structure/5.1/GParamData.iml -->

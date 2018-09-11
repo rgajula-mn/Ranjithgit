@@ -1,0 +1,42 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Bill"
+>
+  <structureDef name="BillRequestPK">
+    <doc>
+The primary key for bill request.
+    </doc>
+
+    <extends serviceId="" name="PrimaryKey"/>
+
+    <mixin serviceId="Account" name="AccountOwnedEntity"/>
+
+    <field name="AccountNum" mixin="true">
+      <internal name="ECA_TableColumn" value="PVBILLREQUEST4.ACCOUNT_NUM VARCHAR2(20) NOT NULLABLE"/>
+      <doc>
+Gets the account number.
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+    <field name="RequestSeq">
+      <doc>
+
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="AccountNum"/>
+      <item fieldName="RequestSeq"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Bill/structure/BillRequestPK.iml -->

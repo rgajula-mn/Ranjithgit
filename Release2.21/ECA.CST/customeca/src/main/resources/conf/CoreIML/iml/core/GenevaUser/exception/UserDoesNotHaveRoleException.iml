@@ -1,0 +1,34 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="GenevaUser"
+>
+  <exceptionDef name="UserDoesNotHaveRoleException">
+    <doc>
+A subclass of the business logic exception. This is raised when the user does
+not have the given business role.
+    </doc>
+    <extends serviceId="" name="BusinessLogicException"/>
+
+    <field name="GenevaUserPK">
+      <doc>
+
+      </doc>
+      <structure nullable="false" name="GenevaUserPK"/>
+    </field>
+
+    <field name="BusinessRoleId">
+      <doc>
+get roleId
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/GenevaUser/exception/UserDoesNotHaveRoleException.iml -->

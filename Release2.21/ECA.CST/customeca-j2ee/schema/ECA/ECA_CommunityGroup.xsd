@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- XML Schema for type definitions of component ECA -->
+<!-- service CommunityGroup. -->
+
+<xsd:schema
+  targetNamespace="urn:Convergys-Interface-ECA-CommunityGroup"
+  xmlns="urn:Convergys-Interface-ECA-CommunityGroup"
+  xmlns:ecaCommunityGroup="urn:Convergys-Interface-ECA-CommunityGroup"
+  elementFormDefault="qualified"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  xmlns:base="urn:Convergys-Interface-Base"
+  xmlns:commonIML="urn:Convergys-Interface-CommonIML"
+  xmlns:eca="urn:Convergys-Interface-ECA"
+  xmlns:ecaConfig="urn:Convergys-Interface-ECA-Config"
+>
+  <!-- Imports -->
+  <xsd:import
+    namespace="urn:Convergys-Interface-Base"
+    schemaLocation="../../schema/Base/Base.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-CommonIML"
+    schemaLocation="../../schema/CommonIML/CommonIML.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA"
+    schemaLocation="../../schema/ECA/ECA.xsd"
+  />
+
+  <xsd:import
+    namespace="urn:Convergys-Interface-ECA-Config"
+    schemaLocation="../../schema/ECA/ECA_Config.xsd"
+  />
+
+
+  <!-- Enumeration Types -->
+
+  <!-- Structure and Exception Types -->
+  <xsd:complexType name="CommunityGroupData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communityGroupName" type="xsd:string"/>
+          <xsd:element name="communityGroupDesc" type="xsd:string"/>
+          <xsd:element name="communityGroupType" type="xsd:int"/>
+          <xsd:element name="versionNum" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="logicallyDeletedDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunityGroupDataJoin_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communityGroupTypeDataJoin" type="ecaConfig:CommunityGroupTypeDataJoin_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunityGroupDataResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communityGroupPK" type="ecaCommunityGroup:CommunityGroupPK"/>
+          <xsd:element name="communityGroupData" type="ecaCommunityGroup:CommunityGroupData_1"/>
+          <xsd:element name="communityGroupTypeData" type="ecaConfig:CommunityGroupTypeData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunityGroupMemberData_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communityGroupMemberKey" type="ecaCommunityGroup:CommunityGroupMemberPK"/>
+          <xsd:element name="endDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+          <xsd:element name="versionNum" type="xsd:long" minOccurs="0" nillable="true"/>
+          <xsd:element name="logicallyDeletedDtm" type="xsd:dateTime" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunityGroupMemberDataJoin_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communityGroupDataJoin" type="ecaCommunityGroup:CommunityGroupDataJoin_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunityGroupMemberDataResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communityGroupMemberData" type="ecaCommunityGroup:CommunityGroupMemberData_1"/>
+          <xsd:element name="communityGroupDataResult" type="ecaCommunityGroup:CommunityGroupDataResult_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunityGroupMemberPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="communityGroupId" type="xsd:int"/>
+          <xsd:element name="memberString" type="xsd:string"/>
+          <xsd:element name="startDtm" type="xsd:dateTime"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CommunityGroupPK">
+    <xsd:complexContent>
+      <xsd:extension base="eca:PrimaryKey">
+        <xsd:sequence>
+          <xsd:element name="communityGroupId" type="xsd:int"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCommunityGroupInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="communityGroupPK" type="ecaCommunityGroup:CommunityGroupPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="oldCommunityGroupData" type="ecaCommunityGroup:CommunityGroupData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newCommunityGroupData" type="ecaCommunityGroup:CommunityGroupData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCommunityGroupMemberInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="oldCommunityGroupMemberData" type="ecaCommunityGroup:CommunityGroupMemberData_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="newCommunityGroupMemberData" type="ecaCommunityGroup:CommunityGroupMemberData_1" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="CreateModifyOrDeleteCommunityGroupOutput_1">
+        <xsd:sequence>
+          <xsd:element name="createModifyOrDeleteCommunityGroupResult" type="ecaCommunityGroup:CommunityGroupPK" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCommunityGroupMembersInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="communityGroupPKSet" type="ecaCommunityGroup:ArrayOfCommunityGroupPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="communityGroupMemberDataJoin" type="ecaCommunityGroup:CommunityGroupMemberDataJoin_1"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastCommunityGroupMemberPK" type="ecaCommunityGroup:CommunityGroupMemberPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCommunityGroupMembersOutput_1">
+        <xsd:sequence>
+          <xsd:element name="communityGroupMemberDataResult" type="ecaCommunityGroup:QueryAllCommunityGroupMembersResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCommunityGroupMembersResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communityGroupMemberDataResultArray" type="ecaCommunityGroup:ArrayOfCommunityGroupMemberDataResult_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncatedBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCommunityGroupsInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="communityGroupTypePKSet" type="ecaConfig:ArrayOfCommunityGroupTypePK" minOccurs="0" nillable="true"/>
+          <xsd:element name="communityGroupDataJoin" type="ecaCommunityGroup:CommunityGroupDataJoin_1"/>
+          <xsd:element name="maxRows" type="xsd:int"/>
+          <xsd:element name="discardTruncatedBoo" type="xsd:boolean"/>
+          <xsd:element name="lastCommunityGroupPK" type="ecaCommunityGroup:CommunityGroupPK" minOccurs="0" nillable="true"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCommunityGroupsOutput_1">
+        <xsd:sequence>
+          <xsd:element name="communityGroupDataResult" type="ecaCommunityGroup:QueryAllCommunityGroupsResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryAllCommunityGroupsResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="eca:DataObject">
+        <xsd:sequence>
+          <xsd:element name="communityGroupDataResultArray" type="ecaCommunityGroup:ArrayOfCommunityGroupDataResult_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="truncatedBoo" type="xsd:boolean"/>
+       </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryCommunityGroupInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="communityGroupPK" type="ecaCommunityGroup:CommunityGroupPK"/>
+          <xsd:element name="communityGroupDataJoin" type="ecaCommunityGroup:CommunityGroupDataJoin_1"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryCommunityGroupMemberInput_1">
+        <xsd:sequence>
+          <xsd:element name="integratorContext" type="commonIML:IntegratorContext_1" minOccurs="0" nillable="true"/>
+          <xsd:element name="communityGroupMemberPK" type="ecaCommunityGroup:CommunityGroupMemberPK"/>
+          <xsd:element name="communityGroupMemberDataJoin" type="ecaCommunityGroup:CommunityGroupMemberDataJoin_1"/>
+          <xsd:element name="languageId" type="xsd:int" minOccurs="0" nillable="true"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryCommunityGroupMemberOutput_1">
+        <xsd:sequence>
+          <xsd:element name="communityGroupMemberDataResult" type="ecaCommunityGroup:CommunityGroupMemberDataResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="QueryCommunityGroupOutput_1">
+        <xsd:sequence>
+          <xsd:element name="communityGroupDataResult" type="ecaCommunityGroup:CommunityGroupDataResult_1"/>
+       </xsd:sequence>
+  </xsd:complexType>
+
+
+
+  <!-- Array Types -->
+  <xsd:complexType name="ArrayOfCommunityGroupDataResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaCommunityGroup:CommunityGroupDataResult_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfCommunityGroupMemberDataResult_1">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaCommunityGroup:CommunityGroupMemberDataResult_1"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+  <xsd:complexType name="ArrayOfCommunityGroupPK">
+    <xsd:complexContent>
+      <xsd:extension base="base:BaseStructure">
+        <xsd:sequence>
+          <xsd:element
+            name="a"
+            type="ecaCommunityGroup:CommunityGroupPK"
+            minOccurs="0"
+            maxOccurs="unbounded"
+          />
+        </xsd:sequence>
+      </xsd:extension>
+    </xsd:complexContent>
+  </xsd:complexType>
+
+
+</xsd:schema>
+
+<!-- eof ECA_CommunityGroup.xsd -->

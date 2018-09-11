@@ -1,0 +1,32 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="RatingTariff"
+>
+  <structureDef name="RatingTariffPK">
+    <doc>
+The primary key for the rating plan.
+    </doc>
+
+    <extends serviceId="" name="SimplePrimaryKey"/>
+
+    <field name="RatingTariffId">
+      <internal name="ECA_TableColumn" value="PVRATINGTARIFF6.RATING_TARIFF_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the primary key rating plan identifier.
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="RatingTariffId"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/RatingTariff/structure/RatingTariffPK.iml -->

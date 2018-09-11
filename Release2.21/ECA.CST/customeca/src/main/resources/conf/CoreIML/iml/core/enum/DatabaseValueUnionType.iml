@@ -1,0 +1,54 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <enumDef name="DatabaseValueUnionType" since="5.1">
+    <doc>
+The enumeration values for the type of a DatabaseValueUnion.
+    </doc>
+    <see name="DatabaseValueUnion"/>
+    <option name="DVUTString" index="0">
+      <doc>
+The type String.
+      </doc>
+    </option>
+
+    <option name="DVUTDtm" index="1">
+      <doc>
+The type Date when time of day is considered.
+      </doc>
+    </option>
+
+    <option name="DVUTDat" index="2">
+      <doc>
+The type Date when time of day is ignored.
+      </doc>
+    </option>
+
+    <option name="DVUTInteger" index="3">
+      <doc>
+The type Integer to hold numbers up to 9 digits.
+      </doc>
+    </option>
+
+    <option name="DVUTLong" index="4">
+      <doc>
+The type Long to hold numbers up to 18 digits.
+      </doc>
+    </option>
+
+    <option name="DVUTBigNumber" index="5">
+      <doc>
+The type Double to hold numbers bigger than 18 digits.
+      </doc>
+    </option>
+
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/enum/DatabaseValueUnionType.iml -->

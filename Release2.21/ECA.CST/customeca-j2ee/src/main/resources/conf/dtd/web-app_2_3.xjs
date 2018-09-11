@@ -1,0 +1,23 @@
+<xml-java-binding-schema version="1.0ea">
+<!-- WhatString @(#)pf $Id$  -->
+<!-- (c) 2009 Convergys Information Management Group Inc. All Rights Reserved. Private and Confidential. May not be disclosed without permission. -->
+
+<!-- WhatString @(#)pf $Id$  -->
+<!-- (c) 2009 Convergys Information Management Group Inc. All Rights Reserved. Private and Confidential. May not be disclosed without permission. -->
+
+<options package="com.convergys.security.admin.util.xml.jxb.webxml" />
+<element name="web-app" type="class" root="true" />
+<element name="servlet" type="class">
+	<content>
+		<element-ref name="icon" />
+		<element-ref name="servlet-name" />
+		<element-ref name="display-name" />
+		<element-ref name="description" />
+		<choice property="servletclass-or-jspfile" />
+		<element-ref name="init-param" />
+		<element-ref name="load-on-startup" />
+		<element-ref name="run-as" />
+		<element-ref name="security-role-ref" />
+	</content>
+</element>
+</xml-java-binding-schema>

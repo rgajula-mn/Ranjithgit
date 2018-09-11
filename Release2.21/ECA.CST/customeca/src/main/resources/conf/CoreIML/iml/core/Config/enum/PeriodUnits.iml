@@ -1,0 +1,175 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Config"
+>
+  <enumDef name="PeriodUnits" since="5.1">
+    <doc>
+Defines the possible values for units describing periods.
+    </doc>
+    <option name="PUDay" index="0">
+      <doc>
+Period units: D (Day).
+      </doc>
+    </option>
+
+    <option name="PUWeek" index="1">
+      <doc>
+Period units: W (Week).
+      </doc>
+    </option>
+
+    <option name="PUMonth" index="2">
+      <doc>
+Period units: M (Month).
+      </doc>
+    </option>
+    
+    <option name="A" index="3">
+      <doc>
+Period units: A (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="B" index="4">
+      <doc>
+Period units: B (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="C" index="5">
+      <doc>
+Period units: C (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="E" index="6">
+      <doc>
+Period units: E (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="F" index="7">
+      <doc>
+Period units: F (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="G" index="8">
+      <doc>
+Period units: G (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="H" index="9">
+      <doc>
+Period units: H (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="I" index="10">
+      <doc>
+Period units: I (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="J" index="11">
+      <doc>
+Period units: J (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="K" index="12">
+      <doc>
+Period units: K (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="L" index="13">
+      <doc>
+Period units: L (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="N" index="14">
+      <doc>
+Period units: N (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="O" index="15">
+      <doc>
+Period units: O (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="P" index="16">
+      <doc>
+Period units: P (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="Q" index="17">
+      <doc>
+Period units: Q (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="R" index="18">
+      <doc>
+Period units: R (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="S" index="19">
+      <doc>
+Period units: S (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="T" index="20">
+      <doc>
+Period units: T (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="U" index="21">
+      <doc>
+Period units: U (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="V" index="22">
+      <doc>
+Period units: V (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="X" index="23">
+      <doc>
+Period units: X (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="Y" index="24">
+      <doc>
+Period units: Y (Variable Period Unit).
+      </doc>
+    </option>
+
+    <option name="Z" index="25">
+      <doc>
+Period units: Z (Variable Period Unit).
+      </doc>
+    </option>
+
+
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/Config/enum/PeriodUnits.iml -->

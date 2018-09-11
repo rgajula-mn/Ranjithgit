@@ -1,0 +1,21 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <exceptionDef name="ProductHasTooManyRatePlansException">
+    <doc>
+This exception is a subclass of BusinessLogicException used when the product in
+question has too many rate plans which will be affected by the proposed
+change.
+    </doc>
+    <extends serviceId="" name="BusinessLogicException"/>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/exception/ProductHasTooManyRatePlansException.iml -->

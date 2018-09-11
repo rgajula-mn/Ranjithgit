@@ -1,0 +1,30 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Config"
+>
+  <enumDef name="TaxPointType" since="5.1">
+    <doc>
+Defines which date is used as the tax point date.
+    </doc>
+    <option name="TPTActual" index="1">
+      <doc>
+Actual bill date.
+      </doc>
+    </option>
+
+    <option name="TPTNominal" index="2">
+      <doc>
+Nominal bill date.
+      </doc>
+    </option>
+
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/Config/enum/TaxPointType.iml -->

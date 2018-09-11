@@ -1,0 +1,34 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+
+  <componentDef componentLevelVersioning="true">
+    <doc>The Infinys Rating and Billing Enhanced Care API (ECA)</doc>
+    <scopeName>Geneva</scopeName>
+    <scopeName>J2ee</scopeName>
+    <validVersion>5.1</validVersion>
+    <validVersion>5.2</validVersion>
+    <validVersion>5.3</validVersion>
+    <validVersion>5.4</validVersion>
+    <validVersion>2.2</validVersion>
+    <validVersion>3.0</validVersion>
+    <validVersion>3.1</validVersion>
+    <validVersion>4.0</validVersion>
+    <validVersion>4.1</validVersion>
+    <validVersion>4.2</validVersion>
+    <validVersion>4.3</validVersion>
+    <validVersion>4.4</validVersion>
+    <validVersion>5.0</validVersion>
+    <validVersion>6.0</validVersion>
+    <validVersion>6.1</validVersion>
+    <validVersion>1.0</validVersion>
+ </componentDef>
+</iml:definitions>
+
+<!-- eof ECA/ECA.iml -->

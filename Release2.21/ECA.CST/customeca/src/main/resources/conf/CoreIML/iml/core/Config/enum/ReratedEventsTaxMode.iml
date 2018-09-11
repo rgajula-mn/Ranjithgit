@@ -1,0 +1,31 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Config"
+>
+  <enumDef name="ReratedEventsTaxMode" since="3.1">
+  	<doc>
+  		Enumerates possible values for Rerated Events Tax Mode.
+  	</doc>
+  	
+  	<option name="ReRatedOnPredecessorsTaxation" index="1">
+  		<doc>
+  			Tax each rerated event as per the rule governing its predecessor's taxation: NUMBER(1).
+      </doc>
+    </option>
+    
+    <option name="ReRatedOnCurrentBillTaxation" index="2">
+    	<doc>
+    		Tax rerated events as new events on the current bill: NUMBER(1).
+    	</doc>
+    </option>
+    
+   </enumDef>
+  </iml:definitions>
+
+<!-- eof ECA/Config/enum/ReratedEventsTaxMode.iml -->

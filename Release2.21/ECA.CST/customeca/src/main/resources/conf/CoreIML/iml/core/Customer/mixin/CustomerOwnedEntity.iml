@@ -1,0 +1,30 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Customer"
+>
+  <mixinDef name="CustomerOwnedEntity">
+    <doc>
+<![CDATA[
+The interface implemented by PrimaryKeys containing an customer reference.
+]]>
+    </doc>
+    <see serviceId="" name="PrimaryKey"/>
+    <see name="CustomerPK"/>
+
+    <field name="CustomerRef">
+      <doc>
+The customer reference.
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+  </mixinDef>
+</iml:definitions>
+
+<!-- eof ECA/mixin/CustomerOwnedEntity.iml -->

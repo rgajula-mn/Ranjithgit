@@ -1,0 +1,70 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="QueryInvoiceDetails">
+		<doc>QueryInvoiceDetails  </doc>
+
+	
+		<field name="Plan">
+			<doc>BillingTariffName</doc>
+			<string nullable="false" maxLength="40" />
+		</field>
+
+		<field name="UnitPrice">
+			<doc>UnitPrice</doc>
+			<double nullable="false"/>
+		</field>
+
+		<field name="UnitType">
+			<doc>UnitType.MB , MOU CALLS </doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+
+
+		<field name="Description">
+			<doc>For display as Description CostBandDesc + Event Class</doc>
+			<string nullable="false" maxLength="100" />
+		</field>
+
+
+		<field name="Type">
+			<doc>Display as Type</doc>
+			<string nullable="true" maxLength="20" />
+		</field>
+
+		<field name="TechType">
+			<doc>Display as Tech</doc>
+			<string nullable="true" maxLength="20" />
+		</field>
+
+		<field name="Quantity">
+			<doc>Quantity.Number of Events/Number of Products</doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+
+		<field name="TotalAmount">
+			<doc>Cost</doc>
+			<double nullable="false"/>
+		</field>
+		<field name="AdjustmentDate">
+	        <doc>Specify the date when adjustment occured.</doc>
+			<dateTime includeTimeZone="false" nullable="true"/>
+   		</field>
+   		
+   		<field name="Category">
+	        <doc>Specify the date when adjustment occured.</doc>
+			<string nullable="true" maxLength="100" />
+   		</field>
+		
+
+		<field name="InvoiceLineItemDetailsKey">
+			<doc>This Key Object will be built based on the line item details which will be used as input  for next level of drill down.</doc>
+			<structure nullable="true" name="InvoiceLineItemDetailsKey" />
+		</field>
+
+
+	</structureDef>
+</iml:definitions>

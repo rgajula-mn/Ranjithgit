@@ -1,0 +1,35 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="ParentChildProductInstancePKData">
+    <doc>
+The primary key data for the parent product instance and child product instances.
+    </doc>
+    <extends serviceId="" name="DataObject"/>
+    <field name="ParentProductInstancePK">
+        <doc>
+Gets the parent product instance primary key.
+      </doc>
+          <structure nullable="true" name="ProductInstancePK" />
+     </field>
+
+    <field name="ChildProductInstancePKData">
+        <doc>
+Gets the child product instance primary key data.
+      </doc>
+      <array nullable="true">
+        <structure nullable="true" name="ParentChildProductInstancePKData" />
+      </array>
+    </field>
+    
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/ParentChildProductInstancePKData.iml -->

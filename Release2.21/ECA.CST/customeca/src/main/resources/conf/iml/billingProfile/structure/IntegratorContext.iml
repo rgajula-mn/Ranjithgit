@@ -1,0 +1,41 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<structureDef name="IntegratorContext" >
+    <doc>Specify the source for the event generating product  </doc>
+	       
+        <field name="ExternalAPICallId">
+            <doc>This will be used to detect duplicate API calls and support
+                idempotent APIs. Multiple attempts/retries of an API call would
+                use the same value, even though each is a separate request. This
+                will not be defaulted by the infrastructure if not set, since
+                only the caller knows whether multiple requests constitute
+                multiple attempts at the same API call, rather separate API
+                calls.</doc>
+            <string nullable="true" maxLength="256"/>
+        </field>
+        <field name="ExternalBusinessTransactionId">
+            <doc>This will be used to correlate multiple API calls as belonging
+                to the same external business transaction, for monitoring,
+                auditing and debugging purposes. This will not be defaulted by
+                the infrastructure if not set, since only the caller knows
+                whether multiple API calls form part of a larger external
+                business transaction.</doc>
+            <string nullable="false" maxLength="256"/>
+        </field>
+        <field name="ExternalTimestamp">
+            <doc>External timestamp for the event triggering the API call.</doc>
+            <dateTime nullable="true" includeTimeZone="true"/>
+        </field>
+        <field name="ExternalUserName">
+            <doc>External Username.</doc>
+            <string nullable="true" maxLength="80"/>
+        </field>
+ </structureDef>
+</iml:definitions>

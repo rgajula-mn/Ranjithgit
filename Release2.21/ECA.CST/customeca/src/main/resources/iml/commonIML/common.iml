@@ -1,0 +1,235 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://churn.oz.convergys.com/IML/iml.xsd"
+    xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+    defaultComponentId="CommonIML">
+    <componentDef componentLevelVersioning="true">
+        <doc>Common IML elements usable</doc>
+        <validVersion>2.2</validVersion>
+        <validVersion>3.0</validVersion>
+    </componentDef>
+    <enumDef name="NVPType" since="2.2">
+        <doc> The valid types for name value pair values.</doc>
+        <option name="String" index="1">
+            <doc></doc>
+        </option>
+        <option name="Int32" index="2">
+            <doc></doc>
+        </option>
+        <option name="Int64" index="3">
+            <doc></doc>
+        </option>
+        <option name="Boolean" index="4">
+            <doc></doc>
+        </option>
+        <option name="Double" index="5">
+            <doc></doc>
+        </option>
+        <option name="DateTime" index="6">
+            <doc></doc>
+        </option>
+        <option name="CalendarDate" index="7">
+            <doc></doc>
+        </option>
+        <option name="Binary" index="8">
+            <doc></doc>
+        </option>
+        <option name="Enum" index="9">
+            <doc></doc>
+        </option>
+        <option name="Array" index="10">
+            <doc></doc>
+        </option>
+        <option name="Structure" index="11">
+            <doc></doc>
+        </option>
+    </enumDef>
+    <mixinDef name="OptimisticLockable" version="1" since="3.0"
+        externallyExtensible="true">
+        <doc>This strucure represents common mixin for component apis to pass
+            optimistic lock version.</doc>
+        <field name="LockVersion">
+            <doc>The lock version.</doc>
+            <int64 nullable="false" maxDigits="15"/>
+        </field>
+    </mixinDef>
+    <structureDef name="TypedNameValue" since="2.2">
+        <doc> A structure used for extensibility by providing a name value pair
+            association for arbitrary data of types defined by the NVPType enum.
+            Enum type will carry the value in both int and string to accomodate
+            both EJB and web service expressions of enum. All other types will
+            have the value in only one type field.</doc>
+        <field name="Name">
+            <doc>The name of the name value pair</doc>
+            <string nullable="false"/>
+        </field>
+        <field name="Type">
+            <doc>The type of the name value pair</doc>
+            <enum name="NVPType" nullable="false"/>
+        </field>
+        <field name="ScopedName">
+            <doc>The fully qualified IML name of structures</doc>
+            <string nullable="true"/>
+        </field>
+        <field name="StringValue">
+            <doc>The value for NVP data with type string</doc>
+            <string nullable="true"/>
+        </field>
+        <field name="Int32Value">
+            <doc>The value for NVP data with type int32</doc>
+            <int32 nullable="true"/>
+        </field>
+        <field name="Int64Value">
+            <doc>The value for NVP data with type int64</doc>
+            <int64 nullable="true"/>
+        </field>
+        <field name="BooleanValue">
+            <doc>The value for NVP data with type boolean</doc>
+            <boolean nullable="true"/>
+        </field>
+        <field name="DoubleValue">
+            <doc>The value for NVP data with type double</doc>
+            <double nullable="true"/>
+        </field>
+        <field name="DateTimeValue">
+            <doc>The value for NVP data with type dateTime</doc>
+            <dateTime nullable="true" includeTimeZone="true"/>
+        </field>
+        <field name="CalendarDateValue">
+            <doc>The value for NVP data with type calendarDate</doc>
+            <calendarDate nullable="true"/>
+        </field>
+        <field name="BinaryValue">
+            <doc>The value for NVP data with type binary</doc>
+            <binary nullable="true"/>
+        </field>
+        <field name="CompositeValue">
+            <doc>The value for NVP data with type composite</doc>
+            <array nullable="true">
+                <structure nullable="false" name="TypedNameValue"/>
+            </array>
+        </field>
+    </structureDef>
+    <structureDef name="ExtensibleStructure" since="2.2"
+        externallyExtensible="false">
+        <doc> An extensible structure</doc>
+        <extends name="BaseStructure" componentId="Base"/>
+        <field name="NameValuePair">
+            <doc></doc>
+            <array nullable="true">
+                <structure nullable="false" name="TypedNameValue"/>
+            </array>
+        </field>
+    </structureDef>
+    <structureDef name="NameValuePair" version="1" since="3.0"
+        externallyExtensible="false">
+        <doc> Represents a name value pair, will be used by the integrators to
+            pass references to external systems.</doc>
+        <extends name="BaseStructure" componentId="Base"/>
+        <field name="Name">
+            <doc>This identifies the name of the weakly typed attribute.</doc>
+            <string nullable="false" maxLength="256"/>
+        </field>
+        <field name="Value">
+            <doc>This identifies the value of the weakly typed attribute.</doc>
+            <string nullable="true" maxLength="256"/>
+        </field>
+    </structureDef>
+    <structureDef name="IntegratorContext" version="1" since="3.0"
+        externallyExtensible="false">
+        <doc> This strucutre will be passed as the first parameter to all new
+            IML methods.</doc>
+        <extends name="BaseStructure" componentId="Base"/>
+        <field name="RequestId">
+            <doc>This identifies a particular request as it passes through the
+                tiers. Multiple attempts/retries of an API call would have
+                different values, since each is a separate request. The
+                infrastructure would default it if it is not set.</doc>
+            <string nullable="true" maxLength="256"/>
+        </field>
+        <field name="ExternalAPICallId">
+            <doc>This will be used to detect duplicate API calls and support
+                idempotent APIs. Multiple attempts/retries of an API call would
+                use the same value, even though each is a separate request. This
+                will not be defaulted by the infrastructure if not set, since
+                only the caller knows whether multiple requests constitute
+                multiple attempts at the same API call, rather separate API
+                calls.</doc>
+            <string nullable="true" maxLength="256"/>
+        </field>
+        <field name="ExternalBusinessTransactionId">
+            <doc>This will be used to correlate multiple API calls as belonging
+                to the same external business transaction, for monitoring,
+                auditing and debugging purposes. This will not be defaulted by
+                the infrastructure if not set, since only the caller knows
+                whether multiple API calls form part of a larger external
+                business transaction.</doc>
+            <string nullable="true" maxLength="256"/>
+        </field>
+        <field name="ExternalUserName">
+            <doc>External Username.</doc>
+            <string nullable="true" maxLength="80"/>
+        </field>
+        <field name="ExternalTimestamp">
+            <doc>External timestamp for the event triggering the API call.</doc>
+            <dateTime nullable="true" includeTimeZone="true"/>
+        </field>
+        <field name="Context">
+            <doc>Weakly typed name value pair.</doc>
+            <array nullable="true">
+                <structure nullable="false" name="NameValuePair"
+                    version="1"/>
+            </array>
+        </field>
+    </structureDef>
+    <structureDef name="EntityLockVersion" version="1" since="3.0"
+        externallyExtensible="false">
+        <doc> This strucutre represents a lock version used by a component for
+            an entity.</doc>
+        <extends name="BaseStructure" componentId="Base"/>
+        <field name="ComponentName">
+            <doc>This identifies name of the component owning the enity.</doc>
+            <string nullable="false" maxLength="30"/>
+        </field>
+        <field name="EntityName">
+            <doc>This represents entity name.</doc>
+            <string nullable="false" maxLength="256"/>
+        </field>
+        <field name="LockVersion">
+            <doc>The lock version for the entity.</doc>
+            <string nullable="false"/>
+        </field>
+    </structureDef>
+    <structureDef name="OptimisticLockContext" version="1" since="3.0"
+        externallyExtensible="false">
+        <doc>This structure represents object used for passing optimistic
+            locking entity versions.</doc>
+        <field name="LockVersions">
+            <doc></doc>
+            <array nullable="true">
+                <structure nullable="false" name="EntityLockVersion"
+                    version="1"/>
+            </array>
+        </field>
+    </structureDef>
+    <exceptionDef name="ParameterException" since="2.2">
+        <internal name="Type" value="exception"/>
+        <internal name="Name" value="ParameterException"/>
+        <doc> This is an exception indicating failure of data validation.</doc>
+        <field name="Parameter">
+            <doc>The Parameter which failed validation</doc>
+            <string/>
+        </field>
+    </exceptionDef>
+    <exceptionDef name="BoundsParameterException" since="2.2">
+        <doc> This is a exception indicating out of bounds.</doc>
+        <extends name="ParameterException"/>
+    </exceptionDef>
+    <exceptionDef name="NullParameterException" since="2.2">
+        <doc> This exception indicates an unexpected null value.</doc>
+        <extends name="ParameterException"/>
+    </exceptionDef>
+    <exceptionDef name="SystemException" version="1" since="3.0">
+        <doc> Exception for general system error.</doc>
+    </exceptionDef>
+</iml:definitions>

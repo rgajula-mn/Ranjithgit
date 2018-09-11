@@ -1,0 +1,42 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <enumDef name="ProductStatus" since="5.1">
+    <doc>
+Enumeration of possible values for account status, encoded as an int.
+    </doc>
+    <option name="PSActive" index="0">
+      <doc>
+The product status is active.
+      </doc>
+    </option>
+
+    <option name="PSPending" index="1">
+      <doc>
+The product status is pending.
+      </doc>
+    </option>
+
+    <option name="PSSuspended" index="2">
+      <doc>
+The product status is suspended.
+      </doc>
+    </option>
+
+    <option name="PSTerminated" index="3">
+      <doc>
+The product status is terminated.
+      </doc>
+    </option>
+
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/enum/ProductStatus.iml -->

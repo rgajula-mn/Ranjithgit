@@ -1,0 +1,28 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="InvoiceSummaryKey">
+		<doc>CustomerDetailsResult Data  </doc>
+		<field name="PartnerName">
+			<doc>PartnerName</doc>
+			<string nullable="true" maxLength="60" />
+		</field>
+		<field name="SectionType">
+			<doc>SectionType</doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+
+		<field name="SectionNumber">
+			<doc>Section Number</doc>
+			<int32 nullable="false" maxDigits="9" />
+		</field>
+
+		<field name="EventSumTypeIds">
+			<doc>EventSumTypeIds </doc>
+			<string nullable="true" maxLength="40" />
+		</field>
+	</structureDef>
+</iml:definitions>

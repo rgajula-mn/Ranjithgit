@@ -1,0 +1,21 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="CreateBulkRequestOutputElements">
+		<doc> CreateBulkRequestOutputElements</doc>
+
+		<field name="OperationStatus">
+			<doc>The operation Status represents whether the file is rejected or not</doc>
+			<string nullable="false" maxLength="255" />
+		</field>
+		
+		<field name="BulkRequestInfo">
+			<doc>The account number</doc>
+			<structure nullable="true" name="BulkRequestInfoElements"/>
+		</field>
+		
+	</structureDef>
+</iml:definitions>

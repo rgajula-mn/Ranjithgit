@@ -1,0 +1,59 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+	<methodDef name="AddPartnerUSTaxExemption">
+		<internal name="CvgMethodType" value="write" />
+		<doc>
+
+		</doc>
+
+		<input name="IntegratorContext">
+			<doc>
+				Integration context for caller specific information.
+			</doc>
+			<structure nullable="false" name="IntegratorContext" />
+		</input>
+
+		<input name="CustomerRef">
+			<doc>Customer Reference</doc>
+			<string nullable="false" maxLength="40"/>   
+		</input>
+		<input name="StartDate">
+			<doc>the exemption start date</doc>
+			<dateTime includeTimeZone="false" nullable="false"/>
+		</input>
+		<input name="EndDate">
+			<doc>the exemption end date</doc>
+			<dateTime includeTimeZone="false" nullable="true"/>
+		</input>
+		<input name="ExemptionType">
+			<doc>Exception Type</doc>
+			<string nullable="false" maxLength="40"/>
+		</input>
+		<input name="CreatedByUser">
+			<doc>CreatedByUser</doc>
+			<string nullable="true" maxLength="40" />
+		</input>
+
+		<output name="AddPartnerUSTaxExemptionOutput">
+			<doc>AddTaxExemption result data</doc>
+			<structure nullable="true" name="AddTaxExemptionOutputElements" />			
+		</output>
+
+
+		<exception name="ParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="NullParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="ApplicationException" componentId="Platform"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+	</methodDef>
+</iml:definitions>

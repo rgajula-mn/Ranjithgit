@@ -1,0 +1,19 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="AmbiguousSearchCriteriaException">
+    <doc>
+This exception is generated when the search criteria has produced too many
+possible results. The user should narrow down the search.
+    </doc>
+    <extends name="BusinessLogicException"/>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/AmbiguousSearchCriteriaException.iml -->

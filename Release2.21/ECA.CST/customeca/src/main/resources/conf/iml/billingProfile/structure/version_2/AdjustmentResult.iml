@@ -1,0 +1,21 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="AdjustmentResult" version='2'>
+		<doc>AdjustmentResult</doc>
+
+		<field name="AdjustmentPK">
+			<doc>account primary key information</doc>
+			<structure nullable="false" name="AdjustmentPK" componentId="ECA"  serviceId="Adjustment" />
+		</field>
+		
+		<field name="BillRequestPK">
+			<doc>account primary key information</doc>
+			<structure nullable="true" name="BillRequestPK" componentId="ECA"  serviceId="Bill"/>
+		</field>
+		
+	</structureDef>
+</iml:definitions>

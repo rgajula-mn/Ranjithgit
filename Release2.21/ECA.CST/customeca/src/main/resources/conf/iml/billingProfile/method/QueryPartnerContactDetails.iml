@@ -1,0 +1,51 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+	<methodDef name="QueryPartnerContactDetails">
+		<internal name="CvgMethodType" value="write" />
+		<doc>
+
+		</doc>
+
+		<input name="IntegratorContext">
+			<doc>
+				Integration context for caller specific information.
+			</doc>
+			<structure nullable="false" name="IntegratorContext" />
+		</input>
+
+		<input name="CustomerRef">
+			<doc>CustomerRef</doc>
+			<string nullable="false" maxLength="30" />
+		</input>
+		
+		<input name="WhenDtm">
+			<doc>Effective date and time parameter used to find the history contact information.</doc>
+			<int64 nullable="true" maxDigits="18" />
+		</input>
+
+		<output name="ContactResult">
+			<doc>ContactResult data</doc>
+			<structure nullable="true" name="ContactResultElements" />
+		</output>
+
+
+		<exception name="ParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="NullParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="ApplicationException" componentId="Platform"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+
+
+
+	</methodDef>
+</iml:definitions>

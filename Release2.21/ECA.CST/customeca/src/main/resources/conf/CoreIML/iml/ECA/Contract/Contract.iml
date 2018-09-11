@@ -1,0 +1,19 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Contract"
+>
+  <serviceDef>
+    <doc>The methods for working with contracts.</doc>
+    <scopeName>Geneva</scopeName>
+    <scopeName>J2ee</scopeName>
+    <scopeName>Contract</scopeName>
+  </serviceDef>
+</iml:definitions>
+
+<!-- eof ECA/Contract/Contract.iml -->

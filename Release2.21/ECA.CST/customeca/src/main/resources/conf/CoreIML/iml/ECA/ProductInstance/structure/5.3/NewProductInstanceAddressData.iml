@@ -1,0 +1,60 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="NewProductInstanceAddressData" version="5.3">
+    <doc>
+The data bean used to add new addresses to product instances.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="NewAddressData">
+      <doc>
+<![CDATA[
+Gets the new address that has been created.
+<p>
+  Requests that a new address is created. This option is only usable if
+  serviceAddressData is not null and the address primary key in
+  serviceAddressData is null. When the address is created the primary key will
+  be used to set the product instances service address in serviceAddressData.
+  Nullable.
+</p>
+]]>
+      </doc>
+      <see serviceId="Address" name="NewAddressData" version="5.1"/>
+      <structure nullable="true" serviceId="Address" name="NewAddressData" version="5.1"/>
+    </field>
+
+    <field name="USTUsedForTaxPurposesBoo">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTADDRESS2.UST_USEDFORTAXPURPOSES_BOO VARCHAR2(1) NULLABLE"/>
+      <doc>
+<![CDATA[
+Indicates if the address is used for UST purposes. If VAT/GST is enabled then
+the value must be null. If VAT/GST is not enabled the value must be true or
+false.
+<p></p>
+]]>
+      </doc>
+      <boolean nullable="true"/>
+    </field>
+
+    <field name="ProductServiceAddressPK">
+      <doc>
+<![CDATA[
+Gets the service address primary key. 
+<p></p>
+]]>
+      </doc>
+      <structure nullable="true" serviceId="Address" name="AddressPK"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/5.3/NewProductInstanceAddressData.iml -->

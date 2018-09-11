@@ -1,0 +1,27 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="NoSuchEntityException">
+    <doc>
+This exception is a subclass of BusinessLogicException when a primary key is
+passed that does not correspond to an existing entity.
+    </doc>
+    <extends name="BusinessLogicException"/>
+
+    <field name="SimplePrimaryKey">
+      <doc>
+A simple primary key that does not correspond to an existing entity. Not
+nullable.
+      </doc>
+      <structure nullable="false" name="SimplePrimaryKey"/>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/NoSuchEntityException.iml -->

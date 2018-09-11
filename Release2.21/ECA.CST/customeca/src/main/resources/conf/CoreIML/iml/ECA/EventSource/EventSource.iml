@@ -1,0 +1,26 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="EventSource"
+>
+  <serviceDef>
+    <doc><![CDATA[
+An interface to hold all the business methods relating to event sources.
+<p>
+  This service has been introduced at release 5.2. Other methods relating
+  to event sources are still residing on the product instance service, but will
+  be brought across over time.
+</p>
+]]></doc>
+    <scopeName>Geneva</scopeName>
+    <scopeName>J2ee</scopeName>
+    <scopeName>EventSource</scopeName>
+  </serviceDef>
+</iml:definitions>
+
+<!-- eof ECA/EventSource/EventSource.iml -->

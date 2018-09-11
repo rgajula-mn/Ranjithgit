@@ -1,0 +1,43 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="ProductInstancePK">
+    <doc>
+The primary key for the product instance.
+    </doc>
+
+    <extends serviceId="" name="PrimaryKey"/>
+
+    <mixin serviceId="Customer" name="CustomerOwnedEntity"/>
+
+    <field name="CustomerRef" mixin="true">
+      <internal name="ECA_TableColumn" value="PVCUSTHASPRODUCT9.CUSTOMER_REF VARCHAR2(20) NOT NULLABLE"/>
+      <doc>
+Gets the customer reference.
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+    <field name="ProductSeq">
+      <internal name="ECA_TableColumn" value="PVCUSTHASPRODUCT9.PRODUCT_SEQ NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the product instance sequence. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="CustomerRef"/>
+      <item fieldName="ProductSeq"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/ProductInstancePK.iml -->

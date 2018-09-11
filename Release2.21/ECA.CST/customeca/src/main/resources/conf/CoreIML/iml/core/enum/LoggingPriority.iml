@@ -1,0 +1,47 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <enumDef name="LoggingPriority" since="5.1">
+    <doc>
+The enumeration values for Logging priority.
+    </doc>
+    <option name="LPDebug" index="1">
+      <doc>
+The Debug priority.
+      </doc>
+    </option>
+
+    <option name="LPInfo" index="2">
+      <doc>
+The Info priority.
+      </doc>
+    </option>
+
+    <option name="LPWarn" index="3">
+      <doc>
+The Warn priority.
+      </doc>
+    </option>
+
+    <option name="LPError" index="4">
+      <doc>
+The Error priority.
+      </doc>
+    </option>
+
+    <option name="LPFatal" index="5">
+      <doc>
+The Fatal priority.
+      </doc>
+    </option>
+
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/enum/LoggingPriority.iml -->

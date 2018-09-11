@@ -1,0 +1,54 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+	<methodDef name="CreateAccountPayments">
+		<internal name="CvgMethodType" value="write" />
+		<doc>
+			The service shall create the Account Payment in RB  
+		</doc>
+
+		<input name="IntegratorContext">
+			<doc>
+				Integration context for caller specific information.
+			</doc>
+			<structure nullable="false" name="IntegratorContext" />
+		</input>
+
+		<input name="AccountNum">
+			<doc>RB Account Number</doc>
+			<string nullable="false" maxLength="20" />
+		</input>
+		
+		<input name="UserName">
+			<doc>Specify the web portal login user</doc>
+			<string nullable="false" maxLength="50" />
+		</input>
+
+		<input name="NewAccountPaymentData">
+			<doc>The structure contains required input data for creating account payment</doc>
+				<structure nullable="false" name="NewAccountPaymentData" />
+		</input>
+
+		<output name="AccountPaymentResult">
+			<doc>A data bean to hold information regarding an account/physical payment 
+					method and payment sequence</doc>
+				<structure nullable="false" name="AccountPaymentResult" />
+		</output>
+
+		<exception name="ParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="NullParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="ApplicationException" componentId="Platform"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+				
+	</methodDef>
+</iml:definitions>

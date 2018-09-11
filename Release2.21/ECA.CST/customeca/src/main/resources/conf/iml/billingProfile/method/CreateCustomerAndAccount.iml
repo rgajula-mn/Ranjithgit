@@ -1,0 +1,63 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+	<methodDef name="CreateCustomerAndAccount">
+		<internal name="CvgMethodType" value="write" />
+		<doc>
+
+		</doc>
+
+		<input name="IntegratorContext">
+			<doc>
+				Integration context for caller specific information.
+			</doc>
+			<structure nullable="false" name="IntegratorContext" />
+		</input>
+		
+		<input name="NewCustomerAndAccountData">
+			<doc>Array of the NewCustomerAndAccount data.This input array contains new Customer and account  Details</doc>
+			<structure nullable="false" name="NewCustomerAndAccountData" />
+		</input>
+		
+		<input name="NewAddress">
+			<doc>Array of the NewCustomerAndAccount address data.This input array contains both billing and datacentre address</doc>
+			<structure nullable="false" name="NewAddress" />
+		</input>
+		
+		<input name="AccountAttributes">
+	        <doc>Array of the AccountAttributes data.This input array contains CCPC,company code etc.</doc>	       
+			<structure nullable="false" name="AccountAttributes" />	
+   		</input> 
+
+		<input name="NewCustomDataArray">
+			<doc>Array of the NewCustomData.This input array contains partner short name etc..</doc>
+			 <array nullable="false">
+				<structure name="NewCustomData" nullable="false"/>
+			</array>
+		</input>
+		
+		<output name="CreateCustomerAndAccountOutput">
+			<doc>Array of the QueryInvoiceSummaryOutPut data.This output array contains both billing/rating customer and account.</doc>
+			<structure nullable="false" name="CreateCustomerAndAccountOutputElements" />
+		</output>
+
+
+		<exception name="ParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="NullParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="ApplicationException" componentId="Platform"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+
+
+
+	</methodDef>
+</iml:definitions>

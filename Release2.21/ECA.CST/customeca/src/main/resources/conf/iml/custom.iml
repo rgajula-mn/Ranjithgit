@@ -1,0 +1,15 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://churn.oz.convergys.com/IML/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+    defaultComponentId="CUSTOMECA">
+    <componentDef componentLevelVersioning="false">
+        <doc> Provides a runtime repository of information.</doc>
+        <scopeName>Custom</scopeName>
+        <scopeName>Geneva</scopeName>
+        <scopeName>J2ee</scopeName>
+        <validVersion>1.0</validVersion>
+    </componentDef>
+</iml:definitions>

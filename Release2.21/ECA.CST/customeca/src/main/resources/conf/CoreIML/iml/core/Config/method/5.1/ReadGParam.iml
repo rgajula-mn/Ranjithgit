@@ -1,0 +1,55 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Config"
+>
+  <methodDef name="ReadGParam" version="5.1">
+    <doc>
+This business method returns the system parameter data for a single Infinys 
+Rating and Billing system parameter (as set in the GPARAMS table) as of a
+particular date and time.
+    </doc>
+    <see name="GParamType"/>
+
+    <input name="Name">
+      <doc>
+Name of the system parameter.
+      </doc>
+      <string nullable="false" maxLength="64"/>
+    </input>
+
+    <input name="Type">
+      <doc>
+Type of the system parameter.
+      </doc>
+      <enum nullable="false" name="GParamType"/>
+    </input>
+
+    <input name="WhenDtm">
+      <doc>
+Date and time to read the data for.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </input>
+
+    <output name="Result">
+      <doc>
+GParamData data bean. 
+      </doc>
+      <structure nullable="true" name="GParamData" version="5.1"/>
+    </output>
+
+    <exception serviceId="" name="ApplicationException">
+      <doc>
+ECA base exception.
+      </doc>
+    </exception>
+  </methodDef>
+</iml:definitions>
+
+<!-- eof ECA/Config/method/5.1/ReadGParam.iml -->

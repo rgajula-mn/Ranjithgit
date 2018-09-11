@@ -1,0 +1,34 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <enumDef name="AttributeType" since="5.1">
+    <doc>
+The enumeration values for AttributeType.
+    </doc>
+    <option name="ATString" index="0">
+      <doc>
+The account attribute string.
+      </doc>
+    </option>
+
+    <option name="ATDateTime" index="1">
+      <doc>
+The account attribute type DATETIME.
+      </doc>
+    </option>
+
+    <option name="ATNumber" index="2">
+      <doc>
+The account attribute type NUMBER.
+      </doc>
+    </option>
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/enum/AttributeType.iml -->

@@ -1,0 +1,32 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="RemitToAddressDetails">
+		<doc>CustomerDetailsResult Data  </doc>
+
+			<field name="RemitToName">
+			<doc>RemitToName</doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+		
+		<field name="RemitToAddress1">
+			<doc>RemitToAddress1</doc>
+			<string nullable="false" maxLength="240" />
+		</field>
+		
+		<field name="RemitToAddress2">
+			<doc>RemitToAddress2</doc>
+			<string nullable="false" maxLength="240" />
+		</field>
+		
+
+		<field name="RemitToAddress3">
+			<doc>RemitToAddress3</doc>
+			<string nullable="false" maxLength="240" />
+		</field>
+				
+	</structureDef> 
+</iml:definitions>

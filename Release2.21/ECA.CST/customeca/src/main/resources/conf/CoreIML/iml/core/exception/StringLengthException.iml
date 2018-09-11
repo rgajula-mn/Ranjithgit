@@ -1,0 +1,40 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="StringLengthException">
+    <doc>
+This exception is a subclass of ParameterException when strings are found to be
+out of bounds.
+    </doc>
+    <extends name="ParameterException"/>
+
+    <field name="ParameterValue">
+      <doc>
+Gets the value of the string parameter that was in error.
+      </doc>
+      <string nullable="false"/>
+    </field>
+
+    <field name="MinLength">
+      <doc>
+Gets the minimum length allowed for the string.
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="MaxLength">
+      <doc>
+Gets the maximum length allowed for the string.
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/StringLengthException.iml -->

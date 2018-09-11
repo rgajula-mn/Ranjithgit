@@ -1,0 +1,48 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Account"
+>
+  <enumDef name="AccountStatus" since="5.1">
+    <doc>
+Enumeration of possible values for account status.
+    </doc>
+    <option name="ASLive" index="0">
+      <doc>
+Account status: OK (Live).
+      </doc>
+    </option>
+
+    <option name="ASPending" index="1">
+      <doc>
+Account status: PE (Pending).
+      </doc>
+    </option>
+
+    <option name="ASSuspended" index="2">
+      <doc>
+Account status: SU (Suspended).
+      </doc>
+    </option>
+
+    <option name="ASAwaitingTermination" index="3">
+      <doc>
+Account status: TA (Awaiting termination bill).
+      </doc>
+    </option>
+
+    <option name="ASTerminated" index="4">
+      <doc>
+Account status: TX (Terminated).
+      </doc>
+    </option>
+
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/Account/enum/AccountStatus.iml -->

@@ -1,0 +1,30 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Subscription"
+>
+  <serviceDef>
+    <doc><![CDATA[
+Subscription can be explained as a sub-account grouping of products and
+packages for the purpose of discount aggregation, bill presentation, and
+financial reporting.
+<p>
+  Subscriptions support the same states and charges as do products. These
+  charges on subscriptions are purely optional.
+  <p>
+    This interface holds all the business methods relating to subscriptions.
+  </p>
+</p>
+]]></doc>
+    <scopeName>Geneva</scopeName>
+    <scopeName>J2ee</scopeName>
+    <scopeName>Subscription</scopeName>
+  </serviceDef>
+</iml:definitions>
+
+<!-- eof ECA/Subscription/Subscription.iml -->

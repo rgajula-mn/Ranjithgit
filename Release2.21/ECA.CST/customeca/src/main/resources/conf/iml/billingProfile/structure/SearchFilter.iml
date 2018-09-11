@@ -1,0 +1,22 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="SearchFilter">
+		<doc>Array of information regarding the new products to be added (or product instance to be created)  </doc>
+
+		<field name="ColumnName">
+        	<doc>.</doc>
+        	<string nullable="false" maxLength="20"/>
+    	</field>
+    	
+    	<field name="SearchText">
+			<doc>Search Text</doc>
+			<string nullable="false" maxLength="40" />
+		</field>
+		
+    	
+	</structureDef>
+</iml:definitions>

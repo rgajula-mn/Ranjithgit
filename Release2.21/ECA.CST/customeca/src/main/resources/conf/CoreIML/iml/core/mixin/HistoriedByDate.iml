@@ -1,0 +1,59 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <mixinDef name="HistoriedByDate">
+    <doc>
+<![CDATA[
+Information in Infinys Rating and Billing can be historied. This 
+means different
+copies of the data are stored which are effective on different date
+(and time) ranges. These ranges can cover the past, present and
+future. Data beans which describe the information are effective for one
+particular data range implemented in this interface.
+
+<p>This interface is only used when the date, but not time, is taken
+into account. When time is taken into account historiedByDateTime
+is used instead.</p>
+
+<p>This interface uses inclusive end dates in the same way as the
+Infinys Rating and Billing schema. However this has been found to be
+a frequent source of "off by one" errors so new beans will use dateRange 
+instead, which uses exclusive end dates; that is, one day later.</p>
+]]>
+    </doc>
+    <see name="HistoriedByDateTime"/>
+    <see name="DateRange"/>
+
+    <field name="StartDat">
+      <doc>
+<![CDATA[
+Gets the start date.
+
+<p>This is effective inclusive, the change happens at this date.</p>
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="EndDat">
+      <doc>
+<![CDATA[
+Gets the end date.
+
+<p>Null indicates it continues indefinitely.</p>
+
+<p>This is effective inclusive, the change happens one day later.</p>
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+  </mixinDef>
+</iml:definitions>
+
+<!-- eof ECA/mixin/HistoriedByDate.iml -->

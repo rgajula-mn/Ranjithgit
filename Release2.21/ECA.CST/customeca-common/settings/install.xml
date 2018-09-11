@@ -1,0 +1,14 @@
+<project name="installer" default="StartInstall">
+    <property name="NETCRACKER_HOME" location="./" />
+    <property name="INSTALLER_HOME" location="${NETCRACKER_HOME}/AutoInstaller" />
+    <property name="skip_clean_dir" value="true" />
+    <import file="${INSTALLER_HOME}/build.xml" />
+
+	<property name="package_name" value="COMPONENT_PATCH"/>
+
+    <target name="process">
+		<antcall target="install.zip">
+		    <param name="zip_name" value="COMPONENT_PATCH"/>
+		</antcall>
+    </target>
+</project>

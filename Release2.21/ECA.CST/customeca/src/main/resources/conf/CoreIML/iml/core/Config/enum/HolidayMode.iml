@@ -1,0 +1,36 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Config"
+>
+  <enumDef name="HolidayMode" since="5.1">
+    <doc>
+Defines the possible values of the mode of holiday consideration.
+    </doc>
+    <option name="HMIgnoreAll" index="1">
+      <doc>
+Ignore all holidays.
+      </doc>
+    </option>
+
+    <option name="HMConsiderRangeOnly" index="2">
+      <doc>
+Consider all holidays within specified date range.
+      </doc>
+    </option>
+
+    <option name="HMConsiderEndOnly" index="3">
+      <doc>
+Consider holidays falling on end date only.
+      </doc>
+    </option>
+
+  </enumDef>
+</iml:definitions>
+
+<!-- eof ECA/Config/enum/HolidayMode.iml -->

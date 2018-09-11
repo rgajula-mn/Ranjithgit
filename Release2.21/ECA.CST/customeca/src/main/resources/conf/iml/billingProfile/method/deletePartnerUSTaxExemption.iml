@@ -1,0 +1,49 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+	<methodDef name="DeletePartnerUSTaxExemption">
+		<internal name="CvgMethodType" value="write" />
+		<doc>
+Delete Tax exemption for an account.
+		</doc>
+
+		<input name="IntegratorContext">
+			<doc>
+				Integration context for caller specific information.
+			</doc>
+			<structure nullable="false" name="IntegratorContext" />
+		</input>
+
+		<input name="CustomerRef">
+			<doc>CustomerRef</doc>
+			<string nullable="false" maxLength="20" />
+		</input>
+		
+		<input name="ExemptionType">
+			<doc>Tax Exemption Type</doc>
+			<string nullable="false" maxLength="20"/>
+		</input>
+		
+	    <output name="DeletePartnerUSTaxExemptionOutput">
+			<doc>Tax Exemption deletion message</doc>
+			<string nullable="false" maxLength="50" />			
+		</output>
+		
+		<exception name="ParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="NullParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="ApplicationException" componentId="Platform"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		
+
+	</methodDef>
+</iml:definitions>

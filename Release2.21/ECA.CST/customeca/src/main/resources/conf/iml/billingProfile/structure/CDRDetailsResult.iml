@@ -1,0 +1,24 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<structureDef name="CDRDetailsResult" >
+    <doc>CDR Records Data  </doc>
+   		
+		<field name="CDRVoiceSMSDetails">
+          	<doc>CDR Voice and SMS Details Information</doc>
+			<structure nullable="false" name="CDRVoiceSMSDetails" />
+   		</field>
+		
+		<field name="CDRGPRSMMSdetails">
+          	<doc>CDR GPRS and MMS Details Information</doc>
+			<structure nullable="false" name="CDRGPRSMMSdetails" />
+   		</field>
+  	
+ </structureDef>
+</iml:definitions>

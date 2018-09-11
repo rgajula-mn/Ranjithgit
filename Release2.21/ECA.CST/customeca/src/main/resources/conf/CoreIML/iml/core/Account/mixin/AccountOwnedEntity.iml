@@ -1,0 +1,30 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Account"
+>
+  <mixinDef name="AccountOwnedEntity">
+    <doc>
+<![CDATA[
+The interface implemented by primary keys containing an account number.
+]]>
+    </doc>
+    <see serviceId="" name="PrimaryKey"/>
+    <see name="AccountPK"/>
+
+    <field name="AccountNum">
+      <doc>
+The account number. 
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+  </mixinDef>
+</iml:definitions>
+
+<!-- eof ECA/mixin/AccountOwnedEntity.iml -->

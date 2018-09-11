@@ -1,0 +1,31 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="QueryInvoiceSummaryOutPut">
+		<doc>QueryInvoiceSummaryOutPut  </doc>
+
+		<field name="CustomerDetailsResult">
+			<doc>This section shows the customer information.</doc>
+			<structure nullable="false" name="CustomerDetailsResult" />
+		</field>
+
+		<field name="InvoiceSummaryResult">
+			<doc>This section shows the InvoiceSummaryResult</doc>
+			<structure nullable="false" name="InvoiceSummaryResult" />
+		</field>
+
+		<field name="PaymentinformationResult">
+			<doc>This section shows the PaymentinformationResult</doc>
+			<structure nullable="false" name="PaymentinformationResult" />
+		</field>
+
+		<field name="InvoiceDetails">
+			<doc>This section shows the InvoiceDetails</doc>
+			<structure nullable="false" name="InvoiceDetails" />
+		</field>
+
+	</structureDef>
+</iml:definitions>

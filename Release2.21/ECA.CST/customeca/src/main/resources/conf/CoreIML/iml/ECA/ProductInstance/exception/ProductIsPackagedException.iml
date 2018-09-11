@@ -1,0 +1,34 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <exceptionDef name="ProductIsPackagedException">
+    <doc>
+This exception is a subclass of BusinessLogicException used when the product in
+question is part of a package.
+    </doc>
+    <extends serviceId="" name="BusinessLogicException"/>
+
+    <field name="ProductInstancePK">
+      <doc>
+Method to get the productInstance which caused this exception. 
+      </doc>
+      <structure nullable="false" name="ProductInstancePK"/>
+    </field>
+
+    <field name="ProductPackageInstancePK">
+      <doc>
+Method to get the productPackageInstancePK. 
+      </doc>
+      <structure nullable="false" serviceId="ProductPackageInstance" name="ProductPackageInstancePK"/>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/exception/ProductIsPackagedException.iml -->

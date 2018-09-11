@@ -1,0 +1,126 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="OverridePrice"
+>
+  <structureDef name="NewOverridePriceData" version="1" since="3.0">
+    <doc>
+The main data bean for override price.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="StartDat">
+      <doc>
+Start date.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="EndDat">
+      <doc>
+End date.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+
+    <field name="OneOffNumber">
+      <doc>
+Initiation amount.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="OneOffModTypeId">
+      <doc>
+Initiation type.
+      </doc>
+      <enum nullable="true" name="ModificationType"/>
+    </field>
+
+    <field name="RecurringNumber">
+      <doc>
+Periodic amount.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="RecurringModTypeId">
+      <doc>
+Periodic type.
+      </doc>
+      <enum nullable="true" name="ModificationType"/>
+    </field>
+
+    <field name="TerminationNumber">
+      <doc>
+Termination amount.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="TerminationModTypeId">
+      <doc>
+Termination type.
+      </doc>
+      <enum nullable="true" name="ModificationType"/>
+    </field>
+
+    <field name="SuspensionNumber">
+      <doc>
+Suspension amount.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="SuspensionModTypeId">
+      <doc>
+Suspension type.
+      </doc>
+      <enum nullable="true" name="ModificationType"/>
+    </field>
+
+    <field name="SuspRecurNumber">
+      <doc>
+Periodic suspension amount.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="SuspRecurModTypeId">
+      <doc>
+Periodic suspension type.
+      </doc>
+      <enum nullable="true" name="ModificationType"/>
+    </field>
+
+    <field name="ReactNumber">
+      <doc>
+Reactivation amount.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="ReactModTypeId">
+      <doc>
+Reactivation type.
+      </doc>
+      <enum nullable="true" name="ModificationType"/>
+    </field>
+
+    <field name="NotesTxt">
+      <doc>
+Notes.
+      </doc>
+      <string nullable="true" maxLength="255"/>
+    </field>
+
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/NewOverridePriceData_1.iml -->

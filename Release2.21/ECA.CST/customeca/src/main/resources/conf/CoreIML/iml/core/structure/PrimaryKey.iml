@@ -1,0 +1,50 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <structureDef name="PrimaryKey" abstract="true">
+    <doc>
+<![CDATA[
+The base class for the primary keys of entity beans. The PrimaryKey class has
+the name of the associated entity class with the suffix PK attached.
+<p>
+  Subclasses should have a single constructor taking the hint and all the
+  values making up the key. It is a deliberate decision for the constructor to
+  insist on the hint parameter because if the correct value is unknown a good
+  guess can be made from a related object.
+  <p>
+    Subclasses must implement equals hashCode compareTo and define a
+    serialVersionUID.
+  </p>
+</p>
+]]>
+    </doc>
+
+    <extends name="SimplePrimaryKey"/>
+
+    <field name="Hint" useInEquality="false">
+      <doc>
+<![CDATA[
+This is used to cache a hint to show which database an entity is on. It does
+not have be correct and does not contribute to the identity.
+<p>
+  The constant Null.INT should be used if there is no idea of location but
+  wherever possible a guess should be made from a related object.
+</p>
+]]>
+      </doc>
+      <see name="PrimaryKey"  member="Hint"/>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/structure/PrimaryKey.iml -->

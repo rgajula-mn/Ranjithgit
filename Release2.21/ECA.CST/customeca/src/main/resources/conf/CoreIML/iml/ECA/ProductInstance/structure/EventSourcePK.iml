@@ -1,0 +1,57 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="EventSourcePK">
+    <doc>
+The primary key for the event source.
+    </doc>
+
+    <extends serviceId="" name="PrimaryKey"/>
+
+    <mixin serviceId="Customer" name="CustomerOwnedEntity"/>
+
+    <field name="CustomerRef" mixin="true">
+      <doc>
+Gets the customer number. 
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+    <field name="ProductSeq">
+      <doc>
+Gets the product sequence number. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="EventSource">
+      <doc>
+Gets the event source. 
+      </doc>
+      <string nullable="false" maxLength="40"/>
+    </field>
+
+    <field name="EventTypeId">
+      <doc>
+Gets the event type identifier for the event source. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="CustomerRef"/>
+      <item fieldName="ProductSeq"/>
+      <item fieldName="EventSource"/>
+      <item fieldName="EventTypeId"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/EventSourcePK.iml -->

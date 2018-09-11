@@ -1,0 +1,3 @@
+alter table BULKREQUEST  add  SUCC_COUNT NUMBER(20);
+alter table BULKREQUEST  add  ERR_COUNT NUMBER(20);
+alter table BULKREQUEST  add  PAR_COUNT NUMBER(20);

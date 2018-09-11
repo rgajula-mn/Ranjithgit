@@ -1,0 +1,58 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="ApplicationException">
+    <doc>
+<![CDATA[
+This is the base class for all application specific exceptions.
+<p>
+  All business methods will be declared as throwing this exception. They
+  will also be declared as throwing the specific subclasses which are relevant
+  to the method. Although this is redundant as far as the Java compiler is
+  concerned, it clarifies to the client of this API which exceptions they might
+  choose to handle.
+  <p>
+    There are two reasons for always declaring business methods as throwing
+    this exception. Both are related to keeping the API backwards compatible to
+    clients using an earlier version of the API. It allows later versions of
+    the API to throw additional subclasses of this exception without the method
+    signature becoming incompatible. It provides a generic mechanism of
+    reporting errors from business logic in the database tier. The errors are
+    reported without having to categorise them as a specific subclass while
+    leaving the option open to incrementally categorize the errors as
+    subclasses in later versions.
+    <p>
+      There are only two direct subclasses of this class,
+      ParameterException and BusinessLogicException.
+    </p>
+  </p>
+</p>
+]]>
+    </doc>
+    <see name="DBErrorDetails"/>
+    <see name="ParameterException"/>
+    <see name="BusinessLogicException"/>
+
+    <field name="IncidentRef">
+      <doc>
+Returns the Incident reference. This is null unless set by logging.
+      </doc>
+      <string nullable="true"/>
+    </field>
+
+    <field name="DBErrorDetails">
+      <doc>
+Returns a DBErrorDetails reference. This may be null.
+      </doc>
+      <structure nullable="true" name="DBErrorDetails"/>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/ApplicationException.iml -->

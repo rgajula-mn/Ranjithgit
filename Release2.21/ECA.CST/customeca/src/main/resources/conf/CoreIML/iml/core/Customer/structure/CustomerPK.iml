@@ -1,0 +1,34 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Customer"
+>
+  <structureDef name="CustomerPK">
+    <doc>
+The customer primary key.
+    </doc>
+
+    <extends serviceId="" name="PrimaryKey"/>
+
+    <mixin name="CustomerOwnedEntity"/>
+
+    <field name="CustomerRef" mixin="true">
+      <internal name="ECA_TableColumn" value="PVCUSTOMER9.CUSTOMER_REF VARCHAR2(20) NOT NULLABLE"/>
+      <doc>
+Gets the customer reference.
+      </doc>
+      <string nullable="false" maxLength="20"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="CustomerRef"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Customer/structure/CustomerPK.iml -->

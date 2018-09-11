@@ -1,0 +1,54 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="NewProductInstanceAttrData" version="5.1">
+    <doc>
+The data bean for creating new event types.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="StartDat">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTATTRDETAILS.START_DAT DATE NOT NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the date when the event type record becomes active. 
+<p></p>
+]]>
+      </doc>
+      <dateTime includeTimeZone="false" nullable="false"/>
+    </field>
+
+    <field name="ProductAttrPK">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTATTRDETAILS.PRODUCT_ATTRIBUTE_SUBID NUMBER(9) NOT NULLABLE"/>
+      <internal name="ECA_TableColumn" value="PVCUSTPRODUCTATTRDETAILS.PRODUCT_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the custom attribute identifier for the product. 
+<p></p>
+]]>
+      </doc>
+      <structure nullable="false" serviceId="Product" name="ProductAttrPK"/>
+    </field>
+
+    <field name="AttributeValue">
+      <internal name="ECA_TableColumn" value="PVCUSTPRODEXTENDEDATTRDET.ATTRIBUTE_VALUE VARCHAR2(120) NOT NULLABLE"/>
+      <doc>
+<![CDATA[
+Gets the attribute value for this combination of customer, product, and dates.
+<p></p>
+]]>
+      </doc>
+      <string nullable="true" maxLength="120"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductInstance/structure/5.1/NewProductInstanceAttrData.iml -->

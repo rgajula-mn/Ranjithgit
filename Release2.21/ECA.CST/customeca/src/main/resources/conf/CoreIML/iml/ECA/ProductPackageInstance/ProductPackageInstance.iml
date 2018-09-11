@@ -1,0 +1,20 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductPackageInstance"
+>
+  <serviceDef>
+    <doc>An interface to hold all the business methods relating to product package
+instances (that is, packages taken by a customer).</doc>
+    <scopeName>Geneva</scopeName>
+    <scopeName>J2ee</scopeName>
+    <scopeName>ProductPackageInstance</scopeName>
+  </serviceDef>
+</iml:definitions>
+
+<!-- eof ECA/ProductPackageInstance/ProductPackageInstance.iml -->

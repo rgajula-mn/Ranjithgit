@@ -1,0 +1,22 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<structureDef name="ChildProductInstancePKData" >
+    <doc> Array of the Primary keys of the newly created parent and child product instances hierarchy.  </doc>
+    
+	   	   	<field name="ProductInstancePK"> 
+          	<doc>Contains Customer reference of the subscriber under feature commitment, the value passed is verified against the database.
+          	and the product sequence of the feature commitment product, the value passed is verified against the database. The product should be present under the customer reference 
+          	</doc>
+			<structure nullable="false" name="ProductInstancePK"   componentId="ECA"
+  serviceId="ProductInstance" />
+   		</field>
+   	
+ </structureDef>
+</iml:definitions>

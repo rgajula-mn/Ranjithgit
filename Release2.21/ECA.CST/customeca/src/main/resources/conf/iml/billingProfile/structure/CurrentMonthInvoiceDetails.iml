@@ -1,0 +1,36 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="CurrentMonthInvoiceDetails">
+		<doc>CustomerDetailsResult Data  </doc>
+
+		<field name="ServiceUsageCharge">
+			<doc>ServiceUsageCharge</doc>
+			<double nullable="false"/>
+		</field>
+
+		<field name="MRCCharges">
+			<doc>MRCCharges</doc>
+			<double nullable="false"/>
+		</field>
+		
+		<field name="PromotionsAndAdjustments">
+			<doc>"PromotionsAndAdjustments"</doc>
+			<double nullable="false" />
+		</field>
+		
+		<field name="TaxCharges">
+			<doc>"Tax Charges"</doc>
+			<double nullable="false" />
+		</field>
+		
+		<field name="CurrentInvoiceTotal">
+			<doc>CurrentInvoiceTotal</doc>
+			<double nullable="false" />
+		</field>
+		
+	</structureDef>
+</iml:definitions>

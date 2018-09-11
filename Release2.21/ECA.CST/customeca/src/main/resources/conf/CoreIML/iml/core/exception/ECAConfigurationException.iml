@@ -1,0 +1,49 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="ECAConfigurationException">
+    <doc>
+The application has not been configured correctly. For more details lookup the
+config error ID in the installation guide.
+    </doc>
+    <extends name="BusinessLogicException"/>
+
+    <field name="Id">
+      <doc>
+The unique configuration code for this problem. See the ECA product
+documentation for more details.
+      </doc>
+      <string nullable="false"/>
+    </field>
+
+    <field name="ArgNames">
+      <doc>
+Names of extra meta data. This array is twinned with the getArgs() array. These
+two arrays provide a name/value pair which gives more information about the
+malformed configuration.
+      </doc>
+      <array nullable="false">
+        <string nullable="false"/>
+      </array>
+    </field>
+
+    <field name="Args">
+      <doc>
+Values of extra meta data. This array is twinned with the getArgs() array.
+These two arrays provide a name/value pair which gives more information about
+the malformed configuration.
+      </doc>
+      <array nullable="false">
+        <string nullable="false"/>
+      </array>
+    </field>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/ECAConfigurationException.iml -->

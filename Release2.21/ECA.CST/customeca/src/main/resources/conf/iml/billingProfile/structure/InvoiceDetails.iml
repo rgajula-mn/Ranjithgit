@@ -1,0 +1,36 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+
+	<structureDef name="InvoiceDetails">
+		<doc>InvoiceDetails Data  </doc>
+
+		<field name="InvoiceNumber">
+			<doc>InvoiceNumber</doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+
+		<field name="InvoiceDate">
+			<doc>"InvoiceDate".</doc>
+			<string nullable="false" />
+		</field>
+
+		<field name="CurrentMonthInvoiceAmt">
+			<doc>CurrentMonthInvoiceAmt</doc>
+			<double nullable="false" />
+		</field>
+
+		<field name="InvoicePeriod">
+			<doc>InvoicePeriod</doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+
+		<field name="TotalDueAmt">
+			<doc>TotalDueAmt</doc>
+			<double nullable="false"/>
+		</field>
+
+	</structureDef>
+</iml:definitions>

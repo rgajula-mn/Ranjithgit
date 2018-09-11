@@ -1,0 +1,63 @@
+<iml:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+	xmlns="urn:Convergys-Interface-Markup-Language" xmlns:iml="urn:Convergys-Interface-Markup-Language"
+	defaultComponentId="CUSTOMECA" defaultServiceId="BillingProfile">
+	<methodDef name="UpdateBillingProfile">
+		<internal name="CvgMethodType" value="write" />
+		<doc>
+
+		</doc>
+
+		<input name="IntegratorContext">
+			<doc>
+				Integration context for caller specific information.
+			</doc>
+			<structure nullable="false" name="IntegratorContext" />
+		</input>
+
+		<input name="CustomerRef">
+			<doc>Customer Ref-Specifies which customer to add the product instance</doc>
+			<string nullable="false" maxLength="20" />
+		</input>
+		<input name="MSISDN">
+	        <doc>
+				MSISDN - This is the event source of the customer.					
+			</doc>
+			<string nullable="false" maxLength="40"/>
+   		</input>
+		
+   		
+		<input name="ModifyEventSourceData">
+			<doc>Array containing parameters for modifying an event source</doc>
+			<array nullable="false">
+				<structure nullable="true" name="ModifyEventSourceData" />
+			</array>
+		</input>
+		
+		<input name="ModifyProductInstanceData">
+			<doc>bean containing the information regarding the Array containing parameters to modify/terminate base product instance OR add/modify/terminate child/grandchild product instance(s)</doc>
+			<array nullable="false">
+				<structure nullable="true" name="ModifyProductInstanceData" />
+			</array>
+		</input>
+		<output name="Status">
+	  		<doc>updateBillingProfile output</doc>
+	       <string nullable="false" maxLength="20" />
+    	</output>
+			<exception name="ParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="NullParameterException" componentId="CommonIML"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		<exception name="ApplicationException" componentId="Platform"
+			serviceId="">
+			<doc>This is thrown on data validation error.</doc>
+		</exception>
+		
+
+	</methodDef>
+</iml:definitions>

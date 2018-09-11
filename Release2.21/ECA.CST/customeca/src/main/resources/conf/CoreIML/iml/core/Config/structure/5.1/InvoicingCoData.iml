@@ -1,0 +1,238 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="Config"
+>
+  <structureDef name="InvoicingCoData" version="5.1">
+    <internal name="ECA_IgnoreTableColumn" value="PVINVOICINGCOMPANY7.BILL_PROD_FUTURE_CHANGES_BOO Internal setting used by the billing engine."/>
+    <internal name="ECA_IgnoreTableColumn" value="PVINVOICINGCOMPANY7.DAYS_AFTER_BILLING_TO_ARCHIVE Clients do not need to know when archiving may occur."/>
+    <internal name="ECA_IgnoreTableColumn" value="PVINVOICINGCOMPANY7.ALLOW_EARLY_EVENT_DELETION_BOO Internal billing engine setting."/>
+    <internal name="ECA_IgnoreTableColumn" value="PVINVOICINGCOMPANY7.INVOICE_NUM_METHOD Tells the billing engine how to generate invoice numbers, not applicable to clients."/>
+    <internal name="ECA_IgnoreTableColumn" value="PVINVOICINGCOMPANY7.INVOICE_REGISTER_ID Unlikely to be required by a client (CD)."/>
+    <internal name="ECA_IgnoreTableColumn" value="PVINVOICINGCOMPANY7.TERM_CUST_DEL_BOO Specifies internal behaviour (CD)."/>
+    <internal name="ECA_IgnoreTableColumn" value="PVINVOICINGCOMPANY7.DEBT_MANAGED_BOO Specifies internal behaviour (CD)."/>
+    <doc>
+The data bean for invoicing company data.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="InvoicingCoSummary" delegate="true">
+      <doc>
+Gets the invoicing company summary bean.
+      </doc>
+      <see name="InvoicingCoSummary" version="5.1"/>
+      <structure nullable="false" name="InvoicingCoSummary" version="5.1"/>
+    </field>
+
+    <field name="TaxationModel">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.TAXATION_MODEL VARCHAR2(10) NOT NULLABLE"/>
+      <doc>
+Gets the taxation model. 
+      </doc>
+      <see name="TaxationModel"/>
+      <enum nullable="false" name="TaxationModel"/>
+    </field>
+
+    <field name="DefaultLanguageId">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.DEFAULT_LANGUAGE_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the default language ID. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="DefaultCPSId">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.DEFAULT_CPS_ID NUMBER(9) NULLABLE"/>
+      <doc>
+Gets the default contracted point of supply. 
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+    <field name="DefaultPrepayBoo">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.DEFAULT_PREPAY_BOO VARCHAR2(1)  NOT NULLABLE"/>
+      <doc>
+Indicates if the accounts for this invoicing company should default to prepay.
+      </doc>
+      <boolean nullable="false"/>
+    </field>
+
+    <field name="BillingWindow">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.BILLING_WINDOW NUMBER(2) NULLABLE"/>
+      <doc>
+<![CDATA[
+The duration of the billing window in multiples of billingWindowUnitsNbl. Used
+to determine the day for which a product using an 'in advance' price plan
+should be, at least, billed up to on any bill for an account associated with
+this invoicing company.
+<p>
+  If billing_window is null, the billing window will default to the next
+  nominal bill date.
+</p>
+]]>
+      </doc>
+      <int32 nullable="true" maxDigits="2"/>
+    </field>
+
+    <field name="BillingWindowUnits">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.BILLING_WINDOW_UNITS VARCHAR2(1) NULLABLE"/>
+      <doc>
+<![CDATA[
+The units of the billing window. Used to determine the day for which a product
+using an 'in advance' price plan should be, at least, billed up to, on any bill
+for an account associated with this invoicing company.
+<p>
+  Should be null if billing_window is null. Should be populated if
+  billing_window is populated.
+</p>
+]]>
+      </doc>
+      <see name="PeriodUnits"/>
+      <enum nullable="true" name="PeriodUnits"/>
+    </field>
+
+    <field name="SynchroniseDay">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.SYNCHRONISE_DAY NUMBER(2) NULLABLE"/>
+      <doc>
+<![CDATA[
+The day of the month, between 1 and 28, to which a product using a
+'proratable' price plan will have its periodic charges synchronized to, on any
+bill for an account associated with this invoicing company.
+<p>
+  If synchronise_day is null, the synchronization will default to the
+  nominal bill date day.
+</p>
+]]>
+      </doc>
+      <int32 nullable="true" maxDigits="2"/>
+    </field>
+
+    <field name="HolidayMode">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.HOLIDAY_MODE NUMBER(1) NOT NULLABLE"/>
+      <doc>
+Defines the mode of application for holiday profiles assigned to an account
+belonging to this InvoicingCompany.
+      </doc>
+      <enum nullable="false" name="HolidayMode"/>
+    </field>
+
+    <field name="TermAccDelBoo">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.TERM_ACC_DEL_BOO VARCHAR2(1) NOT NULLABLE"/>
+      <doc>
+Whether data pertaining to terminated accounts should be deleted from the
+database.
+      </doc>
+      <boolean nullable="false"/>
+    </field>
+
+    <field name="RegAddr">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.REG_ADDR_1 VARCHAR2(240) NULLABLE"/>
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.REG_ADDR_2 VARCHAR2(240) NULLABLE"/>
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.REG_ADDR_3 VARCHAR2(240) NULLABLE"/>
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.REG_ADDR_4 VARCHAR2(240) NULLABLE"/>
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.REG_ADDR_5 VARCHAR2(240) NULLABLE"/>
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.REG_ADDR_6 VARCHAR2(240) NULLABLE"/>
+      <doc>
+<![CDATA[
+The company's registered address as it will appear on the bill.
+<p>
+  Note that the address is stored in unstructured form as there is no
+  requirement to search on or manipulate the individual elements of the
+  address.
+</p>
+]]>
+      </doc>
+      <array nullable="false">
+        <string nullable="true" maxLength="240"/>
+      </array>
+    </field>
+
+    <field name="VATRegistration">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.VAT_REGISTRATION VARCHAR2(20) NULLABLE"/>
+      <doc>
+The VAT registration of the invoicing company. Will be null if Infinys Rating and Billing is used
+in a non-VAT environment.
+      </doc>
+      <string nullable="true" maxLength="20"/>
+    </field>
+
+    <field name="ICOCustomerRef">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.ICO_CUSTOMER_REF VARCHAR2(20) NULLABLE"/>
+      <doc>
+The 'customer'  used within Infinys Rating and Billing for the purpose of billing this
+invoicing company.
+      </doc>
+      <structure nullable="true" serviceId="Customer" name="CustomerPK"/>
+    </field>
+
+    <field name="FiscalYearTypeId">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.FISCAL_YEAR_TYPE_ID NUMBER(9) NULLABLE"/>
+      <doc>
+Link to fiscal year type table.
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+    <field name="TermAccDelDelayDays">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.TERM_ACC_DEL_DELAY_DAYS NUMBER(4) NULLABLE"/>
+      <doc>
+The number of days for which an account should have been terminated before data
+pertaining to that account can be deleted. Null if termAccDelBoo is false,
+indicating that the field is irrelevant in this case.
+      </doc>
+      <int32 nullable="true" maxDigits="4"/>
+    </field>
+
+    <field name="TaxPointType">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.TAX_POINT_TYPE NUMBER(1) NOT NULLABLE"/>
+      <doc>
+Defines whether the actual or nominal bill date is used as the tax point date.
+      </doc>
+      <enum nullable="true" name="TaxPointType"/>
+    </field>
+
+    <field name="USTOrderAcceptJcode">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.UST_ORDER_ACCEPT_JCODE VARCHAR2(12) NULLABLE"/>
+      <doc>
+The U.S. tax jurisdiction code relating to the 'Order Acceptance' location for
+this invoicing company.
+      </doc>
+      <string nullable="true" maxLength="12"/>
+    </field>
+
+    <field name="USTShipFromJcode">
+      <internal name="ECA_TableColumn" value="PVINVOICINGCOMPANY7.UST_SHIP_FROM_JCODE VARCHAR2(12) NULLABLE"/>
+      <doc>
+The U.S. tax jurisdiction code relating to the 'Ship from' location for this
+invoicing company.
+      </doc>
+      <string nullable="true" maxLength="12"/>
+    </field>
+
+    <field name="DefaultLanguageData">
+      <doc>
+Gets LanguageData. This is only non null if the corresponding
+defaultLanguageDataJoin is supplied and the join succeeds.
+      </doc>
+      <see name="LanguageData" version="5.1"/>
+      <structure nullable="true" name="LanguageData" version="5.1"/>
+    </field>
+
+    <field name="DefaultCPSData" breakMutualRecursion="true">
+      <doc>
+Gets CPSData. This is only non null if the corresponding defaultCpsDataJoin is
+supplied and the join succeeds.
+      </doc>
+      <see name="CPSData" version="5.1"/>
+      <structure nullable="true" name="CPSData" version="5.1"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Config/structure/5.1/InvoicingCoData.iml -->

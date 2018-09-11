@@ -1,0 +1,77 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <structureDef name="DatabaseValueUnion">
+    <doc>
+This union holds the different possible primitive database types.
+    </doc>
+    <see name="DatabaseValueUnionType"/>
+
+    <extends name="DataObject"/>
+
+    <field name="Name">
+      <doc>
+Gets the name of the column, or null if not available
+      </doc>
+      <string nullable="true"/>
+    </field>
+
+    <field name="Type">
+      <doc>
+Gets the type of the value.
+      </doc>
+      <see name="DatabaseValueUnionType"/>
+      <enum nullable="false" name="DatabaseValueUnionType"/>
+    </field>
+
+    <field name="ValueString">
+      <doc>
+Gets the value, if it is of type DVUT_STRING.
+      </doc>
+      <string nullable="true"/>
+    </field>
+
+    <field name="ValueDtm">
+      <doc>
+Gets the value, if it is of type DVUT_DTM.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+
+    <field name="ValueDat">
+      <doc>
+Gets the value, if it is of type DVUT_DAT.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+
+    <field name="ValueInt">
+      <doc>
+Gets the value, if it is of type DVUT_INTEGER.
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+    <field name="ValueLong">
+      <doc>
+Gets the value, if it is of type DVUT_LONG.
+      </doc>
+      <int64 nullable="true" maxDigits="18"/>
+    </field>
+
+    <field name="ValueBigNumber">
+      <doc>
+Gets the value, if it is of type DVUT_BIG_NUMBER.
+      </doc>
+      <double nullable="true"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/structure/DatabaseValueUnion.iml -->

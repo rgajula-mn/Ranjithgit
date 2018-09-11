@@ -1,0 +1,63 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <structureDef name="AttributeField">
+    <doc>
+This holds the data of each account or customer attribute.
+    </doc>
+
+    <extends name="DataObject"/>
+
+    <field name="FieldIndex">
+      <doc>
+Gets the index of the field. The field index is not nullable taking an int
+value starting from 0.
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="FieldValueString">
+      <doc>
+Gets the value of the field, if it is a String.
+      </doc>
+      <string nullable="true"/>
+    </field>
+
+    <field name="FieldValueDtm">
+      <doc>
+Gets the value of the field, if it is a date and time.
+      </doc>
+      <dateTime includeTimeZone="false" nullable="true"/>
+    </field>
+
+    <field name="FieldType">
+      <doc>
+Gets the type of the field. The field type cannot be null.
+      </doc>
+      <see name="AttributeType"/>
+      <enum nullable="false" name="AttributeType"/>
+    </field>
+
+    <field name="FieldName">
+      <doc>
+Gets the name of the field, null if not known on write.
+      </doc>
+      <string nullable="true"/>
+    </field>
+
+    <field name="FieldLength">
+      <doc>
+Gets the length of the field, 0 (zero) if not known on write.
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/structure/AttributeField.iml -->

@@ -1,0 +1,23 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<structureDef name="NewProductInstanceAttributesData" >
+    <doc>This data bean shows output of products custom attributes values  </doc>
+	    
+	    <field name="ProductAttributeName">
+        	<doc>Attribute name for the product .</doc>
+        	<string nullable="false" maxLength="40"/>
+    	</field>
+   		
+   		<field name="AttributeValue">
+	        <doc>Specify the value of the attribute for the combination of customer, product and dates.</doc>
+			<string nullable="true" maxLength="40"/>
+   		</field>
+ </structureDef>
+</iml:definitions>

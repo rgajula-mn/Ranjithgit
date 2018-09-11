@@ -1,0 +1,60 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="GenevaUser"
+>
+  <structureDef name="GenevaUserData" version="5.1">
+    <doc>
+Shows data held about the Infinys user service.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="GenevaUserPK" delegate="true">
+      <internal name="ECA_TableColumn" value="PVGENEVAUSER2.GENEVA_USER_ORA VARCHAR2(30) NOT NULLABLE"/>
+      <doc>
+Gets the Infinys user primary key (as defined in the GENEVAUSER table). 
+      </doc>
+      <structure nullable="false" name="GenevaUserPK"/>
+    </field>
+
+    <field name="LanguageId">
+      <internal name="ECA_TableColumn" value="PVGENEVAUSER2.LANGUAGE_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the language identifier. 
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <field name="InvoicingCoId">
+      <internal name="ECA_TableColumn" value="PVGENEVAUSER2.INVOICING_CO_ID NUMBER(9) NULLABLE"/>
+      <doc>
+Gets the invoicing company indentifier.
+      </doc>
+      <int32 nullable="true" maxDigits="9"/>
+    </field>
+
+    <field name="LanguageData">
+      <doc>
+Gets LanguageData. This is only non null if the corresponding languageDataJoin
+is supplied and the join succeeds.
+      </doc>
+      <structure nullable="true" serviceId="Config" name="LanguageData" version="5.1"/>
+    </field>
+
+    <field name="InvoicingCoData">
+      <doc>
+Gets InvoicingCoData. This is only non null if The corresponding
+invoicingCoDataJoin is supplied and the join succeeds.
+      </doc>
+      <structure nullable="true" serviceId="Config" name="InvoicingCoData" version="5.1"/>
+    </field>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/GenevaUser/structure/5.1/GenevaUserData.iml -->

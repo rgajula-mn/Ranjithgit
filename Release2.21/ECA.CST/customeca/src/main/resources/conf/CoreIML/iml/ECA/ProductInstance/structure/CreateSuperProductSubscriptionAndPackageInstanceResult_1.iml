@@ -1,0 +1,51 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="ProductInstance"
+>
+  <structureDef name="CreateSuperProductSubscriptionAndPackageInstanceResult" version="1" since="4.1">
+    <doc>
+The result bean for super create method CreateSuperProductSubscriptionAndPackageInstance_1.
+    </doc>
+
+    <extends serviceId="" name="DataObject"/>
+
+    <field name="ParentChildProductInstancePKData">
+      <doc>
+Array of the parent and chaild productInstance primary key data array.
+      </doc>
+      <see  serviceId="ProductInstance" name="ParentChildProductInstancePKData"/>
+      <array nullable="true">
+        <structure serviceId="ProductInstance" nullable="false" name="ParentChildProductInstancePKData" />
+      </array>
+    </field>
+
+    <field name="SubscriptionPK">
+      <doc>
+Array of the Subscription primary key.
+      </doc>
+      <see serviceId="Subscription" name="SubscriptionPK"/>
+      <array nullable="true">
+        <structure serviceId="Subscription" nullable="false" name="SubscriptionPK" />
+      </array>
+    </field>
+
+    <field name="ProductPackageInstancePK">
+      <doc>
+Array of the ProductPackageInstance primary key.
+      </doc>
+      <see serviceId="ProductPackageInstance" name="ProductPackageInstancePK"/>
+      <array nullable="true">
+        <structure serviceId="ProductPackageInstance" nullable="false" name="ProductPackageInstancePK" />
+      </array>
+    </field>
+    
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/Offers/structure/CreateSuperProductSubscriptionAndPackageInstanceResult_1.iml -->

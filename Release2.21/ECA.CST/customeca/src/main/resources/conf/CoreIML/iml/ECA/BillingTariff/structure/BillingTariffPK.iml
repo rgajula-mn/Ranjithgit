@@ -1,0 +1,32 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+  defaultServiceId="BillingTariff"
+>
+  <structureDef name="BillingTariffPK">
+    <doc>
+The primary key for billing price plan.
+    </doc>
+
+    <extends serviceId="" name="SimplePrimaryKey"/>
+
+    <field name="BillingTariffId">
+      <internal name="ECA_TableColumn" value="PVTARIFF6.TARIFF_ID NUMBER(9) NOT NULLABLE"/>
+      <doc>
+Gets the price plan ID.
+      </doc>
+      <int32 nullable="false" maxDigits="9"/>
+    </field>
+
+    <sortOrder>
+      <item fieldName="BillingTariffId"/>
+    </sortOrder>
+  </structureDef>
+</iml:definitions>
+
+<!-- eof ECA/BillingTariff/structure/BillingTariffPK.iml -->

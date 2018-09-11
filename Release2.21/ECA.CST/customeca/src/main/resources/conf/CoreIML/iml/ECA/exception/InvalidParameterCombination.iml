@@ -1,0 +1,19 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="InvalidParameterCombination">
+    <doc>
+This exception is a subclass of ParameterException used when the parameters are
+an invalid combination.
+    </doc>
+    <extends name="ParameterException"/>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/InvalidParameterCombination.iml -->

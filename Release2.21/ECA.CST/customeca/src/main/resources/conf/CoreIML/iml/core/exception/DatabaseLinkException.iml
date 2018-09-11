@@ -1,0 +1,19 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+
+  defaultComponentId="ECA"
+>
+  <exceptionDef name="DatabaseLinkException">
+    <doc>
+This exception is a subclass of businessLogicException that is thrown when the
+core SQL throws an exception.
+    </doc>
+    <extends name="BusinessLogicException"/>
+  </exceptionDef>
+</iml:definitions>
+
+<!-- eof ECA/exception/DatabaseLinkException.iml -->

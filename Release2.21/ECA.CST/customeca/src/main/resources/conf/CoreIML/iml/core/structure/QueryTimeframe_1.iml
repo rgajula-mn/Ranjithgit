@@ -1,0 +1,47 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  ../../iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="ECA"
+>
+<!--
+  %version:      3 %
+  %date_created: Mon Apr 14 18:55:18 2008 %
+  %derived_by:   hschmidt %
+-->
+  <structureDef
+    name="QueryTimeframe"
+    version="1"
+    since="3.0"
+  >
+    <doc>
+A timeframe for queries, to select historied entities active between the temporal boundaries.
+    </doc>
+    <field
+      name="EarliestEndDtm"
+    >
+      <doc>
+The earliest end-time of any historied record to be included.
+If the record's end-time is before this, it is not included.
+      </doc>
+      <dateTime
+        includeTimeZone="false"
+        nullable="true"
+      />
+    </field>
+    <field
+      name="LatestStartDtm"
+    >
+      <doc>
+The latest start-time of any historied record to be included.
+If the record's start-time is after this, it is not included.
+      </doc>
+      <dateTime
+        includeTimeZone="false"
+        nullable="true"
+      />
+    </field>
+  </structureDef>
+</iml:definitions>

@@ -1,0 +1,35 @@
+<iml:definitions
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="urn:Convergys-Interface-Markup-Language
+  http://icetc.netcracker.com/development/iml.xsd"
+  xmlns="urn:Convergys-Interface-Markup-Language"
+  xmlns:iml="urn:Convergys-Interface-Markup-Language"
+  defaultComponentId="CUSTOMECA"
+  defaultServiceId="BillingProfile">
+
+<structureDef name="PaymentCancelData" >
+    <doc>The array contains required input data for canceling  account payment  </doc>
+   		
+		<field name="CustomerRef">
+			<doc>Physical Customer to which the payment is being cancelled</doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+		
+		<field name="AccountNum">
+			<doc>Account Number</doc>
+			<string nullable="false" maxLength="20" />
+		</field>
+		
+	    <field name="PhysicalPaymentSeq">
+        	<doc>Physical Payment sequence</doc>
+			<int32 nullable="false" maxDigits="9"/>
+    	</field>
+		
+		<field name="AccountPaymentSeq">
+        	<doc>Account Payment Sequence</doc>
+			<int32 nullable="false" maxDigits="9"/>
+    	</field>
+
+		
+ </structureDef>
+</iml:definitions>
