@@ -1,0 +1,58 @@
+for local repository
+git init(for fresh repository)
+git remote add origin "central repository"
+to get the entral repository
+git clone(for existing project)
+
+to check untracked files - git status	
+
+git add -A(will add all the modified files)
+git commit -am "all changes commit"
+git log(will display full information of log)
+
+master brach will contain all the code
+git branch "branch name"(creating branch)
+git checkout "branh name"(will swith to branch name)(also will create the branch and switch to that branch)
+
+merging concept:
+
+u need to go to where u want to branch
+then 
+git branch "branch name"
+
+
+Rebase -- nother type of branching
+to get the complete history of the merging branch
+
+
+git push origin "branch name"(we should give the remote repostory name for pushong the branch to central repository)
+	
+	
+
+git revert "file name"/HEAD~1(will rever the file/id of the file) 
+
+git checkout "revert id" "file name" (this vert the file upto given hashid)
+
+
+git reflog (will display the information in one line)
+
+git cat-file -p "id" (will disply complete information about the given id)
+
+git branch -r (will display all the branches from the remote repository)
+
+git diff ( will give the diff b/w current and remote repository )
+
+git tag "tag name" ( will create the tag )
+
+git checkout "id" ( checking out 'particular id'. You are in 'detached HEAD' state... This exact state - when a specific commit is checked out instead of a branch - is what's called a "detached HEAD")
+
+In certain situations, Git does a fast forward when you merge a branch that is ahead of your checked-out branch.  Consider the following branch and then merge situation
+
+git cherry-pick "id" ( it will go to that partiacluer id of current branch, this will needed when you made the mistake in existing branch)
+
+
+PMD plufing for test results.
+unit test
+Build pipeline view.
+
+
