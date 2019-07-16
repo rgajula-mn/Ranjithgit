@@ -1,0 +1,13 @@
+[unixServers]
+devapp727cn ansible_python_interpreter=/usr/local/bin/python2.7
+devapp759cn
+devapp700cn
+
+
+[win10]
+camvwciber3cn.netcracker.com
+
+[win7]
+camvwciber1cn.netcracker.com
+
+

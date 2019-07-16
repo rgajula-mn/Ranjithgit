@@ -1,0 +1,7 @@
+---
+- debug:
+    msg: 
+    - "RESULT: "
+    - "Build Triggerd for {{ project }}-{{ sqaField }}{{ release }}.{{ os }}.{{ oracle }}"
+    - "Build Log location: {{ log_location }}"
+    - "End of triggerPlatform_builds.yaml script"

@@ -1,0 +1,5 @@
+---
+- name: Executing svn update
+  shell: "bash {{ build_scripts_loc }}/{{ unix_svn_up_script }} {{ project }} {{ sqaField }} {{ release }} {{ os }} {{ oracle }} > {{ log_location }}/{{ project }}-{{ sqaField }}{{ release }}.{{ os }}.{{ oracle }}_svn_update.log 2>&1"
+  args:
+    chdir: "{{ proj_workarea }}"

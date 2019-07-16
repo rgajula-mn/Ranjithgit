@@ -1,0 +1,17 @@
+---
+- name: Parsing Head realase from version
+  set_fact:
+    head_release: "{{ release |regex_replace('([0-9].[0-9]+).+','\\1')|replace(' ','')}}"
+- name: generate win32 setup.exe
+  win_command: makensis.exe /DMINOR_VERSION={{ release }}.0 /DMAJOR_VERSION={{ head_release }} /DEDITVER=3.12.4 /DEDITCCMVER=sqa3.12.4 {{ BUILD_ROOT }}\tap3\{{ head_release }}\{{ project }}-sqa{{ release }}.win\{{ project }}\RELEASE\setup_win32.nsi
+  args:
+    executable: cmd.exe
+  register: setupout
+- debug: var=setupout.stdout_lines
+- name: generate win64 setup.exe
+  win_command: makensis.exe /DMINOR_VERSION={{ release }}.0 /DMAJOR_VERSION={{ head_release }} /DEDITVER=3.12.4 /DEDITCCMVER=sqa3.12.4 {{ BUILD_ROOT }}\tap3\{{ head_release }}\{{ project }}-sqa{{ release }}.win\{{ project }}\RELEASE\setup_win64.nsi
+  args:
+    executable: cmd.exe
+  register: setupoutx
+- debug: var=setupoutx.stdout_lines
+

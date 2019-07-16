@@ -1,0 +1,8 @@
+---
+- name: checkout project
+  win_command: bash {{ win_svn_co_script }} -p {{ project }} -c {{ release }} -o {{ crelease }} -l {{ slink }} -t {{ clink }} -u {{ build_user }} -w {{ ansible_ssh_pass }}
+  args:
+    executable: cmd.exe
+  register: checkout
+- debug: var=checkout.stdout_lines
+

@@ -1,0 +1,22 @@
+---
+##################################################################################################
+#
+#  Script:              triggerPlatform_builds.yaml
+#  Description:         This script triggers the builds in itanium/aix/solaris builds for RB
+#                       Once the build is triggered on servers the script control gets disconnected
+#
+###################################################################################################
+
+- name: Trigger OPF builds
+  hosts: unixServers
+  gather_facts: yes
+  remote_user: "{{ build_user }}"
+  tags: 
+    - OPF
+  roles: 
+    - opf_info
+    - opf_set_workarea
+    - opf_svn_update
+    - opf_build_run
+    - opf_build_out
+ 

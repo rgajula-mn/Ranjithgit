@@ -1,0 +1,11 @@
+windows_server: camvwciber3cn.netcracker.com
+win_svn_co_script: UI_C_Fresh_CO_t.sh
+win_RB_build_script: overnight_build_svn_C-ccm.sh
+win_archive_script: UI_C_archive_t.sh
+BUILD_ROOT: C:\irb\bce\build
+CAND_LOC: \\nasrb02cn\candidate\
+ansible_user: "{{ build_user }}"
+ansible_password: "{{ ansible_ssh_pass }}"
+ansible_connection: winrm
+ansible_winrm_server_cert_validation: ignore
+ansible_winrm_transport: ntlm

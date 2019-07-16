@@ -1,0 +1,29 @@
+- set_fact:
+    contents: "{{ lookup('file', '//irb//bce//admin//log//partialbuild//exe-{{ project }}_{{ release }}.txt') }}"
+    lower: "{{ project|lower }}"
+- set_fact:
+    head_release: "{{ release |regex_replace('([0-9].[0-9]+).+','\\1')|replace(' ','')}}"
+- name: Copying the win32 dels
+  win_copy:
+    src: \irb\bce\build\{{ lower }}\{{ head_release }}\{{ project }}-sqa{{ release }}.win\{{ project }}\PC\bin\win32\{{ item }}
+    #dest: \\nasrb02cn\bce\arun_exe\{{ release }}\{{ server }}\win32\
+    dest: "{{ release_path }}\\win32\\"
+    remote_src: true
+  become: yes
+  become_method: runas
+  vars:
+    ansible_become_user: "NETCRACKER\\{{ build_user }}"
+    ansible_become_pass: "{{ ansible_ssh_pass }}"
+  with_items: "{{ contents }}"
+- name: Copying the win64 dels
+  win_copy:
+    src: \irb\bce\build\{{ lower }}\{{ head_release }}\{{ project }}-sqa{{ release }}.win\{{ project }}\PC\bin\win64\{{ item }}
+    #dest: \\nasrb02cn\bce\arun_exe\{{ release }}\{{ server }}\win64\
+    dest: "{{ release_path }}\\win64\\"
+    remote_src: true
+  become: yes
+  become_method: runas
+  vars:
+    ansible_become_user: "NETCRACKER\\{{ build_user }}"
+    ansible_become_pass: "{{ ansible_ssh_pass }}"
+  with_items: "{{ contents }}"

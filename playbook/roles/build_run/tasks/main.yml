@@ -1,0 +1,14 @@
+---
+- name: run build for win32
+  win_command: bash {{ win_RB_build_script }} {{ project }} sqa{{ release }}.win win32
+  args:
+    executable: cmd.exe
+  register: out
+- debug: var=out.stdout_lines
+- name: run build for win64
+  win_command: bash {{ win_RB_build_script }} {{ project }} sqa{{ release }}.win win64
+  args:
+    executable: cmd.exe
+  register: outx
+- debug: var=outx.stdout_lines
+

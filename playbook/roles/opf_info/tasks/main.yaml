@@ -1,0 +1,48 @@
+---
+- name: Pre-defined Vars
+  debug:
+    msg:
+    - "ansible_ssh_host       : {{ ansible_ssh_host }}"
+    - "BUILD_ROOT             : {{ BUILD_ROOT }}"
+    - "build_scripts_loc      : {{ build_scripts_loc }}"
+    - "log_dir                : {{ log_dir }}"
+    - "solaris_server         : {{ solaris_server }}"
+    - "aix_server             : {{ aix_server }}"
+    - "itanium_server         : {{ itanium_server }}"
+- set_fact:
+    os: "solaris"
+    userSuffix: "sS"
+  when: ansible_ssh_host == solaris_server
+- set_fact:
+    os: "itanium"
+    userSuffix: "hI"
+  when: ansible_ssh_host == itanium_server
+- set_fact:
+    os: "aix"
+    userSuffix: "aP"
+  when: ansible_ssh_host == aix_server
+- name: Parsing Head realase from version
+  set_fact:
+    head_release: "{{ release |regex_replace('([0-9].[0-9]).+','\\1')|replace(' ','')}}"
+- name: date directory for logs
+  set_fact:
+    date_dir: "{{ ansible_date_time.date | regex_replace('-','') }}_CI"
+- name: Input Arguments
+  debug:
+    msg:
+    - "project        : {{ project }}"
+    - "sqaField       : {{ sqaField }}"
+    - "oracle         : {{ oracle }}"
+    - "release        : {{ release }}"
+    - "os             : {{ os }}"
+    - "date_dir       : {{ date_dir }}"
+    - "type           : {{ type }}"
+    - "head release   : {{ head_release }}"
+    - "db             : {{ db }}"
+    - "user           : {{ user }}"
+    - "userSuffix     : {{ userSuffix }}"
+- name: fetch OS info
+  command: "uname -a"
+  register: Os_info
+- debug: var=Os_info.stdout
+

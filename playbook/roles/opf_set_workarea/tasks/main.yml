@@ -1,0 +1,18 @@
+---
+- name: creating log directory
+  file:
+    path: "{{ log_dir }}/{{ date_dir }}"
+    state: directory
+- name: setting log directory to CI 
+  set_fact: 
+    log_location: "{{ log_dir }}/{{ date_dir }}"
+- debug: 
+    msg: "Generating logs in location: {{ log_location }}"
+- name: Projects info
+  debug:
+    msg: 
+    - "project to build  : {{ BUILD_ROOT }}/{{ project }}-{{ sqaField }}{{ release }}.{{ os }}.{{ oracle }}"
+- name: Setting work area
+  set_fact: proj_workarea={{ BUILD_ROOT }}/{{ project|lower }}/{{ head_release }}/{{ project }}-{{ sqaField }}{{ release }}.{{ os }}.{{ oracle }}/{{ project }}
+- debug: var=proj_workarea
+

@@ -1,0 +1,12 @@
+---
+- name: Parsing Head realase from version
+  set_fact:
+    head_release: "{{ release |regex_replace('([0-9].[0-9]+).+','\\1')|replace(' ','')}}"
+- name: Remove directory
+  win_file:
+    path: C:\irb\bce\build\tap3\{{ head_release }}\{{ project }}-sqa{{ release }}.win
+    state: absent
+- name: Remove CoreComps
+  win_file:
+    path: C:\Users\genadmin\CoreComponents\CORECOMPS-sqa{{ crelease }}
+    state: absent

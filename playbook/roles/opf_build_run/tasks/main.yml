@@ -1,0 +1,10 @@
+---
+- name: Executing Build command
+  shell: "bash {{ build_scripts_loc }}/{{ unix_build_script }} -p {{ project }} -s {{ sqaField }} -o {{ oracle }} -r {{ release }}.{{ os }}.{{ oracle }} -m {{ head_release }} -d {{ date_dir }} -t {{ type }} -u {{ user }}{{ userSuffix }}@{{ db }} > {{ log_location }}/nohup.out 2>&1 &"
+  args: 
+    chdir: "{{ log_dir }}"
+  async: 45
+  poll: 0
+  register: build_out
+- debug: var=build_out.stdout
+  when: build_out.stdout is defined

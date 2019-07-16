@@ -1,0 +1,10 @@
+BUILD_ROOT: /irb/bce/build/
+build_scripts_loc: /irb/bce/admin/ccm_wa/PRD-bce/PRD/build_scripts
+log_dir: /irb/bce/admin/log
+
+unix_build_script: build_project_svn_sng_db_ci
+unix_svn_up_script: opf_svn_up.sh
+
+aix_server: devapp700cn
+solaris_server: devapp759cn
+itanium_server: devapp727cn

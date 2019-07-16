@@ -1,0 +1,15 @@
+ - name: Remove directory
+   set_fact:
+     lower: "{{ project|lower}}"
+ - name: Copying the zip
+   win_copy:
+     src: "{{ BUILD_ROOT }}\\{{ lower }}\\{{ head_release }}\\{{ project }}-sqa{{ release }}.win\\{{ project }}\\RELEASE\\{{ project }}UI-{{ release }}.zip"
+     dest: "{{ item }}"
+     remote_src: true
+   with_items:
+     - "{{ CAND_LOC }}"
+   become: yes
+   become_method: runas
+   vars:
+      ansible_become_user: "NETCRACKER\\{{ build_user }}"
+      ansible_become_pass: "{{ ansible_ssh_pass }}"

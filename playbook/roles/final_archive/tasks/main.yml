@@ -1,0 +1,8 @@
+---
+- name: final archive
+  win_command: bash UI_C_archive_t.sh {{ project }}_{{ release }}
+  args:
+   executable: cmd.exe
+  register: checkout
+- debug: var=checkout.stdout_lines
+

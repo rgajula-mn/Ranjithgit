@@ -1,0 +1,75 @@
+##############################################################################
+#
+#  Script:              run_ui_build.yaml
+#  Instance:            1
+#  Author:		reir1015
+#  Modified date:	18-01-2019
+#  Description:         This script triggers the UI build for RB
+#                       Once the build is completed it packages the build output
+#
+#  (C) NetCracker, 2019.
+#  NetCracker refers to NetCracker Corporation or any of its wholly owned
+#
+###############################################################################
+
+- name: Starting...
+  hosts: win
+  remote_user: "{{ build_user }}"
+  tasks:
+    - name: Checking out project.. 
+      win_command: bash {{ win_svn_co_script }} -p RB -c {{ release }} -l {{ svnURL }} -u {{ build_user }} -w {{ ansible_ssh_pass }} 
+      args:
+        executable: cmd.exe
+      register: checkout
+    - debug: var=checkout.stdout_lines
+    - name: run build for win32
+      win_command: bash {{ win_RB_build_script }} RB sqa{{ release }}.win win32           
+      args:
+        executable: cmd.exe
+      register: out
+    - debug: var=out.stdout_lines
+    - name: run build for win64
+      win_command: bash {{ win_RB_build_script }} RB sqa{{ release }}.win win64
+      args:
+        executable: cmd.exe
+      register: outx
+    - debug: var=outx.stdout_lines
+    - name: Parsing Head realase from version
+      set_fact:
+        head_release: "{{ release |regex_replace('([0-9].[0-9]).+','\\1')|replace(' ','')}}"
+    - name: generate win32 setup.exe
+      win_command: makensis.exe /DMINOR_VERSION={{ release }}.0 /DMAJOR_VERSION={{ head_release }} \\{{ windows_server }}\{{ head_release }}\RB-sqa{{ release }}.win\RB\RELEASE\setup_win32.nsi
+      args:
+        executable: cmd.exe
+      register: setupout
+    - debug: var=setupout.stdout_lines
+    - name: generate win64 setup.exe
+      win_command: makensis.exe /DMINOR_VERSION={{ release }}.0 /DMAJOR_VERSION={{ head_release }} \\{{ windows_server }}\{{ head_release }}\RB-sqa{{ release }}.win\RB\RELEASE\setup_win64.nsi
+      args:
+        executable: cmd.exe
+      register: setupoutx
+    - debug: var=setupoutx.stdout_lines
+    - name: final archive
+      win_command: bash {{ win_archive_script }} RB_{{ release }}
+      args:
+       executable: cmd.exe
+      register: checkout
+    - debug: var=checkout.stdout_lines
+    - name: Copying the zip RBUI-{{ release }}.zip 
+      win_copy:
+        src: "{{ BUILD_ROOT }}\\{{ head_release }}\\RB-sqa{{ release }}.win\\RB\\RELEASE\\RBUI-{{ release }}.zip"
+        dest: "{{ CAND_NAS }}"
+        remote_src: true
+      become: yes
+      become_method: runas
+      vars:
+         ansible_become_user: NETCRACKER\{{ build_user }}
+         ansible_become_pass: "{{ ansible_ssh_pass }}"
+    - name: Removing directory
+      win_file:
+        path: "{{ BUILD_ROOT }}\\{{ head_release }}\\RB-sqa{{ release }}.win"
+        state: absent
+    - name: UI build completed
+      debug:
+        msg: "RBUI_{{ release }}"
+
